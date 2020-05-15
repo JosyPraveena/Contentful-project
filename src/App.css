@@ -1,7 +1,7 @@
 .ant-carousel .slick-slide {
   height: 355px;
   width: 100%;
-  line-height: 200px;
+  line-height: 500px;
   background: black;
   overflow: hidden;
   
@@ -42,21 +42,54 @@
 
 #footer {
 
-  height: 200px;
+  height: 180px;
   width: 100%;
-  background-color: slategray;
+  background-color:black;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-#footer-content{
-  padding: 20px;
-  padding-left: 50px;
-}
-input[type=text], input[type=submit] {
+input[type=text]{
   padding: 12px;
-  margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  width: 200px;
+  
 }
 
+#footer-content-left{
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 100px;
+}
 
+#subscribe{
+  background-color: #4CAF50;
+  border: none;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 120px;
+  border-radius: 12px;
+  color: white;
+  align-self: center;
+}
+
+#footer-content-right h2{
+  color: white;
+  padding: 30px;
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+#social-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
