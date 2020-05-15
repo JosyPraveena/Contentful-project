@@ -10,7 +10,7 @@ const Slider = () =>{
     <div>
       <img src="https://images7.alphacoders.com/512/thumb-1920-512977.jpg" alt="image1"/>
       <div className="caption-section">
-      <h3 className="caption">dasdas</h3>
+      <h3 className="caption">End of Sale</h3>
       {/* <button className="buttons">SHOP NOW</button> */}
         </div>  
     </div>
