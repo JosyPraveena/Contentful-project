@@ -1,3 +1,8 @@
+
+import React, { useEffect } from "react";
+import "./App.css";
+
+
 import React from 'react';
 import Slider from "./components/Slider"
 import Footer from "./components/Footer"
@@ -26,6 +31,7 @@ function App() {
     <div className="App">
     </div>
   );
+
 }
 
 export default App;
