@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import Featured from "./components/featured";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./components/UI/theme";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	useEffect(() => {
+		const contentful = require("contentful");
+		const client = contentful.createClient({
+			space: "judmcnqfm2ry",
+
+			accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
+		});
+
+		client
+			.getEntries({ content_type: "shirt" })
+			.then((entry) => console.log(entry))
+			.catch((err) => console.log(err));
+	}, []);
+
+	return (
+		<div className='App'>
+			<ThemeProvider theme={theme}>
+				<Featured />
+			</ThemeProvider>
+		</div>
+	);
 }
 
 export default App;
