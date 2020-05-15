@@ -1,10 +1,9 @@
 .ant-carousel .slick-slide {
   height: 355px;
   width: 100%;
-  line-height: 500px;
+  line-height: 250px;
   background: black;
   overflow: hidden;
-  
   position: relative;
 }
 
@@ -17,7 +16,7 @@
 }
 
 .ant-carousel .slick-slide img{
-  height: 360px;
+  height: 400px;
   width: 100%;
   line-height: 500px;
   align-self: center;

@@ -24,8 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      <div> <Slider /></div>
-      <div><Footer/></div>
     </div>
   );
 }
