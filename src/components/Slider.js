@@ -1,7 +1,8 @@
-import React from "react"
-import "../App.css"
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
+import React from "react";
+import "../App.css";
+//import Grid from "@material-ui/core/Grid";
+
+import { Carousel } from "antd";
 
 const Slider = () =>{
     return(
@@ -35,4 +36,4 @@ const Slider = () =>{
         </div>
     )
 }
-export default Slider
+export default Slider;
