@@ -1,37 +1,50 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import { ThemeProvider } from "@material-ui/styles";
 
+import theme from "./components/UI/theme";
+import { Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
-import React from 'react';
-import Slider from "./components/Slider"
-import Footer from "./components/Footer"
-import "./App.css"
+import HomePage from "./home";
+import PageNotFound from "./404";
+import CategoryPage from "./components/CategoryPage";
+import BlogMain from "./components/BlogMain";
 
 function App() {
-  
-  // useEffect( () => { 
+	const [data, setData] = useState("");
 
-  //   const contentful = require("contentful");
-  //   const client = contentful.createClient({
-    
-  //     space: "judmcnqfm2ry",
-    
-  //     accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg"
-  //   });
-    
-  //   client
-  //     .getEntries( { content_type: "comicBooks" } )
-  //     .then(entry => console.log(entry))
-  //     .catch(err => console.log(err));
+	useEffect(() => {
+		fetchData();
+	}, []);
 
-  // }, [] )
+	const fetchData = async () => {
+		const contentful = require("contentful");
+		const client = contentful.createClient({
+			space: "judmcnqfm2ry",
+			accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
+		});
 
-  return (
-    <div className="App">
-    </div>
-  );
+		client
+			.getEntries({ content_type: "comicBooks" })
+			.then((entry) => setData(entry))
+			.catch((err) => console.log(err));
+	};
 
+	return (
+		<ThemeProvider theme={theme}>
+			<Navbar />
+			<Switch>
+				<Route
+					path={"/category/:id"}
+					render={(props) => <CategoryPage data={data} {...props} />}
+				/>
+				<Route path='/blog/' component={BlogMain} />
+				<Route path='/' component={HomePage} />
+				<Route component={PageNotFound} />
+			</Switch>
+		</ThemeProvider>
+	);
 }
 
 export default App;

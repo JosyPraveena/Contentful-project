@@ -11,16 +11,35 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 const useStyles = makeStyles({
 	root: {
 		marginTop: "30px",
-		maxWidth: 500,
+		maxWidth: 400,
 		textAlign: "center",
 		paddingTop: "20px",
 		marginLeft: "20px",
+		marginBottom: "40px",
+	},
+
+	card: {
+		transition: "all 0.3s ease-out",
+	},
+
+	cardHover: {
+		"&:hover": {
+			transition: "all 0.1s ease-in",
+			border: "solid 1px #e62429",
+			zIndex: "100",
+			"& $image": {
+				opacity: 1,
+			},
+		},
 	},
 
 	image: {
 		width: "100%",
 		height: "auto",
 		display: "block",
+		paddingTop: "20px",
+		opacity: 0.5,
+		transition: "all 0.4 ease",
 	},
 });
 
@@ -28,9 +47,9 @@ const ProductCard = ({ data }) => {
 	const classes = useStyles();
 	const items = [1, 2, 3, 4];
 	return (
-		<div>
+		<div className={classes.root}>
 			<Grid container direction='row'>
-				<Card className={classes.root}>
+				<Card className={(classes.root, classes.card, classes.cardHover)}>
 					<CardMedia>
 						<img className={classes.image} src={data}></img>
 					</CardMedia>
