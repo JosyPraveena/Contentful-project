@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "./productCard";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	tabContainer: {
@@ -44,9 +44,19 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		width: "50%",
 	},
+
+	padding: {
+		marginBottom: "50px",
+		marginTop: "50px",
+	},
 }));
 
-const Featured = () => {
+// const FeaturedSlider = () => {
+// 	let { slug } = useParams();
+// 	return slug;
+// };
+
+const Featured = ({}) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
@@ -85,21 +95,21 @@ const Featured = () => {
 							className={classes.tab}
 							label='Shirts'
 							component={Link}
-							to='/'
+							to='/fs'
 						></Tab>
 
 						<Tab
 							className={classes.tab}
 							label='Comics'
 							component={Link}
-							to='/comics'
+							to='/fc'
 						></Tab>
 
 						<Tab
 							className={classes.tab}
 							label='Mugs'
 							component={Link}
-							to='/mugs'
+							to='/fm'
 						></Tab>
 					</Tabs>
 				</Grid>
@@ -107,7 +117,7 @@ const Featured = () => {
 
 			<Switch>
 				<Route
-					path='/mugs'
+					path='/fm'
 					component={() => (
 						<Slider {...settings}>
 							{[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
@@ -123,7 +133,7 @@ const Featured = () => {
 					)}
 				/>
 				<Route
-					path='/comics'
+					path='/fc'
 					component={() => (
 						<Slider {...settings}>
 							{[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
@@ -139,7 +149,6 @@ const Featured = () => {
 					)}
 				/>
 				<Route
-					exact
 					path='/'
 					component={() => (
 						<Slider {...settings}>
