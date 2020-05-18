@@ -117,6 +117,7 @@ const Featured = ({}) => {
 
 			<Switch>
 				<Route
+					exact
 					path='/fm'
 					component={() => (
 						<Slider {...settings}>
@@ -133,6 +134,7 @@ const Featured = ({}) => {
 					)}
 				/>
 				<Route
+					exact
 					path='/fc'
 					component={() => (
 						<Slider {...settings}>
