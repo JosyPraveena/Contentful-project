@@ -12,20 +12,14 @@ const CategoryPage = ({data,mugData,shirtData}) => {
 	if(id === "tshirt"){
 		
 		 itemList = tshirt.items.map((item) => {
-			  console.log(item)
 			return <div>
 			<Link to={`/category/id/${item.fields.shirtSlug}`} key={item.fields.shirtId}>{item.fields.shirtTitle}</Link>
 			<img src={item.fields.shirtImage[0].fields.file.url} alt="productimage"/>
 		</div>
 		 }
-			 //console.log(item)
-			
-			
 		);
-		//console.log(itemList)
 	}
 	if(id === "mugs"){
-		console.log(mug)
 		itemList = mug.items.map((item) => {
 			return <div>
 				<Link to={`/category/id/${item.fields.mugSlug}`} key={item.fields.mugId}>{item.fields.mugTitle}</Link>
