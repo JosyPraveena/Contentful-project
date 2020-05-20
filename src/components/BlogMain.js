@@ -2,22 +2,43 @@ import React, { Component } from "react";
 import BlogElement from "./BlogElement";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import { Link } from "react-router-dom";
+import BlogArticle from "./BlogArticle";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+	root: { flexGrow: 1 },
+});
 
 const BlogMain = () => {
+	const classes = useStyles();
 	return (
 		<Container>
-			<Grid container style={{ maxWidth: "1240px" }}>
-				<Grid justify='center' container item xs={12}>
-					<BlogElement />
+			<Grid container direction='row' className={classes.root}>
+				<Grid
+					justify='center'
+					container
+					item
+					xs={4}
+					component={Link}
+					to='/blog/article'
+					className={classes.root}
+				>
+					<BlogArticle />
 				</Grid>
-				<Grid container item>
-					<BlogElement />
-				</Grid>
-				<Grid item>
-					<BlogElement />
-				</Grid>
-				<Grid item>
-					<BlogElement />
+			</Grid>
+
+			<Grid container direction='row' className={classes.root}>
+				<Grid
+					justify='center'
+					container
+					item
+					xs={4}
+					component={Link}
+					to='/blog/article'
+					className={classes.root}
+				>
+					<BlogArticle />
 				</Grid>
 			</Grid>
 		</Container>
