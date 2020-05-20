@@ -235,7 +235,7 @@ input[type=text]{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
+}
 #categories {
 	display: flex;
 	align-items: center;
