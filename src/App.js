@@ -47,7 +47,7 @@ function App() {
 			<Navbar  />
 			<Switch>
 			<Route path={"/category/:id/:product"} 
-               render={(props)=> <Product data={data} {...props}/>}
+               render={(props)=> <Product data={data} mugData={mugData} shirtData={shirtData}{...props}/>}
                />
 				<Route
 					path={"/category/:id"}
