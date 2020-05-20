@@ -6,7 +6,8 @@ import { CardMedia } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
 	root: {
@@ -35,8 +36,9 @@ const useStyles = makeStyles({
 
 	image: {
 		width: "100%",
-		height: "auto",
+		height: "100%",
 		display: "block",
+		overflow: "hidden",
 		paddingTop: "20px",
 		opacity: 0.5,
 		transition: "all 0.4 ease",
@@ -51,14 +53,18 @@ const CategoryCard = ({ data }) => {
 			<Grid container direction='row'>
 				<Card className={(classes.root, classes.card, classes.cardHover)}>
 					<CardMedia>
-						<img className={classes.image} src={data}></img>
+						<img
+							className={classes.image}
+							src={data.fields.bookImage.fields.file.url}
+						></img>
 					</CardMedia>
 					<CardContent>
+						<Rating name='read-only' value={data.fields.bookRating} readOnly />
 						<Typography gutterBottom variant='h6'>
-							The Mandalorian Poster Women's T-Shirt - Black
+							{data.fields.bookTitle}
 						</Typography>
-						<Typography variant='body1'>{data.fields.shirtCategory}</Typography>
-						<Typography variant='body1'>{data.fields.shirtPrice}</Typography>
+						<Typography variant='body1'>{data.fields.bookCategory}</Typography>
+						<Typography variant='body1'> €{data.fields.bookPrice}</Typography>
 					</CardContent>
 				</Card>
 			</Grid>

@@ -60,6 +60,12 @@ const Featured = ({}) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
+	const sliderPictures = [
+		"https://s1.thcdn.com//productimg/1600/1600/12371011-8244723051660083.jpg",
+		"https://s1.thcdn.com//productimg/1600/1600/11866478-2114767845905041.jpg",
+		"https://s1.thcdn.com/productimg/1600/1600/11887986-5224612103755047.png",
+	];
+
 	const handleChange = (e, value) => {
 		setValue(value);
 	};
@@ -91,83 +97,22 @@ const Featured = ({}) => {
 
 				<Grid item container justify='center'>
 					<Tabs value={value} onChange={handleChange}>
-						<Tab
-							className={classes.tab}
-							label='Shirts'
-							component={Link}
-							to='/fs'
-						></Tab>
+						<Tab className={classes.tab} label='Shirts' component={Link}></Tab>
 
-						<Tab
-							className={classes.tab}
-							label='Comics'
-							component={Link}
-							to='/fc'
-						></Tab>
+						<Tab className={classes.tab} label='Comics' component={Link}></Tab>
 
-						<Tab
-							className={classes.tab}
-							label='Mugs'
-							component={Link}
-							to='/fm'
-						></Tab>
+						<Tab className={classes.tab} label='Mugs' component={Link}></Tab>
 					</Tabs>
 				</Grid>
 			</Grid>
 
-			<Switch>
-				<Route
-					exact
-					path='/fm'
-					component={() => (
-						<Slider {...settings}>
-							{[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-								<div>
-									<ProductCard
-										data={
-											"https://s1.thcdn.com/productimg/1600/1600/11887986-5224612103755047.png"
-										}
-									/>
-								</div>
-							))}
-						</Slider>
-					)}
-				/>
-				<Route
-					exact
-					path='/fc'
-					component={() => (
-						<Slider {...settings}>
-							{[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-								<div>
-									<ProductCard
-										data={
-											"https://s1.thcdn.com//productimg/1600/1600/11866478-2114767845905041.jpg"
-										}
-									/>
-								</div>
-							))}
-						</Slider>
-					)}
-				/>
-				<Route
-					path='/'
-					component={() => (
-						<Slider {...settings}>
-							{[1, 2, 3, 4, 5, 6, 7, 8].map(() => (
-								<div>
-									<ProductCard
-										data={
-											"https://s1.thcdn.com//productimg/1600/1600/12371011-8244723051660083.jpg"
-										}
-									/>
-								</div>
-							))}
-						</Slider>
-					)}
-				/>{" "}
-				*/}
-			</Switch>
+			<Slider {...settings}>
+				{[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+					<div>
+						<ProductCard data={sliderPictures[value]} />
+					</div>
+				))}
+			</Slider>
 		</React.Fragment>
 	);
 };

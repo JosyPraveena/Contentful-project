@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { Link, useParams } from "react-router-dom";
-import CategoryCard from "./categoryCard";
+import ShirtCategoryCard from "./ShirtCategoryCard";
+import MugCategoryCard from "./MugCategoryCard";
+import ComicCategoryCard from "./ComicCategoryCard";
 
 const CategoryPage = ({ data, mugData, shirtData }) => {
 	const comic = data;
@@ -15,19 +17,15 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 		itemList = tshirt.items.map(
 			(item) => {
 				return (
-					<div>
-						<CategoryCard data={item} />
+					<Grid item container xs={12} sm={4}>
 						<Link
+							style={{ textDecoration: "none" }}
 							to={`/category/id/${item.fields.shirtSlug}`}
 							key={item.fields.shirtId}
 						>
-							{item.fields.shirtTitle}
+							<ShirtCategoryCard data={item} />
 						</Link>
-						<img
-							src={item.fields.shirtImage[0].fields.file.url}
-							alt='productimage'
-						/>
-					</div>
+					</Grid>
 				);
 			}
 			//console.log(item)
@@ -42,40 +40,39 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 
 		itemList = mug.items.map((item) => {
 			return (
-				<div>
+				<Grid item container xs={12} sm={4}>
 					<Link
+						style={{ textDecoration: "none" }}
 						to={`/category/id/${item.fields.mugSlug}`}
 						key={item.fields.mugId}
 					>
-						{item.fields.mugTitle}
+						<MugCategoryCard data={item} />
 					</Link>
-					<img
-						src={item.fields.mugImage[0].fields.file.url}
-						alt='productimage'
-					/>
-				</div>
+				</Grid>
 			);
 		});
 	}
 	if (id === "comicbooks") {
 		itemList = comic.items.map((item) => {
 			return (
-				<div>
+				<Grid item container xs={12} sm={4}>
 					<Link
+						style={{ textDecoration: "none" }}
 						to={`/category/id/${item.fields.bookSlug}`}
 						key={item.fields.bookId}
 					>
-						{item.fields.bookTitle}
+						<ComicCategoryCard data={item} />
 					</Link>
-					<img src={item.fields.bookImage.fields.file.url} alt='productimage' />
-				</div>
+				</Grid>
 			);
 		});
 	}
 
 	return (
 		<Container>
-			<Grid style={{ maxWidth: "1240px", marginTop: "100px" }}>{itemList}</Grid>
+			<Grid container justify='center' style={{ marginTop: "100px" }}>
+				{itemList}
+			</Grid>
 		</Container>
 	);
 };
