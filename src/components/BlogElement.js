@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import TodayIcon from "@material-ui/icons/Today";
 import CommentIcon from "@material-ui/icons/Comment";
 
-import Image from "material-ui-image";
+// import Image from "material-ui-image";
 
 import cat_shirts from "../img/cat_tshirts.jpg";
 import avatar from "../img/avatar.jpg";

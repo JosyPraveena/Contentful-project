@@ -1,20 +1,21 @@
 import React from "react"
 import "../App.css"
 
-const Product = ({bookdetails}) =>{
-//console.log(bookdetails.bookImage.fields)
+const Product = ({data}) =>{
+    const{items} = data;
+//console.log(data.items[0])
 return(
     <>
     <div id="product">
 <div id="product-top-left">
-    <img src="http://images.ctfassets.net/judmcnqfm2ry/1mIy0SOHPAAdYvsPWBoHdk/fc308f7653132b404daf660d5b0956f6/A18Cko6gRPL.jpg" alt="productimage"/>
+    <img src={items[0].fields.bookImage.fields.file.url} alt="productimage"/>
 
 </div>
 <div id="product-top-right"> 
-<h1>{bookdetails.bookTitle}</h1>
-<h1>${bookdetails.bookPrice}</h1>
-<h2>Rating: {bookdetails.bookRating}/5</h2>
-<p>{bookdetails.bookSubtext}</p>
+<h1>{items[0].fields.bookTitle}</h1>
+<h1>${items[0].fields.bookPrice}</h1>
+<h2>Rating: {items[0].fields.bookRating}/5</h2>
+<p>{items[0].fields.bookSubtext}</p>
 <button>BUY NOW</button>
 </div >
 
@@ -23,7 +24,7 @@ return(
 <div id="product-details">
 <hr></hr>
 <h2>Description</h2>
-<p>{bookdetails.bookDescription}</p>
+<p>{items[0].fields.bookDescription}</p>
 
 </div>
 </>

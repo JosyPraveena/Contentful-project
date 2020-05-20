@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import createMixins from "@material-ui/core/styles/createMixins";
 
 export default function Navbar(props) {
+	
 	const [value, setValue] = React.useState(0);
 
 	function HideOnScroll(props) {
