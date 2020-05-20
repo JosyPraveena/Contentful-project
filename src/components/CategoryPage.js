@@ -10,6 +10,7 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	const tshirt = shirtData;
 	const { id } = useParams();
 	let itemList = [];
+
 	if (id === "tshirt") {
 		itemList = tshirt.items.map(
 			(item) => {
@@ -30,11 +31,15 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 				);
 			}
 			//console.log(item)
+
 		);
-		//console.log(itemList)
 	}
+
+
+
 	if (id === "mugs") {
 		console.log(mug);
+
 		itemList = mug.items.map((item) => {
 			return (
 				<div>

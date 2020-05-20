@@ -226,11 +226,15 @@ input[type="text"] {
 	width: 300px;
 }
 
-#social-icons {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+
+#social-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
+
+
+
 
 #categories {
 	display: flex;
