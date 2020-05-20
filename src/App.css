@@ -4,7 +4,6 @@ body {
 	box-sizing: border-box;
 }
 
-
 /* .ant-carousel .slick-slide {
 	height: 100vh;
 	width: 100%;
@@ -22,12 +21,10 @@ body {
 	transform: translate(-50%, -50%);
 } */
 
-
 /* .ant-carousel .slick-slide img {
 	height: 100vh;
 	width: 100%;
 } */
-
 
 /* .ant-carousel .slick-slide img {
 	height: 100vh;
@@ -184,57 +181,56 @@ input[type="text"] {
 	box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
 }
 
-
-#footer{
-  height: 180px;
-  width: 100%;
-  background-color:black;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+#footer {
+	height: 180px;
+	width: 100%;
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
 
-input[type=text]{
-  padding: 12px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  width: 200px;
-  
+input[type="text"] {
+	padding: 12px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	width: 200px;
 }
 
-#footer-content-left{
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 100px;
+#footer-content-left {
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-left: 100px;
 }
 
-#subscribe{
-  background-color: #4CAF50;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  width: 120px;
-  border-radius: 12px;
-  color: white;
-  align-self: center;
+#subscribe {
+	background-color: #4caf50;
+	border: none;
+	padding: 16px 32px;
+	text-decoration: none;
+	cursor: pointer;
+	width: 120px;
+	border-radius: 12px;
+	color: white;
+	align-self: center;
 }
 
-#footer-content-right h2{
-  color: white;
-  padding: 30px;
-  display: flex;
-  justify-content: space-around;
-  width: 300px;
+#footer-content-right h2 {
+	color: white;
+	padding: 30px;
+	display: flex;
+	justify-content: space-around;
+	width: 300px;
 }
 
-#social-icons{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+#social-icons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
 
 #categories {
 	display: flex;
@@ -243,7 +239,6 @@ input[type=text]{
 	height: 355px;
 	width: 100%;
 	background-color: lightskyblue;
-
 }
 #categories {
 	display: flex;
@@ -253,89 +248,87 @@ input[type=text]{
 	width: 100%;
 	background-color: lightskyblue;
 }
-#product{
-  height: 500px;
-  display: flex;
-  background-color: white;
+#product {
+	height: 500px;
+	display: flex;
+	background-color: white;
 }
-#product-top-left{
-  padding-left: 50px;
-  padding-top: 20px;
+#product-top-left {
+	padding-left: 50px;
+	padding-top: 20px;
+}
+#product-top-left img {
+	height: 480px;
+	width: 500px;
+	padding: 50px;
+	background-color: white;
+	padding-left: 80px;
+}
 
-}
-#product-top-left img{
-  height: 480px;
-  width: 500px;
-  padding: 50px;
-  background-color: white;
-  padding-left: 80px;
-}
-
-#product-top-right{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 50px;
-  padding-left: 200px;
-  color: black;
+#product-top-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 50px;
+	padding-left: 200px;
+	color: black;
 }
 
 #product-top-right h1 {
-  color: black;
- font-size: 40px;
- font-family: 'Bubblegum Sans', cursive;
- text-align: justify;
+	color: black;
+	font-size: 40px;
+	font-family: "Bubblegum Sans", cursive;
+	text-align: justify;
 }
 
 #product-top-right h2 {
-  color: black;
- font-size: 30px;
- font-family: 'Bubblegum Sans', cursive;
- text-align: justify;
+	color: black;
+	font-size: 30px;
+	font-family: "Bubblegum Sans", cursive;
+	text-align: justify;
 }
 
-#product-top-right button{
-  background-color: #4CAF50;
-  border: none;
-  padding: 16px 32px;
-  text-decoration: none;
-  cursor: pointer;
-  width: 150px;
-  
-  color: white;
-  align-self: start;
-  font-size: 20px;
-  font-family: 'Bangers', cursive;
+#product-top-right button {
+	background-color: #4caf50;
+	border: none;
+	padding: 16px 32px;
+	text-decoration: none;
+	cursor: pointer;
+	width: 150px;
+
+	color: white;
+	align-self: start;
+	font-size: 20px;
+	font-family: "Bangers", cursive;
 }
 
-#product-top-right p{
-  text-align: justify;
-  font-size: 15px;
+#product-top-right p {
+	text-align: justify;
+	font-size: 15px;
 }
-#product-details{
-  height: 300px;
-  /* background-color: #EEEEEE; */
-  
+#product-details {
+	height: 300px;
+	/* background-color: #EEEEEE; */
 }
-#product-details h2{
-  font-weight: bold;
-  font-family: 'Bubblegum Sans', cursive;
-  text-align: left;
-  padding-left: 40px;
-  font-size: 42px;
-}
-
-#product-details hr{
-  color: rgb(72,72,72);
-  width: 95%;
+#product-details h2 {
+	font-weight: bold;
+	font-family: "Bubblegum Sans", cursive;
+	text-align: left;
+	padding-left: 40px;
+	font-size: 42px;
 }
 
-#product-details p{
-  text-align: justify;
-  padding-left: 40px;
-  padding-right: 40px;
-  color: black;
-  font-size: 15px;
+#product-details hr {
+	color: rgb(72, 72, 72);
+	width: 95%;
+}
+
+#product-details p {
+	text-align: justify;
+	padding-left: 40px;
+	padding-right: 40px;
+	color: black;
+	font-size: 15px;
 }
 /* 
 @media only screen and (min-width: 1109px){
