@@ -7,9 +7,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+
 
 // images
 import cat_comics from "../img/cat_comics.jpg";
@@ -121,6 +123,7 @@ export default function Categories() {
 					</Link>
 				</Grid>
 			</Grid>
+
 			<div className='cat-container'>
 				<div
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
@@ -135,8 +138,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
+
 								<Typography className={classes.cardTitle}>T-SHIRTS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Dress like a superhero
 								</Typography>
 							</CardContent>
@@ -164,8 +169,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
+
 								<Typography className={classes.cardTitle}>MUGS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Enjoy a coffee with your favourite character
 								</Typography>
 							</CardContent>
@@ -193,8 +200,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
+
 								<Typography className={classes.cardTitle}>COMICS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Explore a world full of action and adventures
 								</Typography>
 							</CardContent>

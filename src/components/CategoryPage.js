@@ -1,41 +1,52 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import ProductCard from "./productCard";
+import { Link,useParams } from "react-router-dom";
 
-const CategoryPage = ({ data }) => {
-	const { items } = data;
-	console.log(items);
-
-	// const itemList = items.map((item) => (
-	// 	<div>
-	// 		<div key={item.fields.bookId}>{item.fields.bookTitle}</div>
-	// 		<img src={item.fields.bookImage.fields.file.url} />
-	// 	</div>
-	// ));
-
+const CategoryPage = ({data,mugData,shirtData}) => {
+	const comic = data;
+	const mug = mugData;
+	const tshirt = shirtData;
+	const  {id} = useParams();
+	let itemList = [];
+	if(id === "tshirt"){
+		
+		 itemList = tshirt.items.map((item) => {
+			  console.log(item)
+			return <div>
+			<Link to={`/category/id/${item.fields.shirtSlug}`} key={item.fields.shirtId}>{item.fields.shirtTitle}</Link>
+			<img src={item.fields.shirtImage[0].fields.file.url} alt="productimage"/>
+		</div>
+		 }
+			 //console.log(item)
+			
+			
+		);
+		//console.log(itemList)
+	}
+	if(id === "mugs"){
+		console.log(mug)
+		itemList = mug.items.map((item) => {
+			return <div>
+				<Link to={`/category/id/${item.fields.mugSlug}`} key={item.fields.mugId}>{item.fields.mugTitle}</Link>
+				<img src={item.fields.mugImage[0].fields.file.url} alt="productimage"/>
+			</div>
+		});
+	}
+	if(id==="comicbooks"){
+		itemList = comic.items.map((item) => {
+			return <div>
+				<Link to={`/category/id/${item.fields.bookSlug}`} key={item.fields.bookId}>{item.fields.bookTitle}</Link>
+				<img src={item.fields.bookImage.fields.file.url} alt="productimage"/>
+			</div>
+	});
+	}
+	
+	
 	return (
 		<Container>
-			<Grid container style={{ maxWidth: "1240px", marginTop: "100px" }}>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
-					<ProductCard />
-				</Grid>
-			</Grid>
+			<Grid style={{ maxWidth: "1240px", marginTop: "100px" }}>{itemList}</Grid>
+
 		</Container>
 	);
 };
