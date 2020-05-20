@@ -8,7 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
+import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import { Link } from "react-router-dom";
+
 
 // images
 import cat_comics from "../img/cat_comics.jpg";
@@ -24,14 +27,20 @@ const useStyles = makeStyles({
 
 	title: {
 		fontFamily: "Bangers",
-		textAlign: "center",
-		marginTop: "100px",
-		marginBottom: "50px",
-		fontSize: "5rem",
+		textAlign: "left",
+		marginBottom: "20px",
+		fontSize: "3rem",
 	},
 
 	cardTitle: {
-		fontFamily: "Roboto",
+		fontWeight: "700",
+		fontSize: "2rem",
+		textAlign: "center",
+	},
+
+	cardSub: {
+		textAlign: "center",
+		fonsSize: "1rem",
 	},
 
 	cardRight: {
@@ -61,6 +70,19 @@ const useStyles = makeStyles({
 			zIndex: 2,
 		},
 	},
+
+	brands: {
+		marginBottom: "30px",
+	},
+
+	brandLink: {
+		opacity: 0.5,
+		transition: "all 0.3s ease-out",
+		"&:hover": {
+			opacity: 1,
+			transform: "translateY(-5px)",
+		},
+	},
 });
 
 export default function Categories() {
@@ -68,9 +90,39 @@ export default function Categories() {
 
 	return (
 		<Container>
-			<Typography variant='h3' className={classes.title}>
-				BROWSE CATEGORIES
-			</Typography>
+			<Typography className={classes.title}>BROWSE CATEGORIES</Typography>
+			<Grid container className={classes.brands} justify='center'>
+				<Grid item sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s3.thcdn.com/widgets/96-en/16/uni-logo-044231-044516-094513-101816.png' />
+					</Link>
+				</Grid>
+				<Grid item sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s2.thcdn.com/widgets/96-en/16/marvel-logo-010015-094513-101816.png' />
+					</Link>
+				</Grid>
+				<Grid item sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s3.thcdn.com/widgets/96-en/2/Nintendo_Logo_PNG-095602.png' />
+					</Link>
+				</Grid>
+				<Grid item sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s1.thcdn.com/widgets/96-en/16/Disney-logo-044227-044516-094512-101816.png' />
+					</Link>
+				</Grid>
+				<Grid item sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s3.thcdn.com/widgets/96-en/16/180x72-zbox-ch-STARWARS-055736-103822-044516-094512-101816.png' />
+					</Link>
+				</Grid>
+				<Grid sm={4} lg={2} className={classes.brandLink}>
+					<Link>
+						<img src='https://s2.thcdn.com/widgets/96-en/16/180x72-zbox-ch-FUNKO-055728-103822-044516-094512-101816.png' />
+					</Link>
+				</Grid>
+			</Grid>
 
 			<div className='cat-container'>
 				<div
@@ -86,10 +138,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-								<Typography gutterBottom variant='h5' component='h2'>
-									T-SHIRTS
-								</Typography>
-								<Typography variant='body2' color='textSecondary' component='p'>
+
+								<Typography className={classes.cardTitle}>T-SHIRTS</Typography>
+								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Dress like a superhero
 								</Typography>
 							</CardContent>
@@ -117,10 +169,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-								<Typography gutterBottom variant='h5' component='h2'>
-									MUGS
-								</Typography>
-								<Typography variant='body2' color='textSecondary' component='p'>
+
+								<Typography className={classes.cardTitle}>MUGS</Typography>
+								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Enjoy a coffee with your favourite character
 								</Typography>
 							</CardContent>
@@ -148,10 +200,10 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-								<Typography gutterBottom variant='h5' component='h2'>
-									COMICS
-								</Typography>
-								<Typography variant='body2' color='textSecondary' component='p'>
+
+								<Typography className={classes.cardTitle}>COMICS</Typography>
+								<Typography color='textSecondary' className={classes.cardSub}>
+
 									Explore a world full of action and adventures
 								</Typography>
 							</CardContent>

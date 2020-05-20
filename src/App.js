@@ -10,12 +10,14 @@ import HomePage from "./home";
 import PageNotFound from "./404";
 import CategoryPage from "./components/CategoryPage";
 import BlogMain from "./components/BlogMain";
+
 import Product from "./components/Product";
 
 function App() {
 	const [data, setData] = useState("");
 	const [mugData,setMugData] = useState("");
 	const [shirtData,setShirtData] = useState("");
+
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -28,6 +30,7 @@ function App() {
 		});
 
 		client
+
 	  .getEntries({ content_type: "comicBooks"})
 			.then((entry) => setData(entry))
 			.catch((err) => console.log(err));
@@ -40,6 +43,8 @@ function App() {
 				  .then((entry) => setShirtData(entry))
 				  .catch((err) => console.log(err));
 		
+	
+
 	};
 
 	return (

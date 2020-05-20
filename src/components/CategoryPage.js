@@ -40,6 +40,7 @@ const CategoryPage = ({data,mugData,shirtData}) => {
 	return (
 		<Container>
 			<Grid style={{ maxWidth: "1240px", marginTop: "100px" }}>{itemList}</Grid>
+
 		</Container>
 	);
 };
