@@ -15,6 +15,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Slide from "@material-ui/core/Slide";
 import { Link } from "react-router-dom";
+import Logo from "../img/LOGO.png"
 import createMixins from "@material-ui/core/styles/createMixins";
 
 export default function Navbar(props) {
@@ -89,6 +90,9 @@ export default function Navbar(props) {
 		toolbarMargin: {
 			...theme.mixins.toolbar,
 		},
+		logo: {
+			height: "75px"
+		}
 	}));
 
 	const handleChange = (event, newValue) => {
@@ -103,14 +107,7 @@ export default function Navbar(props) {
 			<HideOnScroll {...props}>
 				<AppBar>
 					<Toolbar>
-						<IconButton
-							edge='start'
-							className={classes.menuButton}
-							color='inherit'
-							aria-label='menu'
-						>
-							<BlurCircularIcon />
-						</IconButton>
+						<img src={Logo} ALT="Logo" className={classes.logo}/>
 
 						<Typography
 							component={Link}

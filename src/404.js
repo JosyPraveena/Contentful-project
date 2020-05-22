@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
+import i404 from "./img/404.png"
+
+
 
 const PageNotFound = () => {
+
+	
 	return (
-		<div>
-			<Typography> 404 Oooopsie Doopsie</Typography>
-			<img src='https://i1.pngguru.com/preview/725/874/395/spiderman-png-clipart-thumbnail.jpg' />
+		<div id="i404">
+			<Typography>Wrong alley, webslinger !</Typography><p/>
+			<img src={i404} />
 		</div>
 	);
 };

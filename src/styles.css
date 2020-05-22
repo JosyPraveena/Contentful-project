@@ -192,3 +192,6 @@ a:link {
   .socialSpacer {padding: 0 10px; }
   #socialLeft { width:100%; text-align: left; display: flex; flex-direction: row; justify-content: flex-start;}
   #socialRight { width:100%; text-align: right; display: flex; flex-direction: row; justify-content: flex-end; }
+
+  #i404 { margin-top: 130px; display: flex; flex-direction: column; justify-content: center; align-content:center; align-items: center; }
+  #i404 img { width: 800px }
