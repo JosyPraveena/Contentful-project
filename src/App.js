@@ -87,11 +87,11 @@ function App() {
 					render={(props) => <BlogDetails blogData={blogData} {...props} />}
 				/>
 				<Route path='/blog/' render={(props) => <BlogMain blogData={blogData} {...props} />}/>
-                <Route
+                <Route exact
                     path='/'
                     render={(props) => (
                         
-						<HomePage
+						<HomePage  
                             data={data}
                             mugData={mugData}
                             shirtData={shirtData}
