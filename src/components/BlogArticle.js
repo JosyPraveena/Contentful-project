@@ -13,147 +13,125 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import FaceIcon from "@material-ui/icons/Face";
+import { Link } from "react-router-dom";
+
+import { DateTime } from "luxon";
+
+
 
 import image1 from "../img/1.jpg";
 
-export default function BlogArticle() {
-	const useStyles = makeStyles({
-		root: {
-			width: 400,
-		},
-		orange: {
-			backgroundColor: "#f00",
-		},
-	});
+const BlogArticle = ({ blogData }) => {
 
-	const [data, setData] = useState(null);
-	const [isFetched, setIsFetched] = useState(false);
-	const [blogTitle, setBlogTitle] = useState(null);
-	const [blogSubtitle, setBlogSubtitle] = useState(null);
-	const [blogDate, setBlogDate] = useState(null);
-	const [blogContent, setBlogContent] = useState(null);
+  // console.log("From Article : ", blogData);
 
-	// const [blogContent, setBlogContent] = useState(null);
+  const { fields } = blogData;
 
-	// const [blogDate, setBlogDate] = useState(null);
+  // console.log("From Article (fields): ", fields);
 
-	// const [blogimage, setBlogImage] = useState(null);
+  const useStyles = makeStyles({
+    root: {
+      width: 450
+    },
+    orange: {
+      backgroundColor: "#f00"
+    },
+    title: {
 
-	useEffect(() => {
-		const contentful = require("contentful");
-		const client = contentful.createClient({
-			space: "judmcnqfm2ry",
+      textTransform: "uppercase",
 
-			accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
-		});
+      fontSize: "1.2rem",
+		fontFamily: "Montserrat",
+		fontWeight: 900,
+		color: "#294A55",
+    textDecoration: "none",
+    
+    },
+    subtitle: {
 
-		client
-			.getEntries({ content_type: "blog" })
-			// .then(entry => console.log(entry.items[0].fields.blogTitle))
-			.then((entry) => setData(entry.items[0].fields))
-			// .then(entry => console.log(entry.items[0].fields.blogId))
+      fontSize: "1rem",
+		fontFamily: "Montserrat",
+		fontWeight: 400,
+		color: "#294A55",
+    textDecoration: "none",
+    
+    }
+  });
 
-			.catch((err) => console.log(err));
-	}, []);
+  
 
-	useEffect(() => {
-		if (data != null) {
-			const {
-				blogId,
-				blogTitle,
-				blogSubtitle,
-				blogDate,
-				blogAuthor,
-				blogContent,
-			} = data;
+  const classes = useStyles();
+  let ISO = DateTime.fromISO(fields.blogDate)
+  const day=['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+  const month=['','January','February','March','April','May','June','July','August','September','October','November','December']
 
-			console.log(
-				blogId,
-				blogTitle,
-				blogSubtitle,
-				blogDate,
-				blogAuthor,
-				blogContent
-			);
+  const showTags = () => { fields.blogTags.map( item => 
+    
+   <div>{`item`}</div>
+    // <Chip
+    //   // avatar={`<Avatar>#</Avatar>`}
+    //   size="small"
+    //   label="item"
+    //   onClick=""
+    // />
+  
+  ) }
 
-			setBlogTitle(blogTitle);
-			setBlogSubtitle(blogSubtitle);
-			setBlogDate(blogDate);
-			setBlogContent(blogContent);
-		}
-	}, [data]);
+  return (
 
-	const classes = useStyles();
+    
+    <>
+    {/* {console.log(fields)} */}
+      <div>
+        <div className="cat-container" id="theBlog">
+          <div className="cat-item">
+            <Card className={classes.root} component={Link} to={`/blog/${fields.blogId}`} key={fields.blogId}>
+              <CardActionArea>
+                <CardHeader className={classes.title}
+                  avatar={<Avatar className={classes.orange} alt={fields.blogAuthor} src={fields.blogAvatar.fields.file.url}/>}
+                  title={fields.blogTitle}
+                  subheader={`${fields.blogAuthor} @ ${day[ISO.weekday]}, ${month[ISO.month]} ${ISO.day}th ${ISO.year}`}
+                  id="blogHead"
+                />
 
-	return (
-		<>
-			<div>
-				<div className='cat-container' id='theBlog'>
-					<div className='cat-item'>
-						<Card className={classes.root}>
-							<CardActionArea>
-								<CardHeader
-									avatar={<Avatar className={classes.orange}>RW</Avatar>}
-									title={blogTitle}
-									subheader={blogDate}
-								/>
+                <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  height="200"
+                  image={fields.blogImage.fields.file.url}
+                  title="Contemplative Reptile"
+                />
+                <CardContent id="blogCaption">
+                  <Typography gutterBottom variant="h6" component="h2">
+                    {fields.blogSubtitle}
+                  </Typography>
 
-								<CardMedia
-									component='img'
-									alt='Contemplative Reptile'
-									height='200'
-									image={image1}
-									title='Contemplative Reptile'
-								/>
-								<CardContent>
-									<Typography gutterBottom variant='h6' component='h2'>
-										{blogSubtitle}
-									</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                   {fields.blogCaption}
+                  </Typography>
+                </CardContent>
+                <CardActions>
 
-									<Typography variant='body2' color='textSecondary'>
-										Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-										diam nonumy eirmod tempor invidunt ut labore et dolore magna
-										aliquyam erat, sed diam voluptua. At vero eos et accusam et
-										justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-										sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-										ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-										nonumy eirmod tempor invidunt ut labore et dolore magna
-										aliquyam erat, sed diam voluptua. At vero eos et accusam et
-										justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-										sea takimata sanctus est Lorem ipsum dolor sit amet.
-									</Typography>
-								</CardContent>
-								<CardActions>
-									<Chip
-										avatar={<Avatar>#</Avatar>}
-										size='small'
-										label='MUGS'
-										onClick=''
-									/>
-									<Chip
-										avatar={<Avatar>#</Avatar>}
-										size='small'
-										label='T-SHIRTS'
-										onClick=''
-									/>
-									<Chip
-										avatar={<Avatar>#</Avatar>}
-										size='small'
-										label='COMICS'
-										onClick=''
-									/>
-									<Chip
-										avatar={<Avatar>#</Avatar>}
-										size='small'
-										label='WBS'
-										onClick=''
-									/>
-								</CardActions>
-							</CardActionArea>
-						</Card>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+                {fields.blogTags !== undefined &&
+                fields.blogTags.map((item) => (
+                  <Chip
+                  avatar={<Avatar>#</Avatar>}
+                  size="small"
+                  label={item}
+                  onClick=""
+                /> )
+                )}
+                  
+                  
+                </CardActions>
+              </CardActionArea>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
+
+
+export default BlogArticle;
