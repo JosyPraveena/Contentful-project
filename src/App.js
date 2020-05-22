@@ -18,7 +18,6 @@ function App() {
 	const [data, setData] = useState("");
 	const [mugData, setMugData] = useState("");
 	const [shirtData, setShirtData] = useState("");
-
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -42,8 +41,8 @@ function App() {
 			.getEntries({ content_type: "shirt" })
 			.then((entry) => setShirtData(entry))
 			.catch((err) => console.log(err));
+	
 	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Navbar />
