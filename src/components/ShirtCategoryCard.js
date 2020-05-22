@@ -18,19 +18,7 @@ const useStyles = makeStyles({
 	},
 
 	card: {
-		transition: "all 0.3s ease-out",
-		textDecoration: "none",
-	},
-
-	cardHover: {
-		"&:hover": {
-			transition: "all 0.1s ease-in",
-			border: "solid 1px #e62429",
-			zIndex: "100",
-			"& $image": {
-				opacity: 1,
-			},
-		},
+		transition: "all 1s ease",
 	},
 
 	image: {
@@ -39,12 +27,25 @@ const useStyles = makeStyles({
 		display: "block",
 		paddingTop: "20px",
 		opacity: 0.5,
-		transition: "all 0.4 ease",
+		transition: "all 0.5s ease",
+	},
+
+	cardHover: {
+		transition: "all 0.5s ease",
+		"&:hover": {
+			transform: "translateY(-20px)",
+			border: "solid 2px #e62429",
+			"& $image": {
+				opacity: 1,
+				transform: "scale(1.02)",
+			},
+		},
 	},
 });
 
 const CategoryCard = ({ data }) => {
 	const classes = useStyles();
+
 	return (
 		<div className={classes.root}>
 			<Grid container direction='row'>
@@ -67,6 +68,7 @@ const CategoryCard = ({ data }) => {
 			</Grid>
 		</div>
 	);
+
 };
 
 export default CategoryCard;

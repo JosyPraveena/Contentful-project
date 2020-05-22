@@ -48,35 +48,15 @@ body {
 	cursor: pointer;
 }
 
-#footer {
-	margin-top: 100px;
-	height: 180px;
-	width: 100%;
-	background-color: black;
-	border: 2px solid white;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	padding-bottom: 50px;
-}
-
-input[type="text"] {
+/* input[type="text"] {
 	padding: 12px;
 	display: inline-block;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	width: 200px;
-}
+} */
 
-#footer-content-left {
-	padding: 30px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding-left: 100px;
-}
-
-#subscribe {
+/* #subscribe {
 	background-color: #4caf50;
 	border: none;
 	padding: 16px 32px;
@@ -86,21 +66,7 @@ input[type="text"] {
 	border-radius: 12px;
 	color: white;
 	align-self: center;
-}
-
-#footer-content-right h2 {
-	color: white;
-	padding: 30px;
-	display: flex;
-	justify-content: space-around;
-	width: 300px;
-}
-
-#social-icons {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-}
+} */
 
 .cat-container {
 	display: flex;
@@ -190,13 +156,13 @@ input[type="text"] {
 	justify-content: space-around;
 }
 
-input[type="text"] {
+/* input[type="text"] {
 	padding: 12px;
 	display: inline-block;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	width: 200px;
-}
+} */
 
 #footer-content-left {
 	padding: 30px;
@@ -226,15 +192,11 @@ input[type="text"] {
 	width: 300px;
 }
 
-
-#social-icons{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+#social-icons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
 }
-
-
-
 
 #categories {
 	display: flex;

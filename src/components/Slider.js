@@ -105,7 +105,12 @@ const HeroSlider = () => {
 										<strong>#14</strong>
 									</em>
 								</Typography>
-								<Link className={classes.btn}>Learn More</Link>
+								<Link
+									className={classes.btn}
+									to='/category/comicbooks/deadpool-classic'
+								>
+									Learn More
+								</Link>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -129,7 +134,12 @@ const HeroSlider = () => {
 										<strong>#14</strong>
 									</em>
 								</Typography>
-								<Link className={classes.btn}>Learn More</Link>
+								<Link
+									className={classes.btn}
+									to='/category/comicbooks/infinity-war'
+								>
+									Learn More
+								</Link>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -153,7 +163,12 @@ const HeroSlider = () => {
 										<strong>#14</strong>
 									</em>
 								</Typography>
-								<Link className={classes.btn}>Learn More</Link>
+								<Link
+									className={classes.btn}
+									to='/category/comicbooks/marvel_encyclopedia'
+								>
+									Learn More
+								</Link>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -203,4 +218,3 @@ export default HeroSlider;
 				/>
 			</div> */
 }
-
