@@ -11,6 +11,7 @@ import PageNotFound from "./404";
 import CategoryPage from "./components/CategoryPage";
 import BlogMain from "./components/BlogMain";
 import BlogArticle from "./components/BlogArticle";
+import BlogDetails from "./components/BlogDetails";
 
 import Product from "./components/Product";
 
@@ -18,6 +19,8 @@ function App() {
 	const [data, setData] = useState("");
 	const [mugData, setMugData] = useState("");
 	const [shirtData, setShirtData] = useState("");
+	const [blogData, setBlogData] = useState("");
+
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -41,39 +44,64 @@ function App() {
 			.getEntries({ content_type: "shirt" })
 			.then((entry) => setShirtData(entry))
 			.catch((err) => console.log(err));
-	
+		client
+			.getEntries({ content_type: "blog" })
+			.then((entry) => setBlogData(entry))
+			.catch((err) => console.log(err));
+			
 	};
+	const { items } = blogData;
+
 	return (
 		<ThemeProvider theme={theme}>
+			{items !== undefined &&
+				items.map((item) =>
+					console.log(item.fields.blogContent.content[0].content[0].value)
+				)}
 			<Navbar />
 			<Switch>
-				<Route
-					path={"/category/:id/:product"}
-					render={(props) => (
-						<Product
-							data={data}
-							mugData={mugData}
-							shirtData={shirtData}
-							{...props}
-						/>
-					)}
+                <Route
+                    path={"/category/:id/:product"}
+                    render={(props) => (
+                        <Product
+                            data={data}
+                            mugData={mugData}
+                            shirtData={shirtData}
+                            {...props}
+                        />
+                    )}
+                />
+                <Route
+                    path={"/category/:id"}
+                    render={(props) => (
+                        <CategoryPage
+                            data={data}
+                            mugData={mugData}
+                            shirtData={shirtData}
+                            {...props}
+                        />
+                    )}
+                />
+        		<Route
+					path={"/blog/:id"}
+					render={(props) => <BlogDetails blogData={blogData} {...props} />}
 				/>
-				<Route
-					path={"/category/:id"}
-					render={(props) => (
-						<CategoryPage
-							data={data}
-							mugData={mugData}
-							shirtData={shirtData}
-							{...props}
-						/>
-					)}
-				/>
-				<Route path='/blog/:id' component={BlogArticle} />
-				<Route path='/blog/' component={BlogMain} />
-				<Route path='/' component={HomePage} />
-				<Route component={PageNotFound} />
-			</Switch>
+				<Route path='/blog/' render={(props) => <BlogMain blogData={blogData} {...props} />}/>
+                <Route
+                    path='/'
+                    render={(props) => (
+                        
+						<HomePage
+                            data={data}
+                            mugData={mugData}
+                            shirtData={shirtData}
+                            {...props}
+                        />
+                    )}
+                />
+				
+                <Route component={PageNotFound} />
+            </Switch>
 		</ThemeProvider>
 	);
 }
