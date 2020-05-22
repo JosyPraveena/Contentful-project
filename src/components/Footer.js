@@ -71,6 +71,7 @@ const useStyles = makeStyles({
 		position: "relative",
 		height: "300px",
 		width: "100%",
+		marginTop: "100px",
 		backgroundColor: "#202020",
 		zIndex: 1302,
 	},

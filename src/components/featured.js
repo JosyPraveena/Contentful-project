@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	tab: {
-		fontSize: "1.6rem",
+		fontSize: "2rem",
 		minWidth: 10,
 		fontFamily: "Bangers",
+
 		marginLeft: "75px",
 		color: "#294A55",
 		textDecoration: "none",
@@ -60,7 +61,7 @@ const Featured = ({ comics, shirts, mugs }) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
-	const sliderPictures = [comics, shirts, mugs];
+	const sliderPictures = [shirts, comics, mugs];
 
 	const handleChange = (e, value) => {
 		setValue(value);
@@ -93,8 +94,8 @@ const Featured = ({ comics, shirts, mugs }) => {
 
 				<Grid item container justify='center'>
 					<Tabs value={value} onChange={handleChange}>
-						<Tab className={classes.tab} label='Comics' component={Link}></Tab>
 						<Tab className={classes.tab} label='Shirts' component={Link}></Tab>
+						<Tab className={classes.tab} label='Comics' component={Link}></Tab>
 
 						<Tab className={classes.tab} label='Mugs' component={Link}></Tab>
 					</Tabs>
