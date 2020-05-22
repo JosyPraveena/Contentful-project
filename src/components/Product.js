@@ -8,7 +8,26 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
 
+// MODAL IMAGE
+
+const rand = () => {
+	return Math.round(Math.random() * 20) - 10;
+};
+
+// const getModalStyle = () => {
+// 	const top = 50;
+// 	const left = 50;
+
+// 	return {
+// 		top: `${top}%`,
+// 		left: `${left}%`,
+// 		transform: `translate(-${top}%, -${left}%)`,
+// 	};
+// };
+
+// STYLE COMPONENT
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -41,10 +60,34 @@ const useStyles = makeStyles((theme: Theme) =>
 			fontSize: "1.5rem",
 			textDecoration: "none",
 		},
+
+		picture: {
+			width: "100%",
+		},
+
+		pictureContainer: {
+			width: "800px",
+			height: "auto",
+			marginLeft: "30%",
+			marginTop: "5vh",
+		},
 	})
 );
 
 const Product = ({ data, mugData, shirtData }) => {
+	// MODAL
+	// const [modalStyle] = useState(getModalStyle);
+	const [open, setOpen] = useState(false);
+
+	const handleOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+	// ++
+
 	const classes = useStyles();
 	const comic = data;
 
@@ -107,14 +150,19 @@ const Product = ({ data, mugData, shirtData }) => {
 		}
 	}, [product, tshirt, mug, comic]);
 
+	const picture = (
+		<div className={classes.pictureContainer}>
+			<img className={classes.picture} alt='complex' src={currentItem[4]} />
+		</div>
+	);
 	//console.log({currentItem})
 	if (currentItem) {
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
 					<Grid container spacing={5} justify='center'>
-						<Grid item>
-							<ButtonBase className={classes.image}>
+						<Grid item xs={4}>
+							<ButtonBase className={classes.image} onClick={handleOpen}>
 								<img
 									className={classes.img}
 									alt='complex'
@@ -122,7 +170,7 @@ const Product = ({ data, mugData, shirtData }) => {
 								/>
 							</ButtonBase>
 						</Grid>
-						<Grid item xl={12} sm container>
+						<Grid item xs={8} sm container>
 							<Grid item xl container direction='column' spacing={2}>
 								<Grid item xl>
 									<br />
@@ -178,6 +226,9 @@ const Product = ({ data, mugData, shirtData }) => {
 								{currentItem[5]}
 							</Typography>
 						</Grid>
+						<Modal open={open} onClose={handleClose}>
+							{picture}
+						</Modal>
 					</Grid>
 				</Paper>
 			</div>

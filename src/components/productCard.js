@@ -72,7 +72,7 @@ const ProductCard = ({ data }) => {
 									{item.shirtTitle}
 								</Typography>
 								<Typography variant='body1'>{item.shirtCategory}</Typography>
-								<Typography variant='body1'>{item.shirtPrice}</Typography>
+								<Typography variant='body1'>${item.shirtPrice}</Typography>
 							</CardContent>
 						</Card>
 					</Link>
