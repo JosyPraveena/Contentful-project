@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import ShirtCategoryCard from "./ShirtCategoryCard";
 import MugCategoryCard from "./MugCategoryCard";
 import ComicCategoryCard from "./ComicCategoryCard";
+import Footer from "./Footer";
 
 const CategoryPage = ({ data, mugData, shirtData }) => {
 	const comic = data;
@@ -29,11 +30,8 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 				);
 			}
 			//console.log(item)
-
 		);
 	}
-
-
 
 	if (id === "mugs") {
 		console.log(mug);
@@ -69,11 +67,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	}
 
 	return (
-		<Container>
-			<Grid container justify='center' style={{ marginTop: "100px" }}>
-				{itemList}
-			</Grid>
-		</Container>
+		<React.Fragment>
+			<Container>
+				<Grid container justify='center' style={{ marginTop: "100px" }}>
+					{itemList}
+				</Grid>
+			</Container>
+			<Footer />
+		</React.Fragment>
 	);
 };
 

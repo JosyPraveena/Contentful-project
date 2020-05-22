@@ -12,7 +12,6 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 
-
 // images
 import cat_comics from "../img/cat_comics.jpg";
 import cat_mugs from "../img/cat_mugs.jpg";
@@ -90,7 +89,6 @@ export default function Categories() {
 
 	return (
 		<Container>
-			<Typography className={classes.title}>BROWSE CATEGORIES</Typography>
 			<Grid container className={classes.brands} justify='center'>
 				<Grid item sm={4} lg={2} className={classes.brandLink}>
 					<Link>
@@ -129,7 +127,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea>
+						<CardActionArea component={Link} to='/category/tshirt'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -138,29 +136,19 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-
 								<Typography className={classes.cardTitle}>T-SHIRTS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
-
 									Dress like a superhero
 								</Typography>
 							</CardContent>
 						</CardActionArea>
-						{/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
 					</Card>
 				</div>
 				<div
 					className={`cat-item ${classes.cardLeft} ${classes.cardLeftHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea>
+						<CardActionArea component={Link} to='/category/mugs'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -169,29 +157,19 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-
 								<Typography className={classes.cardTitle}>MUGS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
-
 									Enjoy a coffee with your favourite character
 								</Typography>
 							</CardContent>
 						</CardActionArea>
-						{/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
 					</Card>
 				</div>
 				<div
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea>
+						<CardActionArea component={Link} to='/category/comicbooks'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -200,10 +178,8 @@ export default function Categories() {
 								title='Contemplative Reptile'
 							/>
 							<CardContent>
-
 								<Typography className={classes.cardTitle}>COMICS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
-
 									Explore a world full of action and adventures
 								</Typography>
 							</CardContent>

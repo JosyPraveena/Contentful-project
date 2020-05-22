@@ -18,6 +18,7 @@ function App() {
 	const [data, setData] = useState("");
 	const [mugData, setMugData] = useState("");
 	const [shirtData, setShirtData] = useState("");
+	const [blogData, setBlogData] = useState("");
 
 	useEffect(() => {
 		fetchData();
@@ -42,10 +43,19 @@ function App() {
 			.getEntries({ content_type: "shirt" })
 			.then((entry) => setShirtData(entry))
 			.catch((err) => console.log(err));
+		client
+			.getEntries({ content_type: "blog" })
+			.then((entry) => setBlogData(entry))
+			.catch((err) => console.log(err));
 	};
+	const { items } = blogData;
 
 	return (
 		<ThemeProvider theme={theme}>
+			{items !== undefined &&
+				items.map((item) =>
+					console.log(item.fields.blogContent.content[0].content[0].value)
+				)}
 			<Navbar />
 			<Switch>
 				<Route
@@ -72,7 +82,17 @@ function App() {
 				/>
 				<Route path='/blog/:id' component={BlogArticle} />
 				<Route path='/blog/' component={BlogMain} />
-				<Route path='/' component={HomePage} />
+				<Route
+					path='/'
+					render={(props) => (
+						<HomePage
+							data={data}
+							mugData={mugData}
+							shirtData={shirtData}
+							{...props}
+						/>
+					)}
+				/>
 				<Route component={PageNotFound} />
 			</Switch>
 		</ThemeProvider>
