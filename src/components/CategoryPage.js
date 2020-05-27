@@ -16,14 +16,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	let itemList = [];
 
 	if (id === "tshirt") {
-		if (tshirt.items) {
-			itemList = tshirt.items.map((item) => {
+		if (tshirt) {
+			itemList = tshirt.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.fields.shirtSlug}`}
-							key={item.fields.shirtId}
+							to={`/category/id/${item.shirt_slugs}`}
+							key={item.shirt_id}
 						>
 							<ShirtCategoryCard data={item} />
 						</Link>
@@ -34,14 +34,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	}
 
 	if (id === "mugs") {
-		if (mug.items) {
-			itemList = mug.items.map((item) => {
+		if (mug) {
+			itemList = mug.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.fields.mugSlug}`}
-							key={item.fields.mugId}
+							to={`/category/id/${item.mug_slugs}`}
+							key={item.mug_id}
 						>
 							<MugCategoryCard data={item} />
 						</Link>
@@ -51,14 +51,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 		}
 	}
 	if (id === "comicbooks") {
-		if (comic.items) {
-			itemList = comic.items.map((item) => {
+		if (comic) {
+			itemList = comic.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.fields.bookSlug}`}
-							key={item.fields.bookId}
+							to={`/category/id/${item.book_slugs}`}
+							key={item.book_id}
 						>
 							<ComicCategoryCard data={item} />
 						</Link>

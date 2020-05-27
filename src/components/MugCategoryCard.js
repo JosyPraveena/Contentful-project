@@ -55,16 +55,17 @@ const CategoryCard = ({ data }) => {
 					<CardMedia>
 						<img
 							className={classes.image}
-							src={data.fields.mugImage[0].fields.file.url}
+							src={data.mug_image}
+							alt = "mugimage"
 						></img>
 					</CardMedia>
 					<CardContent>
-						<Rating name='read-only' value={data.fields.mugRating} readOnly />
+						<Rating name='read-only' value={data.mug_rating} readOnly />
 						<Typography gutterBottom variant='h6'>
-							{data.fields.mugTitle}
+							{data.mug_title}
 						</Typography>
-						<Typography variant='body1'>{data.fields.mugCategory}</Typography>
-						<Typography variant='body1'>€{data.fields.mugPrice}</Typography>
+						<Typography variant='body1'>{data.mug_category}</Typography>
+						<Typography variant='body1'>€{data.mug_price}</Typography>
 					</CardContent>
 				</Card>
 			</Grid>
