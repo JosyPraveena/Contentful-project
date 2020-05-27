@@ -47,32 +47,27 @@ const useStyles = makeStyles({
 
 const ProductCard = ({ data }) => {
 	const classes = useStyles();
-	const { fields: item } = data;
-
-	if (item.shirtId) {
-		console.log(item);
+	console.log(data);
+	if (data.shirt_id) {
 		return (
 			<div className={classes.root}>
 				<Grid container direction='row'>
 					<Link
 						style={{ textDecoration: "none" }}
-						to={`/category/id/${item.shirtSlug}`}
-						key={item.shirtId}
+						to={`/category/id/${data.shirt_slugs}`}
+						key={data.shirt_id}
 					>
 						<Card className={(classes.root, classes.card, classes.cardHover)}>
 							<CardMedia>
-								<img
-									className={classes.image}
-									src={item.shirtImage[0].fields.file.url}
-								></img>
+								<img className={classes.image} src={data.shirt_image}></img>
 							</CardMedia>
 							<CardContent>
-								<Rating name='read-only' value={item.shirtRating} readOnly />
+								<Rating name='read-only' value={data.shirt_rating} readOnly />
 								<Typography gutterBottom variant='h6'>
-									{item.shirtTitle}
+									{data.shirt_title}
 								</Typography>
-								<Typography variant='body1'>{item.shirtCategory}</Typography>
-								<Typography variant='body1'>${item.shirtPrice}</Typography>
+								<Typography variant='body1'>{data.shirt_category}</Typography>
+								<Typography variant='body1'>${data.shirt_price}</Typography>
 							</CardContent>
 						</Card>
 					</Link>
@@ -81,69 +76,69 @@ const ProductCard = ({ data }) => {
 		);
 	}
 
-	if (item.bookId) {
-		console.log(item);
-		return (
-			<div className={classes.root}>
-				<Grid container direction='row'>
-					<Link
-						style={{ textDecoration: "none" }}
-						to={`/category/id/${item.bookSlug}`}
-						key={item.bookId}
-					>
-						<Card className={(classes.root, classes.card, classes.cardHover)}>
-							<CardMedia>
-								<img
-									className={classes.image}
-									src={item.bookImage.fields.file.url}
-								></img>
-							</CardMedia>
-							<CardContent>
-								<Rating name='read-only' value={item.bookRating} readOnly />
-								<Typography gutterBottom variant='h6'>
-									{item.bookTitle}
-								</Typography>
-								<Typography variant='body1'>{item.bookCategory}</Typography>
-								<Typography variant='body1'>${item.bookPrice}</Typography>
-							</CardContent>
-						</Card>
-					</Link>
-				</Grid>
-			</div>
-		);
-	}
+	// if (item.bookId) {
+	// 	console.log(item);
+	// 	return (
+	// 		<div className={classes.root}>
+	// 			<Grid container direction='row'>
+	// 				<Link
+	// 					style={{ textDecoration: "none" }}
+	// 					to={`/category/id/${item.bookSlug}`}
+	// 					key={item.bookId}
+	// 				>
+	// 					<Card className={(classes.root, classes.card, classes.cardHover)}>
+	// 						<CardMedia>
+	// 							<img
+	// 								className={classes.image}
+	// 								src={item.bookImage.fields.file.url}
+	// 							></img>
+	// 						</CardMedia>
+	// 						<CardContent>
+	// 							<Rating name='read-only' value={item.bookRating} readOnly />
+	// 							<Typography gutterBottom variant='h6'>
+	// 								{item.bookTitle}
+	// 							</Typography>
+	// 							<Typography variant='body1'>{item.bookCategory}</Typography>
+	// 							<Typography variant='body1'>${item.bookPrice}</Typography>
+	// 						</CardContent>
+	// 					</Card>
+	// 				</Link>
+	// 			</Grid>
+	// 		</div>
+	// 	);
+	// }
 
-	if (item.mugId) {
-		console.log(item);
-		return (
-			<div className={classes.root}>
-				<Grid container direction='row'>
-					<Link
-						style={{ textDecoration: "none" }}
-						to={`/category/id/${item.mugSlug}`}
-						key={item.mugId}
-					>
-						<Card className={(classes.root, classes.card, classes.cardHover)}>
-							<CardMedia>
-								<img
-									className={classes.image}
-									src={item.mugImage[0].fields.file.url}
-								></img>
-							</CardMedia>
-							<CardContent>
-								<Rating name='read-only' value={item.mugRating} readOnly />
-								<Typography gutterBottom variant='h6'>
-									{item.mugTitle}
-								</Typography>
-								<Typography variant='body1'>{item.mugCategory}</Typography>
-								<Typography variant='body1'>${item.mugPrice}</Typography>
-							</CardContent>
-						</Card>
-					</Link>
-				</Grid>
-			</div>
-		);
-	}
+	// if (item.mugId) {
+	// 	console.log(item);
+	// 	return (
+	// 		<div className={classes.root}>
+	// 			<Grid container direction='row'>
+	// 				<Link
+	// 					style={{ textDecoration: "none" }}
+	// 					to={`/category/id/${item.mugSlug}`}
+	// 					key={item.mugId}
+	// 				>
+	// 					<Card className={(classes.root, classes.card, classes.cardHover)}>
+	// 						<CardMedia>
+	// 							<img
+	// 								className={classes.image}
+	// 								src={item.mugImage[0].fields.file.url}
+	// 							></img>
+	// 						</CardMedia>
+	// 						<CardContent>
+	// 							<Rating name='read-only' value={item.mugRating} readOnly />
+	// 							<Typography gutterBottom variant='h6'>
+	// 								{item.mugTitle}
+	// 							</Typography>
+	// 							<Typography variant='body1'>{item.mugCategory}</Typography>
+	// 							<Typography variant='body1'>${item.mugPrice}</Typography>
+	// 						</CardContent>
+	// 					</Card>
+	// 				</Link>
+	// 			</Grid>
+	// 		</div>
+	// 	);
+	// }
 };
 
 export default ProductCard;

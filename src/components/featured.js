@@ -57,11 +57,13 @@ const useStyles = makeStyles((theme) => ({
 // 	return slug;
 // };
 
-const Featured = ({ comics, shirts, mugs }) => {
+const Featured = ({ comics, mugs, shirts }) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
 	const sliderPictures = [shirts, comics, mugs];
+
+	console.log(sliderPictures);
 
 	const handleChange = (e, value) => {
 		setValue(value);
@@ -101,7 +103,7 @@ const Featured = ({ comics, shirts, mugs }) => {
 					</Tabs>
 				</Grid>
 			</Grid>
-			{sliderPictures[value] != undefined && (
+			{!sliderPictures && (
 				<Slider {...settings}>
 					{sliderPictures[value].map((item) => (
 						<div>

@@ -7,16 +7,17 @@ import Footer from "./components/Footer";
 import Container from "@material-ui/core/Container";
 
 const HomePage = (props) => {
-	const { items: comics } = props.data;
-	const { items: shirts } = props.shirtData;
-	const { items: mugs } = props.mugData;
+	console.log(props);
+	const { data } = props;
+	const { shirtData } = props;
+	const { mugData } = props;
 
 	return (
 		<React.Fragment>
 			<Slider />
 			<Container maxWidth='false' fixed>
 				<Categories />
-				<Featured comics={comics} mugs={mugs} shirts={shirts} />
+				<Featured comics={data} mugs={mugData} shirts={shirtData} />
 			</Container>
 			<Footer />
 		</React.Fragment>

@@ -23,33 +23,33 @@ function App() {
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch("http://localhost:3000/shirt/");
-			const shirtData = await response.json();
-			setShirtData(shirtData);
+			const response = await fetch("http://localhost:3001/shirt/");
+			const shirts = await response.json();
+			setShirtData(shirts);
 			console.log(shirtData);
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-			const response = await fetch("http://localhost:3000/mug/");
-			const mugData = await response.json();
-			setMugData(mugData);
+			const response = await fetch("http://localhost:3001/mug/");
+			const mugs = await response.json();
+			setMugData(mugs);
 			console.log(mugData);
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-			const response = await fetch("http://localhost:3000/book/");
-			const data = await response.json();
-			setData(data);
+			const response = await fetch("http://localhost:3001/book/");
+			const books = await response.json();
+			setData(books);
 			console.log(data);
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-			const response = await fetch("http://localhost:3000/blog/");
-			const blogData = await response.json();
-			setBlogData(blogData);
+			const response = await fetch("http://localhost:3001/blog/");
+			const blogs = await response.json();
+			setBlogData(blogs);
 			console.log(blogData);
 		} catch (err) {
 			console.error(err.message);
