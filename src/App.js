@@ -25,28 +25,32 @@ function App() {
         try {
             const response = await fetch("http://localhost:3000/shirt/");
             const shirtData = await response.json();
-            setShirtData(shirtData);
+			setShirtData(shirtData);
+			console.log(shirtData)
         } catch (err) {
             console.error(err.message);
 		}
 		try {
             const response = await fetch("http://localhost:3000/mug/");
             const mugData = await response.json();
-            setMugData(mugData);
+			setMugData(mugData);
+			console.log(mugData)
         } catch (err) {
             console.error(err.message);
 		}
 		try {
             const response = await fetch("http://localhost:3000/book/");
             const data = await response.json();
-            setData(data);
+			setData(data);
+			console.log(data)
         } catch (err) {
             console.error(err.message);
 		}
 		try {
             const response = await fetch("http://localhost:3000/blog/");
-            const data = await response.json();
-            setData(data);
+            const blogData = await response.json();
+			setBlogData(blogData);
+			console.log(blogData)
         } catch (err) {
             console.error(err.message);
         }
