@@ -6,6 +6,7 @@ import ShirtCategoryCard from "./ShirtCategoryCard";
 import MugCategoryCard from "./MugCategoryCard";
 import ComicCategoryCard from "./ComicCategoryCard";
 import Footer from "./Footer";
+import Typography from "@material-ui/core/Typography";
 
 const CategoryPage = ({ data, mugData, shirtData }) => {
 	const comic = data;
@@ -15,30 +16,25 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	let itemList = [];
 
 	if (id === "tshirt") {
-		if(tshirt.items){
-			itemList = tshirt.items.map(
-				(item) => {
-					return (
-						<Grid item container xs={12} sm={4}>
-							<Link
-								style={{ textDecoration: "none" }}
-								to={`/category/id/${item.fields.shirtSlug}`}
-								key={item.fields.shirtId}
-							>
-								<ShirtCategoryCard data={item} />
-							</Link>
-						</Grid>
-					);
-				}
-			);
+		if (tshirt.items) {
+			itemList = tshirt.items.map((item) => {
+				return (
+					<Grid item container xs={12} sm={4}>
+						<Link
+							style={{ textDecoration: "none" }}
+							to={`/category/id/${item.fields.shirtSlug}`}
+							key={item.fields.shirtId}
+						>
+							<ShirtCategoryCard data={item} />
+						</Link>
+					</Grid>
+				);
+			});
 		}
-		
 	}
 
-
-
 	if (id === "mugs") {
-		if(mug.items) {
+		if (mug.items) {
 			itemList = mug.items.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
@@ -51,15 +47,11 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 						</Link>
 					</Grid>
 				);
-
 			});
 		}
-		
-
 	}
 	if (id === "comicbooks") {
-		if(comic.items)
-		{
+		if (comic.items) {
 			itemList = comic.items.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
