@@ -190,7 +190,7 @@ const Product = ({ data, mugData, shirtData }) => {
 										${currentItem[1]}
 									</Typography>{" "}
 									<br />
-									<Rating name='read-only' value={currentItem[2]} readOnly />
+									<Rating name='read-only' value={`${currentItem[2]}`} readOnly />
 									<br />
 									<br />
 									<Typography variant='h6' gutterBottom>
