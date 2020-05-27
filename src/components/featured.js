@@ -77,6 +77,7 @@ const Featured = ({ comics, mugs, shirts }) => {
 		slidesToScroll: 2,
 	};
 
+	console.log(sliderPictures[value]);
 	return (
 		<React.Fragment>
 			<Grid container justify='center' direction='column'>
@@ -103,15 +104,14 @@ const Featured = ({ comics, mugs, shirts }) => {
 					</Tabs>
 				</Grid>
 			</Grid>
-			{!sliderPictures && (
-				<Slider {...settings}>
-					{sliderPictures[value].map((item) => (
+			<Slider {...settings}>
+				{sliderPictures[value].length > 1 &&
+					sliderPictures[value].map((item) => (
 						<div>
 							<ProductCard data={item} />
 						</div>
 					))}
-				</Slider>
-			)}
+			</Slider>
 		</React.Fragment>
 	);
 };

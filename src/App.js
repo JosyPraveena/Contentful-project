@@ -22,73 +22,38 @@ function App() {
 	const [blogData, setBlogData] = useState("");
 
 	const fetchData = async () => {
-<<<<<<< HEAD
 		try {
 			const response = await fetch("http://localhost:3001/shirt/");
-			const shirts = await response.json();
-			setShirtData(shirts);
-			console.log(shirtData);
+			const shirtData = await response.json();
+			setShirtData(shirtData);
+			//console.log(shirtData)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
 			const response = await fetch("http://localhost:3001/mug/");
-			const mugs = await response.json();
-			setMugData(mugs);
-			console.log(mugData);
+			const mugData = await response.json();
+			setMugData(mugData);
+			//console.log(mugData)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
 			const response = await fetch("http://localhost:3001/book/");
-			const books = await response.json();
-			setData(books);
-			console.log(data);
+			const data = await response.json();
+			setData(data);
+			//console.log(data)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
 			const response = await fetch("http://localhost:3001/blog/");
-			const blogs = await response.json();
-			setBlogData(blogs);
-			console.log(blogData);
+			const blogData = await response.json();
+			setBlogData(blogData);
+			//console.log(blogData)
 		} catch (err) {
 			console.error(err.message);
 		}
-=======
-        try {
-            const response = await fetch("http://localhost:3000/shirt/");
-            const shirtData = await response.json();
-			setShirtData(shirtData);
-			//console.log(shirtData)
-        } catch (err) {
-            console.error(err.message);
-		}
-		try {
-            const response = await fetch("http://localhost:3000/mug/");
-            const mugData = await response.json();
-			setMugData(mugData);
-			//console.log(mugData)
-        } catch (err) {
-            console.error(err.message);
-		}
-		try {
-            const response = await fetch("http://localhost:3000/book/");
-            const data = await response.json();
-			setData(data);
-			//console.log(data)
-        } catch (err) {
-            console.error(err.message);
-		}
-		try {
-            const response = await fetch("http://localhost:3000/blog/");
-            const blogData = await response.json();
-			setBlogData(blogData);
-			//console.log(blogData)
-        } catch (err) {
-            console.error(err.message);
-        }
->>>>>>> 7f87a13fcf85f7ee80af02812bb1b667d9d1cb02
 	};
 
 	useEffect(() => {
