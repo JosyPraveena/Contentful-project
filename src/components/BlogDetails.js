@@ -102,7 +102,7 @@ const BlogDetails = ({ blogData }) => {
 
 { 
 items
-.filter( item => { if (item.fields.blogId == id) {  return item }} )
+.filter( item => { if (item.fields.blogId === id) {  return item }} )
 .map(item => 
 
 

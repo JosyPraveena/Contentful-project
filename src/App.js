@@ -21,35 +21,71 @@ function App() {
 	const [shirtData, setShirtData] = useState("");
 	const [blogData, setBlogData] = useState("");
 
+	const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/shirt/");
+            const shirtData = await response.json();
+			setShirtData(shirtData);
+			console.log(shirtData)
+        } catch (err) {
+            console.error(err.message);
+		}
+		try {
+            const response = await fetch("http://localhost:3000/mug/");
+            const mugData = await response.json();
+			setMugData(mugData);
+			console.log(mugData)
+        } catch (err) {
+            console.error(err.message);
+		}
+		try {
+            const response = await fetch("http://localhost:3000/book/");
+            const data = await response.json();
+			setData(data);
+			console.log(data)
+        } catch (err) {
+            console.error(err.message);
+		}
+		try {
+            const response = await fetch("http://localhost:3000/blog/");
+            const blogData = await response.json();
+			setBlogData(blogData);
+			console.log(blogData)
+        } catch (err) {
+            console.error(err.message);
+        }
+	};
+	
 	useEffect(() => {
 		fetchData();
 	}, []);
 
-	const fetchData = async () => {
-		const contentful = require("contentful");
-		const client = contentful.createClient({
-			space: "judmcnqfm2ry",
-			accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
-		});
 
-		client
-			.getEntries({ content_type: "comicBooks" })
-			.then((entry) => setData(entry))
-			.catch((err) => console.log(err));
-		client
-			.getEntries({ content_type: "mug" })
-			.then((entry) => setMugData(entry))
-			.catch((err) => console.log(err));
-		client
-			.getEntries({ content_type: "shirt" })
-			.then((entry) => setShirtData(entry))
-			.catch((err) => console.log(err));
-		client
-			.getEntries({ content_type: "blog" })
-			.then((entry) => setBlogData(entry))
-			.catch((err) => console.log(err));
+	// const fetchData = async () => {
+	// 	const contentful = require("contentful");
+	// 	const client = contentful.createClient({
+	// 		space: "judmcnqfm2ry",
+	// 		accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
+	// 	});
+
+	// 	client
+	// 		.getEntries({ content_type: "comicBooks" })
+	// 		.then((entry) => setData(entry))
+	// 		.catch((err) => console.log(err));
+	// 	client
+	// 		.getEntries({ content_type: "mug" })
+	// 		.then((entry) => setMugData(entry))
+	// 		.catch((err) => console.log(err));
+	// 	client
+	// 		.getEntries({ content_type: "shirt" })
+	// 		.then((entry) => setShirtData(entry))
+	// 		.catch((err) => console.log(err));
+	// 	client
+	// 		.getEntries({ content_type: "blog" })
+	// 		.then((entry) => setBlogData(entry))
+	// 		.catch((err) => console.log(err));
 			
-	};
+	// };
 	const { items } = blogData;
 
 	return (
