@@ -53,16 +53,16 @@ const CategoryCard = ({ data }) => {
 					<CardMedia>
 						<img
 							className={classes.image}
-							src={data.fields.shirtImage[0].fields.file.url} alt="productimage"
+							src={data.shirt_image} alt="productimage"
 						></img>
 					</CardMedia>
 					<CardContent>
-						<Rating name='read-only' value={data.fields.shirtRating} readOnly />
+						<Rating name='read-only' value={data.shirt_rating} readOnly />
 						<Typography gutterBottom variant='h6'>
-							{data.fields.shirtTitle}
+							{data.shirt_title}
 						</Typography>
-						<Typography variant='body1'>{data.fields.shirtCategory}</Typography>
-						<Typography variant='body1'>{data.fields.shirtPrice}</Typography>
+						<Typography variant='body1'>{data.shirt_category}</Typography>
+						<Typography variant='body1'>{data.shirt_price}</Typography>
 					</CardContent>
 				</Card>
 			</Grid>

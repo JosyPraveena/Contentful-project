@@ -97,54 +97,55 @@ const Product = ({ data, mugData, shirtData }) => {
 
 	const [currentItem, setCurrentItem] = useState([]);
 	useEffect(() => {
-		if (tshirt.items) {
-			const filteredItem = tshirt.items.filter(
-				(item) => item.fields.shirtSlug === product
+		if (tshirt) {
+			const filteredItem = tshirt.filter(
+				(item) => item.shirt_slugs === product
 			);
-
+				console.log(filteredItem)
 			if (filteredItem[0]) {
-				console.log(filteredItem[0].fields.shirtRating);
+				
 				setCurrentItem([
-					filteredItem[0].fields.shirtTitle,
-					filteredItem[0].fields.shirtPrice,
-					filteredItem[0].fields.shirtRating,
-					filteredItem[0].fields.shirtSubtext,
-					filteredItem[0].fields.shirtImage[0].fields.file.url,
-					filteredItem[0].fields.shirtDescription,
+					filteredItem[0].shirt_title,
+					filteredItem[0].shirt_price,
+					filteredItem[0].shirt_rating,
+					filteredItem[0].shirt_subtext,
+					filteredItem[0].shirt_image,
+					filteredItem[0].shirt_description,
+					
 				]);
 			}
 		}
-		if (mug.items) {
-			const filteredItem = mug.items.filter(
-				(item) => item.fields.mugSlug === product
+		if (mug) {
+			const filteredItem = mug.filter(
+				(item) => item.mug_slugs === product
 			);
 
 			if (filteredItem[0]) {
-				console.log(filteredItem[0].fields.mugRating);
+				
 				setCurrentItem([
-					filteredItem[0].fields.mugTitle,
-					filteredItem[0].fields.mugPrice,
-					filteredItem[0].fields.mugRating,
-					filteredItem[0].fields.mugSubtext,
-					filteredItem[0].fields.mugImage[0].fields.file.url,
-					filteredItem[0].fields.mugDescription,
+					filteredItem[0].mug_title,
+					filteredItem[0].mug_price,
+					filteredItem[0].mug_rating,
+					filteredItem[0].mug_subtext,
+					filteredItem[0].mug_image,
+					filteredItem[0].mug_description,
 				]);
 			}
 		}
-		if (comic.items) {
-			const filteredItem = comic.items.filter(
-				(item) => item.fields.bookSlug === product
+		if (comic) {
+			const filteredItem = comic.filter(
+				(item) => item.book_slugs === product
 			);
 
 			if (filteredItem[0]) {
-				console.log(filteredItem[0].fields.bookRating);
+				//console.log(filteredItem[0].fields.bookRating);
 				setCurrentItem([
-					filteredItem[0].fields.bookTitle,
-					filteredItem[0].fields.bookPrice,
-					filteredItem[0].fields.bookRating,
-					filteredItem[0].fields.bookSubtext,
-					filteredItem[0].fields.bookImage.fields.file.url,
-					filteredItem[0].fields.bookDescription,
+					filteredItem[0].book_title,
+					filteredItem[0].book_price,
+					filteredItem[0].book_rating,
+					filteredItem[0].book_subtext,
+					filteredItem[0].book_image,
+					filteredItem[0].book_description,
 				]);
 			}
 		}
