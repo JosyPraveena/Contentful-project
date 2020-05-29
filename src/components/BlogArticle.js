@@ -60,8 +60,6 @@ const BlogArticle = ({ blogData }) => {
     }
   });
 
-  
-
   const classes = useStyles();
   let ISO = DateTime.fromISO(blogData.blog_date)
   const day=['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']

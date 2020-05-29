@@ -87,8 +87,7 @@ const BlogDetails = ({ blogData }) => {
 		fontFamily: "Montserrat",
 		fontWeight: 400,
 		color: "#294A55",
-    textDecoration: "none",
-    
+    textDecoration: "none",    
     }
   }));
 

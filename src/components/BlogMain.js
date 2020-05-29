@@ -20,6 +20,7 @@ const BlogMain = ({blogData}) => {
 				
 				<div id="blogWrapper">
 					
+					
 					<BlogArticle blogData={item} />
 					
 				</div>
