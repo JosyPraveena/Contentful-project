@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import parse from 'html-react-parser';
 
 // MODAL IMAGE
 
@@ -224,7 +225,7 @@ const Product = ({ data, mugData, shirtData }) => {
 								Description
 							</Typography>
 							<Typography variant='h6' gutterBottom>
-								{currentItem[5]}
+								{ parse(`${currentItem[5]}`) }
 							</Typography>
 						</Grid>
 						<Modal open={open} onClose={handleClose}>

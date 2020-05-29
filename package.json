@@ -15,6 +15,7 @@
 		"aos": "^2.3.4",
 		"contentful": "^7.14.4",
 		"cors": "^2.8.5",
+		"html-react-parser": "^0.10.5",
 		"luxon": "^1.24.1",
 		"material-ui-image": "^3.2.3",
 		"react": "^16.13.1",

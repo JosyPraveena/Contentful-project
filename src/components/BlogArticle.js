@@ -23,9 +23,11 @@ import image1 from "../img/1.jpg";
 
 const BlogArticle = ({ blogData }) => {
 
-  // console.log("From Article : ", blogData);
+  
 
-  const { fields } = blogData;
+  console.log("From Article : ", blogData);
+
+  // const { fields } = blogData;
 
   // console.log("From Article (fields): ", fields);
 
@@ -61,21 +63,21 @@ const BlogArticle = ({ blogData }) => {
   
 
   const classes = useStyles();
-  let ISO = DateTime.fromISO(fields.blogDate)
+  let ISO = DateTime.fromISO(blogData.blog_date)
   const day=['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
   const month=['','January','February','March','April','May','June','July','August','September','October','November','December']
 
-  const showTags = () => { fields.blogTags.map( item => 
+  // const showTags = () => { blogData.blogTags.map( item => 
     
-   <div>{`item`}</div>
-    // <Chip
-    //   // avatar={`<Avatar>#</Avatar>`}
-    //   size="small"
-    //   label="item"
-    //   onClick=""
-    // />
+  //  <div>{`item`}</div>
+  //   // <Chip
+  //   //   // avatar={`<Avatar>#</Avatar>`}
+  //   //   size="small"
+  //   //   label="item"
+  //   //   onClick=""
+  //   // />
   
-  ) }
+  // ) }
 
   return (
 
@@ -85,12 +87,13 @@ const BlogArticle = ({ blogData }) => {
       <div>
         <div className="cat-container" id="theBlog">
           <div className="cat-item">
-            <Card className={classes.root} component={Link} to={`/blog/${fields.blogId}`} key={fields.blogId}>
+            <Card className={classes.root} component={Link} to={`/blog/${blogData.blog_id}`} key={blogData.blog_id}>
               <CardActionArea>
                 <CardHeader className={classes.title}
-                  avatar={<Avatar className={classes.orange} alt={fields.blogAuthor} src={fields.blogAvatar.fields.file.url}/>}
-                  title={fields.blogTitle}
-                  subheader={`${fields.blogAuthor} @ ${day[ISO.weekday]}, ${month[ISO.month]} ${ISO.day}th ${ISO.year}`}
+                  avatar={<Avatar className={classes.orange} alt={blogData.blog_author} src={blogData.blog_avatar}/>}
+                  title={blogData.blog_title}
+                  subheader={blogData.blog_date}
+                  // subheader={`${blogData.blog_author} @ ${day[ISO.weekday]}, ${month[ISO.month]} ${ISO.day}th ${ISO.year}`}
                   id="blogHead"
                 />
 
@@ -98,21 +101,21 @@ const BlogArticle = ({ blogData }) => {
                   component="img"
                   alt="Contemplative Reptile"
                   height="200"
-                  image={fields.blogImage.fields.file.url}
+                  image={blogData.blog_image}
                   title="Contemplative Reptile"
                 />
                 <CardContent id="blogCaption">
                   <Typography gutterBottom variant="h6" component="h2">
-                    {fields.blogSubtitle}
+                    {blogData.blog_subtitle}
                   </Typography>
 
                   <Typography variant="body2" color="textSecondary">
-                   {fields.blogCaption}
+                   {blogData.blog_caption}
                   </Typography>
                 </CardContent>
                 <CardActions>
 
-                {fields.blogTags !== undefined &&
+                {/* {fields.blogTags !== undefined &&
                 fields.blogTags.map((item) => (
                   <Chip
                   avatar={<Avatar>#</Avatar>}
@@ -120,7 +123,7 @@ const BlogArticle = ({ blogData }) => {
                   label={item}
                   onClick=""
                 /> )
-                )}
+                )} */}
                   
                   
                 </CardActions>
