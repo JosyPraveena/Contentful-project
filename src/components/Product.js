@@ -74,11 +74,14 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Product = ({ data, mugData, shirtData }) => {
+const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
+
 	// MODAL
 	// const [modalStyle] = useState(getModalStyle);
 	const [open, setOpen] = useState(false);
-
+	
+	//const [cartItems, setCartItems] = useState("")
+	
 	const handleOpen = () => {
 		setOpen(true);
 	};
@@ -87,77 +90,137 @@ const Product = ({ data, mugData, shirtData }) => {
 		setOpen(false);
 	};
 	// ++
+	
+	
 
 	const classes = useStyles();
-	const comic = data;
-
-	const mug = mugData;
-	const tshirt = shirtData;
+	// const comic = data;
+	// const mug = mugData;
+	// const tshirt = shirtData;
+	
 	const { product } = useParams();
+	const {id} = useParams();
 
-	const [currentItem, setCurrentItem] = useState([]);
+	const [currentItem, setCurrentItem] = useState(null);
 	useEffect(() => {
-		if (tshirt) {
-			const filteredItem = tshirt.filter(
-				(item) => item.shirt_slugs === product
-			);
-				console.log(filteredItem)
-			if (filteredItem[0]) {
+
+		let value = category[id]
+		
+		if(value){
+		const filteredItem = value.filter(
+			(item) => item[id + "_slugs"] === product
+		);
+					if (filteredItem[0]) {
 				
-				setCurrentItem([
-					filteredItem[0].shirt_title,
-					filteredItem[0].shirt_price,
-					filteredItem[0].shirt_rating,
-					filteredItem[0].shirt_subtext,
-					filteredItem[0].shirt_image,
-					filteredItem[0].shirt_description,
+				setCurrentItem(
+					{
+					title: filteredItem[0][id + "_title"],
+					price: filteredItem[0][id + "_price"],
+					rating: filteredItem[0][id +"_rating"],
+					subtext: filteredItem[0][id +"_subtext"],
+					image: filteredItem[0][id +"_image"],
+					description: filteredItem[0][id +"_description"]
+				}
 					
-				]);
-			}
-		}
-		if (mug) {
-			const filteredItem = mug.filter(
-				(item) => item.mug_slugs === product
-			);
-
-			if (filteredItem[0]) {
+				);
 				
-				setCurrentItem([
-					filteredItem[0].mug_title,
-					filteredItem[0].mug_price,
-					filteredItem[0].mug_rating,
-					filteredItem[0].mug_subtext,
-					filteredItem[0].mug_image,
-					filteredItem[0].mug_description,
-				]);
 			}
 		}
-		if (comic) {
-			const filteredItem = comic.filter(
-				(item) => item.book_slugs === product
-			);
 
-			if (filteredItem[0]) {
-				//console.log(filteredItem[0].fields.bookRating);
-				setCurrentItem([
-					filteredItem[0].book_title,
-					filteredItem[0].book_price,
-					filteredItem[0].book_rating,
-					filteredItem[0].book_subtext,
-					filteredItem[0].book_image,
-					filteredItem[0].book_description,
-				]);
-			}
-		}
-	}, [product, tshirt, mug, comic]);
 
-	const picture = (
-		<div className={classes.pictureContainer}>
-			<img className={classes.picture} alt='complex' src={currentItem[4]} />
-		</div>
-	);
-	//console.log({currentItem})
+		// if (tshirt) {
+		// 	const filteredItem = tshirt.filter(
+		// 		(item) => item.shirt_slugs === product
+		// 	);
+				
+		// 	if (filteredItem[0]) {
+				
+		// 		setCurrentItem(
+		// 			{
+		// 			title: filteredItem[0].shirt_title,
+		// 			price: filteredItem[0].shirt_price,
+		// 			rating: filteredItem[0].shirt_rating,
+		// 			subtext: filteredItem[0].shirt_subtext,
+		// 			image: filteredItem[0].shirt_image,
+		// 			description: filteredItem[0].shirt_description,
+		// 			productid: filteredItem[0].shirt_id
+		// 		}
+					
+		// 		);
+				
+		// 	}
+		// }
+		// if (mug) {
+		// 	const filteredItem = mug.filter(
+		// 		(item) => item.mug_slugs === product
+		// 	);
+
+		// 	if (filteredItem[0]) {
+				
+		// 		setCurrentItem([
+		// 			filteredItem[0].mug_title,
+		// 			filteredItem[0].mug_price,
+		// 			filteredItem[0].mug_rating,
+		// 			filteredItem[0].mug_subtext,
+		// 			filteredItem[0].mug_image,
+		// 			filteredItem[0].mug_description,
+		// 			filteredItem[0].mug_id
+		// 		]);
+		// 	}
+		// }
+		// if (comic) {
+		// 	const filteredItem = comic.filter(
+		// 		(item) => item.book_slugs === product
+		// 	);
+
+		// 	if (filteredItem[0]) {
+		// 		//console.log(filteredItem[0].fields.bookRating);
+		// 		setCurrentItem([
+		// 			filteredItem[0].book_title,
+		// 			filteredItem[0].book_price,
+		// 			filteredItem[0].book_rating,
+		// 			filteredItem[0].book_subtext,
+		// 			filteredItem[0].book_image,
+		// 			filteredItem[0].book_description,
+		// 			filteredItem[0].book_id
+		// 		]);
+		// 	}
+		// }
+
+		
+	}, [category,id,product]);
+
+
+	// const picture = (
+	// 	<div className={classes.pictureContainer}>
+	// 		<img className={classes.picture} alt='complex' src={currentItem.image} />
+	// 	</div>
+	// );
+	
+		// const addItemsToCart = async () =>{
+		// 	console.log(currentItem)
+		// 	if (currentItem){
+		// 	try{
+		// 		const {body} = currentItem
+		// 		console.log("body" + body)
+		// 		const response = await fetch("http://localhost:3000/shoppingcartitems",
+		// 		{method: "POST",
+		// 		headers: {"Content-Type" : "application/json"},
+		// 		body: JSON.stringify(body)})
+		// 		console.log(response.json())
+		// 		//const jsonData = await response.json()
+
+		// 		//console.log("jsondata"+ jsonData)
+		// 	}
+		// 	catch(err){
+		// 		console.log(err.message)
+		// 	}
+		// 	}
+		// }
+	
 	if (currentItem) {
+		const{title,image,price,rating,subtext,description} = currentItem;
+		
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
@@ -167,7 +230,7 @@ const Product = ({ data, mugData, shirtData }) => {
 								<img
 									className={classes.img}
 									alt='complex'
-									src={currentItem[4]}
+									src={image}
 								/>
 							</ButtonBase>
 						</Grid>
@@ -181,21 +244,21 @@ const Product = ({ data, mugData, shirtData }) => {
 										variant='h3'
 										className={classes.title}
 									>
-										{currentItem[0]}
+										{title}
 									</Typography>
 									<Typography
 										variant='h4'
 										color='primary'
 										className={classes.title}
 									>
-										${currentItem[1]}
+										${price}
 									</Typography>{" "}
 									<br />
-									<Rating name='read-only' value={`${currentItem[2]}`} readOnly />
+									<Rating name='read-only' value={`${rating}`} readOnly />
 									<br />
 									<br />
 									<Typography variant='h6' gutterBottom>
-										{currentItem[3]}
+									{subtext}
 									</Typography>
 								</Grid>
 								<Grid item>
@@ -204,9 +267,13 @@ const Product = ({ data, mugData, shirtData }) => {
 										size='large'
 										color='secondary'
 										className={classes.button}
+										onClick = {()=> addShoppingcart(currentItem)}
+										//onClick = {addItemsToCart}
+										
 									>
 										buy now
 									</Button>
+									
 								</Grid>
 							</Grid>
 						</Grid>
@@ -224,11 +291,13 @@ const Product = ({ data, mugData, shirtData }) => {
 								Description
 							</Typography>
 							<Typography variant='h6' gutterBottom>
-								{currentItem[5]}
+								{description}
 							</Typography>
 						</Grid>
 						<Modal open={open} onClose={handleClose}>
-							{picture}
+						<div className={classes.pictureContainer}>
+			<img className={classes.picture} alt='complex' src={image} />
+		</div>
 						</Modal>
 					</Grid>
 				</Paper>

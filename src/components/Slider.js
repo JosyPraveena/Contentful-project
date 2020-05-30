@@ -93,7 +93,9 @@ const HeroSlider = () => {
 								<img
 									className={classes.heroImage}
 									src='https://images7.alphacoders.com/512/thumb-1920-512977.jpg'
+									alt = "sliderimage"
 								/>
+								
 							</Grid>
 							<Grid item xs={5} className={classes.textContainer}>
 								<Typography className={classes.title}>
@@ -122,6 +124,7 @@ const HeroSlider = () => {
 								<img
 									className={classes.heroImage}
 									src='https://img3.goodfon.com/wallpaper/nbig/1/ab/iron-man-marvel-comics-294.jpg'
+									alt = "sliderimage"
 								/>
 							</Grid>
 							<Grid item xs={5} className={classes.textContainer}>
@@ -151,6 +154,7 @@ const HeroSlider = () => {
 								<img
 									className={classes.heroImage}
 									src='https://www.ubackground.com/_ph/22/697416964.jpg'
+									alt = "sliderimage"
 								/>
 							</Grid>
 							<Grid item xs={5} className={classes.textContainer}>
@@ -179,42 +183,42 @@ const HeroSlider = () => {
 };
 export default HeroSlider;
 
-{
-	/* <div className={classes.heroBlock}>
-				<div className={classes.textBlock}>
-					<div>
-						<h1 className={classes.title}>Deadpool strikes again</h1>
-					</div>
-				</div>
+// {
+// 	/* <div className={classes.heroBlock}>
+// 				<div className={classes.textBlock}>
+// 					<div>
+// 						<h1 className={classes.title}>Deadpool strikes again</h1>
+// 					</div>
+// 				</div>
 
-				<img
-					className={classes.img}
-					src='https://images7.alphacoders.com/512/thumb-1920-512977.jpg'
-					alt='image1'
-				/>
-			</div> */
-}
+// 				<img
+// 					className={classes.img}
+// 					src='https://images7.alphacoders.com/512/thumb-1920-512977.jpg'
+// 					alt='image1'
+// 				/>
+// 			</div> */
+// }
 
-{
-	/* <div>
-				<img
-					className={classes.img}
-					src='https://img3.goodfon.com/wallpaper/nbig/1/ab/iron-man-marvel-comics-294.jpg'
-					alt='image2'
-				/>
-			</div>
-			<div>
-				<img
-					className={classes.img}
-					src='https://wallpapertag.com/wallpaper/full/0/1/e/865188-download-free-dc-comics-backgrounds-1920x1080-mac.jpg'
-					alt='image3'
-				/>
-			</div>
-			<div>
-				<img
-					className={classes.img}
-					src='https://www.ubackground.com/_ph/22/697416964.jpg'
-					alt='image4'
-				/>
-			</div> */
-}
+// {
+// 	/* <div>
+// 				<img
+// 					className={classes.img}
+// 					src='https://img3.goodfon.com/wallpaper/nbig/1/ab/iron-man-marvel-comics-294.jpg'
+// 					alt='image2'
+// 				/>
+// 			</div>
+// 			<div>
+// 				<img
+// 					className={classes.img}
+// 					src='https://wallpapertag.com/wallpaper/full/0/1/e/865188-download-free-dc-comics-backgrounds-1920x1080-mac.jpg'
+// 					alt='image3'
+// 				/>
+// 			</div>
+// 			<div>
+// 				<img
+// 					className={classes.img}
+// 					src='https://www.ubackground.com/_ph/22/697416964.jpg'
+// 					alt='image4'
+// 				/>
+// 			</div> */
+// }

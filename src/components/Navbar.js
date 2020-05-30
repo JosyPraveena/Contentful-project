@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme, withStyles, createStyles } from "@material-ui/core/styles";
+import Badge from '@material-ui/core/Badge';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -19,7 +20,7 @@ import Logo from "../img/LOGO.png"
 import createMixins from "@material-ui/core/styles/createMixins";
 
 export default function Navbar(props) {
-
+	
 	const [value, setValue] = React.useState(0);
 
 	function HideOnScroll(props) {
@@ -44,6 +45,17 @@ export default function Navbar(props) {
 		 */
 		window: PropTypes.func,
 	};
+
+	const StyledBadge = withStyles((theme: Theme) =>
+  createStyles({
+    badge: {
+      right: -1,
+      top: 1,
+      border: `2px solid ${theme.palette.background.default}`,
+      padding: '0 4px',
+    },
+  }),
+)(Badge);
 
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -125,19 +137,19 @@ export default function Navbar(props) {
 						>
 							<Tab
 								component={Link}
-								to='/category/tshirt'
+								to='/category/shirt'
 								label='t-shirts'
 								className={classes.tab}
 							/>
 							<Tab
 								component={Link}
-								to='/category/mugs'
+								to='/category/mug'
 								label='mugs'
 								className={classes.tab}
 							/>
 							<Tab
 								component={Link}
-								to='/category/comicbooks'
+								to='/category/book'
 								label='comicbooks'
 								className={classes.tab}
 							/>
@@ -154,7 +166,10 @@ export default function Navbar(props) {
 							color='inherit'
 							aria-label='menu'
 						>
-							<ShoppingCartIcon className={classes.cart} />
+							<StyledBadge badgeContent={`${props.count}`} color="secondary">
+							<ShoppingCartIcon className={classes.cart} component={Link}
+								to='/category/shoppingcart'/>
+							</StyledBadge>
 						</IconButton>
 					</Toolbar>
 				</AppBar>

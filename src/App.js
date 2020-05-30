@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { ThemeProvider } from "@material-ui/styles";
-
 import theme from "./components/UI/theme";
 import { Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
 import HomePage from "./home";
 import PageNotFound from "./404";
 import CategoryPage from "./components/CategoryPage";
 import BlogMain from "./components/BlogMain";
 import BlogArticle from "./components/BlogArticle";
 import BlogDetails from "./components/BlogDetails";
-
 import Product from "./components/Product";
+import Shoppingcart from "./components/Shoppingcart"
 
 function App() {
 	const [data, setData] = useState("");
 	const [mugData, setMugData] = useState("");
 	const [shirtData, setShirtData] = useState("");
 	const [blogData, setBlogData] = useState("");
+	const [count, setCount] = useState(0)
+	const [cartItems, setCartItems] = useState([])
 
 	const fetchData = async () => {
         try {
@@ -61,32 +61,19 @@ function App() {
 	}, []);
 
 
-	// const fetchData = async () => {
-	// 	const contentful = require("contentful");
-	// 	const client = contentful.createClient({
-	// 		space: "judmcnqfm2ry",
-	// 		accessToken: "Cpz2_8v_83-s3bHAYAP1a8mUV1fkFUuT7MEK3UsW-Wg",
-	// 	});
-
-	// 	client
-	// 		.getEntries({ content_type: "comicBooks" })
-	// 		.then((entry) => setData(entry))
-	// 		.catch((err) => console.log(err));
-	// 	client
-	// 		.getEntries({ content_type: "mug" })
-	// 		.then((entry) => setMugData(entry))
-	// 		.catch((err) => console.log(err));
-	// 	client
-	// 		.getEntries({ content_type: "shirt" })
-	// 		.then((entry) => setShirtData(entry))
-	// 		.catch((err) => console.log(err));
-	// 	client
-	// 		.getEntries({ content_type: "blog" })
-	// 		.then((entry) => setBlogData(entry))
-	// 		.catch((err) => console.log(err));
-			
-	// };
 	const { items } = blogData;
+	
+	const addShoppingcart = (currentItem) =>{
+		
+		setCount(count + 1);
+		//setCartItems([...cartItems,currentItem])
+		setCartItems([...cartItems,currentItem])
+		console.log(cartItems) 
+
+
+	}
+
+	
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -94,16 +81,21 @@ function App() {
 				items.map((item) =>
 					console.log(item.fields.blogContent.content[0].content[0].value)
 				)}
-			<Navbar />
+			<Navbar count={count}  />
 			<Switch>
+				<Route path={"/category/shoppingcart"} render={(props) => (<Shoppingcart cartItems={cartItems}/>)}/>
                 <Route
                     path={"/category/:id/:product"}
                     render={(props) => (
                         <Product
                             data={data}
                             mugData={mugData}
-                            shirtData={shirtData}
-                            {...props}
+							shirtData={shirtData}
+							category={{"book":data, "shirt": shirtData, "mug":mugData}}
+							{...props}
+							addShoppingcart={addShoppingcart}
+							count={count}
+			
                         />
                     )}
                 />
@@ -113,7 +105,7 @@ function App() {
                         <CategoryPage
                             data={data}
                             mugData={mugData}
-                            shirtData={shirtData}
+							shirtData={shirtData}
                             {...props}
                         />
                     )}

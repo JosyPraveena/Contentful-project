@@ -46,7 +46,6 @@ const useStyles = makeStyles({
 });
 
 const CategoryCard = ({ data }) => {
-	console.log(data);
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>

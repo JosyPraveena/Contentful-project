@@ -9,20 +9,21 @@ import Footer from "./Footer";
 import Typography from "@material-ui/core/Typography";
 
 const CategoryPage = ({ data, mugData, shirtData }) => {
+	
 	const comic = data;
 	const mug = mugData;
 	const tshirt = shirtData;
 	const { id } = useParams();
 	let itemList = [];
 
-	if (id === "tshirt") {
+	if (id === "shirt") {
 		if (tshirt) {
 			itemList = tshirt.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.shirt_slugs}`}
+							to={`/category/${id}/${item.shirt_slugs}`}
 							key={item.shirt_id}
 						>
 							<ShirtCategoryCard data={item} />
@@ -33,14 +34,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 		}
 	}
 
-	if (id === "mugs") {
+	if (id === "mug") {
 		if (mug) {
 			itemList = mug.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.mug_slugs}`}
+							to={`/category/${id}/${item.mug_slugs}`}
 							key={item.mug_id}
 						>
 							<MugCategoryCard data={item} />
@@ -50,14 +51,14 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 			});
 		}
 	}
-	if (id === "comicbooks") {
+	if (id === "book") {
 		if (comic) {
 			itemList = comic.map((item) => {
 				return (
 					<Grid item container xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.book_slugs}`}
+							to={`/category/${id}/${item.book_slugs}`}
 							key={item.book_id}
 						>
 							<ComicCategoryCard data={item} />
