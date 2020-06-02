@@ -2,40 +2,24 @@ import React,{useState} from "react";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Link } from "react-router-dom";
 
 const Shoppingcart =(props)=>{
- const {cartItems} = props
-  const [qty,setQty] = useState(1)
- 
-  const addItems = (e,title) =>{
-   
-  cartItems.filter(each=>{
-    if(title === each.title){
-      setQty(qty+1)
-    }
-    return setQty(qty+1)
-  })
-  
-}
-const reduceItems = () =>{
-  if (qty > 1)
-  setQty(qty-1)
-}
+ let {cartItems} = props
 
- console.log(cartItems)
+
+  
   return(
   <>
         <h2>Shopping Cart</h2>
           <ul>
           {cartItems.map(each=> {
             return(
-              <li key={each.title}>
-                {each.title}
-              <AddOutlinedIcon onClick={(e) => addItems(e,each.title)}/> {qty}
-             <RemoveOutlinedIcon onClick={reduceItems}/>
-             <DeleteForeverOutlinedIcon/>
+              <li key={each.description}>
+                
+               {each.title}  price:{Number.parseFloat(each.price*each.quantity).toFixed(2)} 
+             <AddOutlinedIcon onClick={() => props.addItems(each.productid,each.title)}/> {each.quantity}
+             <RemoveOutlinedIcon onClick={()=>props.reduceItems(each.productid,each.title)}/>
+             <DeleteForeverOutlinedIcon onClick={()=>props.deleteItems(each.title,each.quantity)}/>
              
              </li>
             )

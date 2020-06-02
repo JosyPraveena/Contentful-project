@@ -166,8 +166,8 @@ export default function Navbar(props) {
 							color='inherit'
 							aria-label='menu'
 						>
-							<StyledBadge badgeContent={`${props.count}`} color="secondary">
-							<ShoppingCartIcon className={classes.cart} component={Link}
+							<StyledBadge badgeContent={props.count} color="secondary" showZero>
+							<ShoppingCartIcon className={classes.cart} component={Link} color="secondary"
 								to='/category/shoppingcart'/>
 							</StyledBadge>
 						</IconButton>

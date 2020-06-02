@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+//import { useHistory } from "react-router-dom";
 
 // MODAL IMAGE
 
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 
+	
 	// MODAL
 	// const [modalStyle] = useState(getModalStyle);
 	const [open, setOpen] = useState(false);
@@ -119,108 +121,23 @@ const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 					rating: filteredItem[0][id +"_rating"],
 					subtext: filteredItem[0][id +"_subtext"],
 					image: filteredItem[0][id +"_image"],
-					description: filteredItem[0][id +"_description"]
+					description: filteredItem[0][id +"_description"],
+					productid: `${filteredItem[0][id +"_id"]}`,
+					quantity: 1
 				}
 					
 				);
 				
 			}
+			
 		}
-
-
-		// if (tshirt) {
-		// 	const filteredItem = tshirt.filter(
-		// 		(item) => item.shirt_slugs === product
-		// 	);
-				
-		// 	if (filteredItem[0]) {
-				
-		// 		setCurrentItem(
-		// 			{
-		// 			title: filteredItem[0].shirt_title,
-		// 			price: filteredItem[0].shirt_price,
-		// 			rating: filteredItem[0].shirt_rating,
-		// 			subtext: filteredItem[0].shirt_subtext,
-		// 			image: filteredItem[0].shirt_image,
-		// 			description: filteredItem[0].shirt_description,
-		// 			productid: filteredItem[0].shirt_id
-		// 		}
-					
-		// 		);
-				
-		// 	}
-		// }
-		// if (mug) {
-		// 	const filteredItem = mug.filter(
-		// 		(item) => item.mug_slugs === product
-		// 	);
-
-		// 	if (filteredItem[0]) {
-				
-		// 		setCurrentItem([
-		// 			filteredItem[0].mug_title,
-		// 			filteredItem[0].mug_price,
-		// 			filteredItem[0].mug_rating,
-		// 			filteredItem[0].mug_subtext,
-		// 			filteredItem[0].mug_image,
-		// 			filteredItem[0].mug_description,
-		// 			filteredItem[0].mug_id
-		// 		]);
-		// 	}
-		// }
-		// if (comic) {
-		// 	const filteredItem = comic.filter(
-		// 		(item) => item.book_slugs === product
-		// 	);
-
-		// 	if (filteredItem[0]) {
-		// 		//console.log(filteredItem[0].fields.bookRating);
-		// 		setCurrentItem([
-		// 			filteredItem[0].book_title,
-		// 			filteredItem[0].book_price,
-		// 			filteredItem[0].book_rating,
-		// 			filteredItem[0].book_subtext,
-		// 			filteredItem[0].book_image,
-		// 			filteredItem[0].book_description,
-		// 			filteredItem[0].book_id
-		// 		]);
-		// 	}
-		// }
-
-		
+	
 	}, [category,id,product]);
 
-
-	// const picture = (
-	// 	<div className={classes.pictureContainer}>
-	// 		<img className={classes.picture} alt='complex' src={currentItem.image} />
-	// 	</div>
-	// );
-	
-		// const addItemsToCart = async () =>{
-		// 	console.log(currentItem)
-		// 	if (currentItem){
-		// 	try{
-		// 		const {body} = currentItem
-		// 		console.log("body" + body)
-		// 		const response = await fetch("http://localhost:3000/shoppingcartitems",
-		// 		{method: "POST",
-		// 		headers: {"Content-Type" : "application/json"},
-		// 		body: JSON.stringify(body)})
-		// 		console.log(response.json())
-		// 		//const jsonData = await response.json()
-
-		// 		//console.log("jsondata"+ jsonData)
-		// 	}
-		// 	catch(err){
-		// 		console.log(err.message)
-		// 	}
-		// 	}
-		// }
 	
 	if (currentItem) {
 		const{title,image,price,rating,subtext,description} = currentItem;
-		
+	
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
@@ -271,7 +188,7 @@ const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 										//onClick = {addItemsToCart}
 										
 									>
-										buy now
+										Add to Cart
 									</Button>
 									
 								</Grid>
