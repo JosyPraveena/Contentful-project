@@ -25,54 +25,42 @@ function App() {
 	//const [addItems,setAddItems] = useState(null)
 
 	const fetchData = async () => {
-<<<<<<< HEAD
+
         try {
             const response = await fetch("http://localhost:3001/shirt/");
             const shirtData = await response.json();
-=======
-		try {
-			const response = await fetch("http://localhost:3001/shirt/");
-			const shirtData = await response.json();
->>>>>>> c67aab03b5b6c0105906efe974b8698e09033e58
+
+
 			setShirtData(shirtData);
 			//console.log(shirtData)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-<<<<<<< HEAD
-            const response = await fetch("http://localhost:3001/mug/");
-            const mugData = await response.json();
-=======
+
 			const response = await fetch("http://localhost:3001/mug/");
 			const mugData = await response.json();
->>>>>>> c67aab03b5b6c0105906efe974b8698e09033e58
+
 			setMugData(mugData);
 			//console.log(mugData)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-<<<<<<< HEAD
-            const response = await fetch("http://localhost:3001/book/");
-            const data = await response.json();
-=======
+
 			const response = await fetch("http://localhost:3001/book/");
 			const data = await response.json();
->>>>>>> c67aab03b5b6c0105906efe974b8698e09033e58
+
 			setData(data);
 			//console.log(data)
 		} catch (err) {
 			console.error(err.message);
 		}
 		try {
-<<<<<<< HEAD
-            const response = await fetch("http://localhost:3001/blog/");
-            const blogData = await response.json();
-=======
+
 			const response = await fetch("http://localhost:3001/blog/");
 			const blogData = await response.json();
->>>>>>> c67aab03b5b6c0105906efe974b8698e09033e58
+
 			setBlogData(blogData);
 			console.log(blogData);
 		} catch (err) {
