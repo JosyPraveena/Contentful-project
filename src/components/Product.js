@@ -9,6 +9,9 @@ import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Footer from "./Footer";
+import { useMediaQuery } from "@material-ui/core";
+import parse from "html-react-parser";
 //import { useHistory } from "react-router-dom";
 
 // MODAL IMAGE
@@ -36,20 +39,24 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		paper: {
 			padding: theme.spacing(5),
-			margin: "auto",
+			margin: "100px 50px 50px 50px",
 			maxWidth: "100%",
 			maxHeight: "100%",
 		},
 		image: {
 			width: "100%",
-			height: "500px",
+			overflow: "hidden",
+			margin: "0 auto",
+			marginRight: "50px",
 		},
 		img: {
-			margin: "auto",
-			display: "block",
-			width: "500px",
-			maxWidth: "100%",
-			maxHeight: "100%",
+			// margin: "0 auto",
+			maxWidth: "450px",
+			maxHeight: "450px",
+
+			borderRadius: "8px",
+			transition: "all 0.3s ease-in-out",
+			"&:hover": {},
 		},
 		title: {
 			fontFamily: "Bangers",
@@ -75,83 +82,60 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
-
-	
-	// MODAL
-	// const [modalStyle] = useState(getModalStyle);
+const Product = ({ data, mugData, shirtData, addShoppingcart, category }) => {
 	const [open, setOpen] = useState(false);
-	
-	//const [cartItems, setCartItems] = useState("")
-	
 	const handleOpen = () => {
 		setOpen(true);
 	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
-	// ++
-	
-	
 
 	const classes = useStyles();
-	// const comic = data;
-	// const mug = mugData;
-	// const tshirt = shirtData;
-	
+	const mobile = useMediaQuery("(max-width: 810px )");
 	const { product } = useParams();
-	const {id} = useParams();
+	const { id } = useParams();
 
 	const [currentItem, setCurrentItem] = useState(null);
 	useEffect(() => {
+		let value = category[id];
 
-		let value = category[id]
-		
-		if(value){
-		const filteredItem = value.filter(
-			(item) => item[id + "_slugs"] === product
-		);
-					if (filteredItem[0]) {
-				
-				setCurrentItem(
-					{
+		if (value) {
+			const filteredItem = value.filter(
+				(item) => item[id + "_slugs"] === product
+			);
+			if (filteredItem[0]) {
+				setCurrentItem({
 					title: filteredItem[0][id + "_title"],
 					price: filteredItem[0][id + "_price"],
-					rating: filteredItem[0][id +"_rating"],
-					subtext: filteredItem[0][id +"_subtext"],
-					image: filteredItem[0][id +"_image"],
-					description: filteredItem[0][id +"_description"],
-					productid: `${filteredItem[0][id +"_id"]}`,
-					quantity: 1
-				}
-					
-				);
-				
+					rating: filteredItem[0][id + "_rating"],
+					subtext: filteredItem[0][id + "_subtext"],
+					image: filteredItem[0][id + "_image"],
+					description: filteredItem[0][id + "_description"],
+					productid: `${filteredItem[0][id + "_id"]}`,
+					quantity: 1,
+				});
 			}
-			
 		}
-	
-	}, [category,id,product]);
+	}, [category, id, product]);
 
-	
 	if (currentItem) {
-		const{title,image,price,rating,subtext,description} = currentItem;
-	
+		const { title, image, price, rating, subtext, description } = currentItem;
+
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
-					<Grid container spacing={5} justify='center'>
-						<Grid item xs={4}>
-							<ButtonBase className={classes.image} onClick={handleOpen}>
-								<img
-									className={classes.img}
-									alt='complex'
-									src={image}
-								/>
-							</ButtonBase>
+					<Grid container justify='center'>
+						<Grid item xs={mobile ? 12 : 4}>
+							<div className={classes.image}>
+								<ButtonBase onClick={handleOpen}>
+									<div className={classes.image}>
+										<img className={classes.img} alt='complex' src={image} />
+									</div>
+								</ButtonBase>
+							</div>
 						</Grid>
-						<Grid item xs={8} sm container>
+						<Grid item xs={mobile ? 12 : 8} sm container>
 							<Grid item xl container direction='column' spacing={2}>
 								<Grid item xl>
 									<br />
@@ -175,7 +159,7 @@ const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 									<br />
 									<br />
 									<Typography variant='h6' gutterBottom>
-									{subtext}
+										{subtext}
 									</Typography>
 								</Grid>
 								<Grid item>
@@ -184,20 +168,23 @@ const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 										size='large'
 										color='secondary'
 										className={classes.button}
-										onClick = {()=> addShoppingcart(currentItem)}
+										onClick={() => addShoppingcart(currentItem)}
 										//onClick = {addItemsToCart}
-										
 									>
 										Add to Cart
 									</Button>
-									
 								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>
-				</Paper>
-				<Paper className={classes.paper}>
-					<Grid item xl={12} sm container>
+
+					<Grid
+						item
+						xl={12}
+						sm
+						container
+						style={{ marginTop: "100px", marginBottom: "50px" }}
+					>
 						<Grid item>
 							<Typography
 								gutterBottom
@@ -208,16 +195,17 @@ const Product = ({ data, mugData, shirtData,addShoppingcart,category}) => {
 								Description
 							</Typography>
 							<Typography variant='h6' gutterBottom>
-								{description}
+								{parse(`${description}`)}
 							</Typography>
 						</Grid>
 						<Modal open={open} onClose={handleClose}>
-						<div className={classes.pictureContainer}>
-			<img className={classes.picture} alt='complex' src={image} />
-		</div>
+							<div className={classes.pictureContainer}>
+								<img className={classes.picture} alt='complex' src={image} />
+							</div>
 						</Modal>
 					</Grid>
 				</Paper>
+				<Footer />
 			</div>
 		);
 	} else return null;

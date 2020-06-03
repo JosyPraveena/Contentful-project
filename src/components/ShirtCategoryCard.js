@@ -8,26 +8,16 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
-	root: {
-		marginTop: "30px",
-		maxWidth: 400,
-		textAlign: "center",
-		paddingTop: "20px",
-		marginLeft: "20px",
-		marginBottom: "40px",
-	},
-
-	card: {
+	cardSize: {
 		transition: "all 1s ease",
+		width: "80%",
+		height: "750px",
+		margin: "20px",
 	},
 
-	image: {
-		width: "100%",
-		height: "auto",
-		display: "block",
-		paddingTop: "20px",
-		opacity: 0.5,
-		transition: "all 0.5s ease",
+	media: {
+		height: "250px",
+		paddingTop: "56.25%", // 16:9
 	},
 
 	cardHover: {
@@ -47,28 +37,24 @@ const CategoryCard = ({ data }) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.root}>
-			<Grid container direction='row'>
-				<Card className={(classes.root, classes.card, classes.cardHover)}>
-					<CardMedia>
-						<img
-							className={classes.image}
-							src={data.shirt_image} alt="productimage"
-						></img>
-					</CardMedia>
-					<CardContent>
-						<Rating name='read-only' value={data.shirt_rating} readOnly />
-						<Typography gutterBottom variant='h6'>
-							{data.shirt_title}
-						</Typography>
-						<Typography variant='body1'>{data.shirt_category}</Typography>
-						<Typography variant='body1'>{data.shirt_price}</Typography>
-					</CardContent>
-				</Card>
-			</Grid>
-		</div>
+		<Grid item>
+			<Card className={classes.cardSize}>
+				<CardMedia
+					className={classes.media}
+					image={data.shirt_image}
+				></CardMedia>
+				<CardContent>
+					<Rating name='read-only' value={data.shirt_rating} readOnly />
+					<Typography variant='body1'>{data.shirt_category}</Typography>
+					<Typography gutterBottom variant='h6'>
+						{data.shirt_title}
+					</Typography>
+					<Typography variant='body1'>{data.shirt_price}</Typography>
+					<div>BUTTON</div>
+				</CardContent>
+			</Card>
+		</Grid>
 	);
-
 };
 
 export default CategoryCard;
