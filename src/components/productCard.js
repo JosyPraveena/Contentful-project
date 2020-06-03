@@ -9,31 +9,77 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles({
+import FadeIn from "react-fade-in";
+
+const useStyles = makeStyles((theme) => ({
 	cardSize: {
-		transition: "all 1s ease",
-		minWidth: "350px",
-		maxWidth: "350px",
+		transition: "all 0.7s ease",
+		width: "80%",
+		height: "650px",
 		margin: "20px",
+		textAlign: "center",
+		animation: `$moveInLeft 1s ${theme.transitions.easing.easeInOut}`,
+		"&:hover": {
+			height: "750px",
+			"& $buyBtn": {
+				marginTop: "20px",
+				opacity: "1",
+				transform: "translateY(0px)",
+			},
+			"& $media": {
+				boxShadow: "inset 0px 1px 35px rgba(230, 36, 41, 0.3)",
+			},
+		},
+		display: "relative",
+	},
+
+	buyBtn: {
+		marginTop: "0px",
+		margin: "auto",
+		width: "150px",
+		padding: "15px",
+		background: "#e62429",
+		color: "#fff",
+		fontFamily: "Bangers",
+		fontSize: "1.5rem",
+		borderRadius: "5px",
+		opacity: "0",
+		transform: "translateY(100px)",
+		transition: "all 0.5s ease",
+		boxShadow: "1px 1px 5px rgba(0,0,0,0.4)",
+	},
+
+	title: {
+		fontWeight: "600",
+		fontSize: "1.3rem",
+		fontFamily: "Roboto",
+		// textTransform: "uppercase",
+		lineHeight: "1.1",
+	},
+
+	price: {
+		fontSize: "1.1rem",
+		marginTop: "10px",
 	},
 
 	media: {
-		minHeight: "250px",
+		height: "250px",
 		paddingTop: "56.25%", // 16:9
+		boxShadow: "inset 0px 1px 8px rgba(0,0,0,0.1)",
+		transition: "all 0.5s ease",
+		marginBottom: "15px",
 	},
 
-	cardHover: {
-		transition: "all 0.5s ease",
-		"&:hover": {
-			transform: "translateY(-20px)",
-			border: "solid 2px #e62429",
-			"& $image": {
-				opacity: 1,
-				transform: "scale(1.02)",
-			},
+	"@keyframes moveInLeft": {
+		"0%": {
+			opacity: 0,
+		},
+
+		"100%": {
+			opacity: 1,
 		},
 	},
-});
+}));
 
 const ProductCard = ({ data }) => {
 	const classes = useStyles();
@@ -44,7 +90,7 @@ const ProductCard = ({ data }) => {
 	console.log(data);
 	if (data.shirt_id) {
 		return (
-			<React.Fragment>
+			<FadeIn>
 				<Link
 					style={{ textDecoration: "none" }}
 					to={`/category/shirt/${data.shirt_slugs}`}
@@ -55,23 +101,28 @@ const ProductCard = ({ data }) => {
 							className={classes.media}
 							image={data.shirt_image}
 						></CardMedia>
+
 						<CardContent style={{ marginTop: "20px", height: "150px" }}>
-							<Rating name='read-only' value={data.shirt_rating} readOnly />
-							<Typography gutterBottom variant='h6'>
+							<Rating name='read-only' defaultValue={data.shirt_rating} />
+							<Typography variant='body1'>{data.shirt_category}</Typography>
+							<Typography className={classes.title} gutterBottom variant='h6'>
 								{data.shirt_title}
 							</Typography>
-							<Typography variant='body1'>{data.shirt_category}</Typography>
-							<Typography variant='body1'>${data.shirt_price}</Typography>
+
+							<Typography className={classes.price} variant='body1'>
+								${data.shirt_price}
+							</Typography>
 						</CardContent>
+						<div className={classes.buyBtn}>Shop Now</div>
 					</Card>
 				</Link>
-			</React.Fragment>
+			</FadeIn>
 		);
 	}
 
 	if (data.book_id) {
 		return (
-			<React.Fragment>
+			<FadeIn>
 				<Link
 					style={{ textDecoration: "none" }}
 					to={`/category/book/${data.book_slugs}`}
@@ -83,22 +134,26 @@ const ProductCard = ({ data }) => {
 							image={data.book_image}
 						></CardMedia>
 						<CardContent>
-							<Rating name='read-only' value={data.book_rating} readOnly />
-							<Typography gutterBottom variant='h6'>
+							<Rating name='read-only' defaultValue={data.book_rating} />
+							<Typography variant='body1'>{data.book_category}</Typography>
+							<Typography className={classes.title} gutterBottom variant='h6'>
 								{data.book_title}
 							</Typography>
 							<Typography variant='body1'>{data.book_category}</Typography>
-							<Typography variant='body1'>${data.book_price}</Typography>
+							<Typography className={classes.price} variant='body1'>
+								${data.book_price}
+							</Typography>
 						</CardContent>
+						<div className={classes.buyBtn}>Shop Now</div>
 					</Card>
 				</Link>
-			</React.Fragment>
+			</FadeIn>
 		);
 	}
 
 	if (data.mug_id) {
 		return (
-			<React.Fragment>
+			<FadeIn>
 				<Link
 					style={{ textDecoration: "none" }}
 					to={`/category/mug/${data.mug_slugs}`}
@@ -111,16 +166,20 @@ const ProductCard = ({ data }) => {
 						></CardMedia>
 
 						<CardContent>
-							<Rating name='read-only' value={data.mug_rating} readOnly />
-							<Typography gutterBottom variant='h6'>
+							<Rating name='read-only' defaultValue={data.mug_rating} />
+							<Typography variant='body1'>{data.mug_category}</Typography>
+							<Typography className={classes.title} gutterBottom variant='h6'>
 								{data.mug_title}
 							</Typography>
-							<Typography variant='body1'>{data.mug_category}</Typography>
-							<Typography variant='body1'>${data.mug_price}</Typography>
+
+							<Typography className={classes.price} variant='body1'>
+								${data.mug_price}
+							</Typography>
 						</CardContent>
+						<div className={classes.buyBtn}>Shop Now</div>
 					</Card>
 				</Link>
-			</React.Fragment>
+			</FadeIn>
 		);
 	}
 };

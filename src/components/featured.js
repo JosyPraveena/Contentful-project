@@ -11,6 +11,8 @@ import { Route, Switch, Link, useParams } from "react-router-dom";
 import { useMediaQuery } from "@material-ui/core";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
+import Skeleton from "@material-ui/lab/Skeleton";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
 	tabContainer: {
@@ -135,7 +137,7 @@ const Featured = ({ comics, mugs, shirts }) => {
 					</Tabs>
 				</Grid>
 			</Grid>
-			{sliderPictures[value].length > 1 && (
+			{sliderPictures[value].length > 1 ? (
 				<AliceCarousel
 					items={sliderPictures[value].map((item) => (
 						<ProductCard data={item} />
@@ -148,18 +150,9 @@ const Featured = ({ comics, mugs, shirts }) => {
 					responsive={responsive}
 					buttonsDisabled
 				/>
+			) : (
+				<React.Fragment>{/* <Skeleton> </Skeleton> */}</React.Fragment>
 			)}
-			{/* {sliderPictures[value].length > 1 &&
-				sliderPictures[value].map((item) => <ProductCard data={item} />)} */}
-
-			{/* <Slider {...settings} slidesToShow={large ? 1 : 4}>
-				{sliderPictures[value].length > 1 &&
-					sliderPictures[value].map((item) => (
-						<div>
-							<ProductCard data={item} />
-						</div>
-					))}
-			</Slider> */}
 		</React.Fragment>
 	);
 };
