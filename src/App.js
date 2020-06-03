@@ -26,9 +26,11 @@ function App() {
 
 	const fetchData = async () => {
 
+
         try {
             const response = await fetch("http://localhost:3001/shirt/");
             const shirtData = await response.json();
+
 
 
 			setShirtData(shirtData);
@@ -37,6 +39,7 @@ function App() {
 			console.error(err.message);
 		}
 		try {
+
 
 			const response = await fetch("http://localhost:3001/mug/");
 			const mugData = await response.json();
@@ -48,8 +51,10 @@ function App() {
 		}
 		try {
 
+
 			const response = await fetch("http://localhost:3001/book/");
 			const data = await response.json();
+
 
 			setData(data);
 			//console.log(data)
@@ -58,8 +63,10 @@ function App() {
 		}
 		try {
 
+
 			const response = await fetch("http://localhost:3001/blog/");
 			const blogData = await response.json();
+
 
 			setBlogData(blogData);
 			console.log(blogData);
