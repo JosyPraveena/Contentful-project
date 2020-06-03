@@ -50,7 +50,7 @@ function App() {
 			const response = await fetch("http://localhost:3001/blog/");
 			const blogData = await response.json();
 			setBlogData(blogData);
-			//console.log(blogData)
+			console.log(blogData);
 		} catch (err) {
 			console.error(err.message);
 		}

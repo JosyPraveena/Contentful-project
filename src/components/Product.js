@@ -11,6 +11,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Footer from "./Footer";
 import { useMediaQuery } from "@material-ui/core";
+import parse from "html-react-parser";
 
 // MODAL IMAGE
 
@@ -237,7 +238,7 @@ const Product = ({ data, mugData, shirtData }) => {
 								Description
 							</Typography>
 							<Typography variant='h6' gutterBottom>
-								{currentItem[5]}
+								{parse(`${currentItem[5]}`)}
 							</Typography>
 						</Grid>
 						<Modal open={open} onClose={handleClose}>

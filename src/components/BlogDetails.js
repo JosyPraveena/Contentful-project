@@ -27,15 +27,19 @@ import LinkIcon from '@material-ui/icons/Link';
 import image1 from "../img/1.jpg";
 
 import { useParams } from "react-router-dom";
+import parse from 'html-react-parser';
 
 
 
 const BlogDetails = ({ blogData }) => {
 
   const { id } = useParams();
-  console.log("Hello from Details : ", id)
-  const { items } = blogData;
-  console.log("Hello from items : ", items)
+
+  console.log("Get Details from ID : ", id)
+  // const { items } = blogData;
+  console.log("Hello from items : ", blogData)
+
+  
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,26 +87,20 @@ const BlogDetails = ({ blogData }) => {
 		fontFamily: "Montserrat",
 		fontWeight: 400,
 		color: "#294A55",
-    textDecoration: "none",
-    
+    textDecoration: "none",    
     }
   }));
 
-  // let ISO = DateTime.fromISO(fields.blogDate)
-  // const day=['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-  // const month=['','January','February','March','April','May','June','July','August','September','October','November','December']
-
   const classes = useStyles();
-  console.log(items)
-
-      // console.log("Result : ",res[0].fields.blogId)
-
+  
   return (
     <>   
 
+{/* { blogData.filter( (item) => { if (item.blog_id === id) { console.log("filter:", item.blog_title) } } ) } */}
 { 
-items
-.filter( item => { if (item.fields.blogId === id) {  return item }} )
+
+blogData
+.filter( item => (item.blog_id == id) )
 .map(item => 
 
 
@@ -110,18 +108,19 @@ items
 
 <div id="blogDetailBox">
 
-  <div id="blogDetailTitle" className={classes.title}>{item.fields.blogTitle}</div>
-  <div id="blogDetailSubtitle" className={classes.subtitle}>{item.fields.blogSubtitle}</div>
-  <div id="blogDetailPic"><img src={item.fields.blogImage.fields.file.url} ALT="x"/></div>
+  <div id="blogDetailTitle" className={classes.title}>{item.blog_title}</div>
+  <div id="blogDetailSubtitle" className={classes.subtitle}>{item.blog_subtitle}</div>
+  <div id="blogDetailPic"><img src={item.blog_image} ALT="x"/></div>
   <div id="blogDetailInfo">
 
-      <div id="blogDetailInfoLeft" className={classes.info}><Avatar alt="{item.fields.blogAuthor}" src={item.fields.blogAvatar.fields.file.url} className={classes.small} /><div id="blogDetailSpacer"></div>{item.fields.blogAuthor}</div>
-      <div id="blogDetailInfoRight" className={classes.info}><TodayIcon /><div id="blogDetailSpacer"></div>{item.fields.blogDate}</div>
+      <div id="blogDetailInfoLeft" className={classes.info}><Avatar alt="{item.blog_author}" src={item.blog_avatar} className={classes.small} /><div id="blogDetailSpacer"></div>{item.blog_author}</div>
+      <div id="blogDetailInfoRight" className={classes.info}><TodayIcon /><div id="blogDetailSpacer"></div>{item.blog_date}</div>
 
   </div>
   <div id="blogDetailContent" className={classes.content}>{
                 
-                            item.fields.blogContent.content.map( (entry) => documentToReactComponents(entry))
+                            // item.fields.blogContent.content.map( (entry) => documentToReactComponents(entry))
+                            parse(item.blog_content)
                 
                             // (<p>{entry.content.map( (more) => more.value)}</p>)
                 
@@ -130,7 +129,7 @@ items
     
   <div id="socialLeft">    
       <div className="socialSpacer"><Button size="small" color="primary" variant="contained">
-  FOLLOW {item.fields.blogAuthor}
+  FOLLOW {item.blog_author}
 </Button></div>
     <div className="socialSpacer"><FavoriteIcon/></div>
     <div className="socialSpacer"><InsertCommentIcon/></div>
