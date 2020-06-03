@@ -127,7 +127,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='category/tshirt'>
+						<CardActionArea component={Link} to='category/shirt'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -135,7 +135,7 @@ export default function Categories() {
 								image={cat_shirts}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>T-SHIRTS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Dress like a superhero
@@ -156,7 +156,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardLeft} ${classes.cardLeftHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='category/mugs'>
+						<CardActionArea component={Link} to='category/mug'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -164,7 +164,7 @@ export default function Categories() {
 								image={cat_mugs}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>MUGS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Enjoy a coffee with your favourite character
@@ -185,7 +185,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='/category/comicbooks'>
+						<CardActionArea component={Link} to='/category/book'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -193,7 +193,7 @@ export default function Categories() {
 								image={cat_comics}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>COMICS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Explore a world full of action and adventures
