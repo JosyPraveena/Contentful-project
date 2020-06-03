@@ -1,5 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+	makeStyles,
+	Theme,
+	withStyles,
+	createStyles,
+} from "@material-ui/core/styles";
+import Badge from "@material-ui/core/Badge";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -50,6 +56,17 @@ export default function Navbar(props) {
 		 */
 		window: PropTypes.func,
 	};
+
+	const StyledBadge = withStyles((theme: Theme) =>
+		createStyles({
+			badge: {
+				right: -1,
+				top: 1,
+				border: `2px solid ${theme.palette.background.default}`,
+				padding: "0 4px",
+			},
+		})
+	)(Badge);
 
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -203,7 +220,7 @@ export default function Navbar(props) {
 										>
 											<Tab
 												component={Link}
-												to='/category/tshirt'
+												to='/category/shirt'
 												label={isActive ? "" : "tshirt"}
 												icon={
 													isActive ? (
@@ -216,7 +233,7 @@ export default function Navbar(props) {
 											></Tab>
 											<Tab
 												component={Link}
-												to='/category/mugs'
+												to='/category/mug'
 												label={isActive ? "" : "mugs"}
 												icon={
 													isActive ? (
@@ -229,7 +246,7 @@ export default function Navbar(props) {
 											/>
 											<Tab
 												component={Link}
-												to='/category/comicbooks'
+												to='/category/book'
 												label={isActive ? "" : "comicbooks"}
 												icon={
 													isActive ? (
@@ -259,8 +276,16 @@ export default function Navbar(props) {
 											className={classes.menuButton}
 											color='inherit'
 											aria-label='menu'
+											component={Link}
+											to='/category/shoppingcart'
 										>
-											<ShoppingCartIcon className={classes.cart} />
+											<StyledBadge
+												badgeContent={props.count}
+												color='secondary'
+												showZero
+											>
+												<ShoppingCartIcon className={classes.cart} />
+											</StyledBadge>
 										</IconButton>
 									</Grid>
 								</Grid>

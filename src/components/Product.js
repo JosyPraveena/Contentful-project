@@ -12,6 +12,7 @@ import Modal from "@material-ui/core/Modal";
 import Footer from "./Footer";
 import { useMediaQuery } from "@material-ui/core";
 import parse from "html-react-parser";
+//import { useHistory } from "react-router-dom";
 
 // MODAL IMAGE
 
@@ -81,84 +82,46 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Product = ({ data, mugData, shirtData }) => {
-	// MODAL
-	// const [modalStyle] = useState(getModalStyle);
+const Product = ({ data, mugData, shirtData, addShoppingcart, category }) => {
 	const [open, setOpen] = useState(false);
-
 	const handleOpen = () => {
 		setOpen(true);
 	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
-	// ++
 
 	const classes = useStyles();
 	const mobile = useMediaQuery("(max-width: 810px )");
-	const comic = data;
-
-	const mug = mugData;
-	const tshirt = shirtData;
 	const { product } = useParams();
+	const { id } = useParams();
 
-	const [currentItem, setCurrentItem] = useState([]);
+	const [currentItem, setCurrentItem] = useState(null);
 	useEffect(() => {
-		if (tshirt) {
-			const filteredItem = tshirt.filter(
-				(item) => item.shirt_slugs === product
+		let value = category[id];
+
+		if (value) {
+			const filteredItem = value.filter(
+				(item) => item[id + "_slugs"] === product
 			);
-			console.log(filteredItem);
 			if (filteredItem[0]) {
-				setCurrentItem([
-					filteredItem[0].shirt_title,
-					filteredItem[0].shirt_price,
-					filteredItem[0].shirt_rating,
-					filteredItem[0].shirt_subtext,
-					filteredItem[0].shirt_image,
-					filteredItem[0].shirt_description,
-				]);
+				setCurrentItem({
+					title: filteredItem[0][id + "_title"],
+					price: filteredItem[0][id + "_price"],
+					rating: filteredItem[0][id + "_rating"],
+					subtext: filteredItem[0][id + "_subtext"],
+					image: filteredItem[0][id + "_image"],
+					description: filteredItem[0][id + "_description"],
+					productid: `${filteredItem[0][id + "_id"]}`,
+					quantity: 1,
+				});
 			}
 		}
-		if (mug) {
-			const filteredItem = mug.filter((item) => item.mug_slugs === product);
+	}, [category, id, product]);
 
-			if (filteredItem[0]) {
-				setCurrentItem([
-					filteredItem[0].mug_title,
-					filteredItem[0].mug_price,
-					filteredItem[0].mug_rating,
-					filteredItem[0].mug_subtext,
-					filteredItem[0].mug_image,
-					filteredItem[0].mug_description,
-				]);
-			}
-		}
-		if (comic) {
-			const filteredItem = comic.filter((item) => item.book_slugs === product);
-
-			if (filteredItem[0]) {
-				//console.log(filteredItem[0].fields.bookRating);
-				setCurrentItem([
-					filteredItem[0].book_title,
-					filteredItem[0].book_price,
-					filteredItem[0].book_rating,
-					filteredItem[0].book_subtext,
-					filteredItem[0].book_image,
-					filteredItem[0].book_description,
-				]);
-			}
-		}
-	}, [product, tshirt, mug, comic]);
-
-	const picture = (
-		<div className={classes.pictureContainer}>
-			<img className={classes.picture} alt='complex' src={currentItem[4]} />
-		</div>
-	);
-	//console.log({currentItem})
 	if (currentItem) {
+		const { title, image, price, rating, subtext, description } = currentItem;
+
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
@@ -167,11 +130,7 @@ const Product = ({ data, mugData, shirtData }) => {
 							<div className={classes.image}>
 								<ButtonBase onClick={handleOpen}>
 									<div className={classes.image}>
-										<img
-											className={classes.img}
-											alt='complex'
-											src={currentItem[4]}
-										/>
+										<img className={classes.img} alt='complex' src={image} />
 									</div>
 								</ButtonBase>
 							</div>
@@ -186,25 +145,21 @@ const Product = ({ data, mugData, shirtData }) => {
 										variant='h3'
 										className={classes.title}
 									>
-										{currentItem[0]}
+										{title}
 									</Typography>
 									<Typography
 										variant='h4'
 										color='primary'
 										className={classes.title}
 									>
-										${currentItem[1]}
+										${price}
 									</Typography>{" "}
 									<br />
-									<Rating
-										name='read-only'
-										value={`${currentItem[2]}`}
-										readOnly
-									/>
+									<Rating name='read-only' value={`${rating}`} readOnly />
 									<br />
 									<br />
 									<Typography variant='h6' gutterBottom>
-										{currentItem[3]}
+										{subtext}
 									</Typography>
 								</Grid>
 								<Grid item>
@@ -213,8 +168,10 @@ const Product = ({ data, mugData, shirtData }) => {
 										size='large'
 										color='secondary'
 										className={classes.button}
+										onClick={() => addShoppingcart(currentItem)}
+										//onClick = {addItemsToCart}
 									>
-										buy now
+										Add to Cart
 									</Button>
 								</Grid>
 							</Grid>
@@ -238,11 +195,13 @@ const Product = ({ data, mugData, shirtData }) => {
 								Description
 							</Typography>
 							<Typography variant='h6' gutterBottom>
-								{parse(`${currentItem[5]}`)}
+								{parse(`${description}`)}
 							</Typography>
 						</Grid>
 						<Modal open={open} onClose={handleClose}>
-							{picture}
+							<div className={classes.pictureContainer}>
+								<img className={classes.picture} alt='complex' src={image} />
+							</div>
 						</Modal>
 					</Grid>
 				</Paper>
