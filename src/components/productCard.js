@@ -47,7 +47,7 @@ const ProductCard = ({ data }) => {
 			<React.Fragment>
 				<Link
 					style={{ textDecoration: "none" }}
-					to={`/category/id/${data.shirt_slugs}`}
+					to={`/category/shirt/${data.shirt_slugs}`}
 					key={data.shirt_id}
 				>
 					<Card className={classes.cardSize}>
@@ -74,7 +74,7 @@ const ProductCard = ({ data }) => {
 			<React.Fragment>
 				<Link
 					style={{ textDecoration: "none" }}
-					to={`/category/id/${data.book_slugs}`}
+					to={`/category/book/${data.book_slugs}`}
 					key={data.book_id}
 				>
 					<Card className={classes.cardSize}>
@@ -101,7 +101,7 @@ const ProductCard = ({ data }) => {
 			<React.Fragment>
 				<Link
 					style={{ textDecoration: "none" }}
-					to={`/category/id/${data.mug_slugs}`}
+					to={`/category/mug/${data.mug_slugs}`}
 					key={data.mug_id}
 				>
 					<Card className={classes.cardSize}>

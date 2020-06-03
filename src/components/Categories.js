@@ -127,7 +127,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='category/tshirt'>
+						<CardActionArea component={Link} to='category/shirt'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -156,7 +156,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardLeft} ${classes.cardLeftHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='category/mugs'>
+						<CardActionArea component={Link} to='category/mug'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
@@ -185,7 +185,7 @@ export default function Categories() {
 					className={`cat-item ${classes.cardRight} ${classes.cardRightHover}`}
 				>
 					<Card className={classes.root}>
-						<CardActionArea component={Link} to='/category/comicbooks'>
+						<CardActionArea component={Link} to='/category/book'>
 							<CardMedia
 								component='img'
 								alt='Contemplative Reptile'
