@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Footer from "./Footer";
+import { useMediaQuery } from "@material-ui/core";
 
 // MODAL IMAGE
 
@@ -35,20 +37,24 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		paper: {
 			padding: theme.spacing(5),
-			margin: "auto",
+			margin: "100px 50px 50px 50px",
 			maxWidth: "100%",
 			maxHeight: "100%",
 		},
 		image: {
 			width: "100%",
-			height: "500px",
+			overflow: "hidden",
+			margin: "0 auto",
+			marginRight: "50px",
 		},
 		img: {
-			margin: "auto",
-			display: "block",
-			width: "500px",
-			maxWidth: "100%",
-			maxHeight: "100%",
+			// margin: "0 auto",
+			maxWidth: "450px",
+			maxHeight: "450px",
+
+			borderRadius: "8px",
+			transition: "all 0.3s ease-in-out",
+			"&:hover": {},
 		},
 		title: {
 			fontFamily: "Bangers",
@@ -89,6 +95,7 @@ const Product = ({ data, mugData, shirtData }) => {
 	// ++
 
 	const classes = useStyles();
+	const mobile = useMediaQuery("(max-width: 810px )");
 	const comic = data;
 
 	const mug = mugData;
@@ -101,9 +108,8 @@ const Product = ({ data, mugData, shirtData }) => {
 			const filteredItem = tshirt.filter(
 				(item) => item.shirt_slugs === product
 			);
-				console.log(filteredItem)
+			console.log(filteredItem);
 			if (filteredItem[0]) {
-				
 				setCurrentItem([
 					filteredItem[0].shirt_title,
 					filteredItem[0].shirt_price,
@@ -111,17 +117,13 @@ const Product = ({ data, mugData, shirtData }) => {
 					filteredItem[0].shirt_subtext,
 					filteredItem[0].shirt_image,
 					filteredItem[0].shirt_description,
-					
 				]);
 			}
 		}
 		if (mug) {
-			const filteredItem = mug.filter(
-				(item) => item.mug_slugs === product
-			);
+			const filteredItem = mug.filter((item) => item.mug_slugs === product);
 
 			if (filteredItem[0]) {
-				
 				setCurrentItem([
 					filteredItem[0].mug_title,
 					filteredItem[0].mug_price,
@@ -133,9 +135,7 @@ const Product = ({ data, mugData, shirtData }) => {
 			}
 		}
 		if (comic) {
-			const filteredItem = comic.filter(
-				(item) => item.book_slugs === product
-			);
+			const filteredItem = comic.filter((item) => item.book_slugs === product);
 
 			if (filteredItem[0]) {
 				//console.log(filteredItem[0].fields.bookRating);
@@ -161,17 +161,21 @@ const Product = ({ data, mugData, shirtData }) => {
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
-					<Grid container spacing={5} justify='center'>
-						<Grid item xs={4}>
-							<ButtonBase className={classes.image} onClick={handleOpen}>
-								<img
-									className={classes.img}
-									alt='complex'
-									src={currentItem[4]}
-								/>
-							</ButtonBase>
+					<Grid container justify='center'>
+						<Grid item xs={mobile ? 12 : 4}>
+							<div className={classes.image}>
+								<ButtonBase onClick={handleOpen}>
+									<div className={classes.image}>
+										<img
+											className={classes.img}
+											alt='complex'
+											src={currentItem[4]}
+										/>
+									</div>
+								</ButtonBase>
+							</div>
 						</Grid>
-						<Grid item xs={8} sm container>
+						<Grid item xs={mobile ? 12 : 8} sm container>
 							<Grid item xl container direction='column' spacing={2}>
 								<Grid item xl>
 									<br />
@@ -191,7 +195,11 @@ const Product = ({ data, mugData, shirtData }) => {
 										${currentItem[1]}
 									</Typography>{" "}
 									<br />
-									<Rating name='read-only' value={`${currentItem[2]}`} readOnly />
+									<Rating
+										name='read-only'
+										value={`${currentItem[2]}`}
+										readOnly
+									/>
 									<br />
 									<br />
 									<Typography variant='h6' gutterBottom>
@@ -211,9 +219,14 @@ const Product = ({ data, mugData, shirtData }) => {
 							</Grid>
 						</Grid>
 					</Grid>
-				</Paper>
-				<Paper className={classes.paper}>
-					<Grid item xl={12} sm container>
+
+					<Grid
+						item
+						xl={12}
+						sm
+						container
+						style={{ marginTop: "100px", marginBottom: "50px" }}
+					>
 						<Grid item>
 							<Typography
 								gutterBottom
@@ -232,6 +245,7 @@ const Product = ({ data, mugData, shirtData }) => {
 						</Modal>
 					</Grid>
 				</Paper>
+				<Footer />
 			</div>
 		);
 	} else return null;

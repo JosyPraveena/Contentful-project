@@ -10,26 +10,15 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
-	root: {
-		marginTop: "30px",
-		maxWidth: 400,
-		textAlign: "center",
-		paddingTop: "20px",
-		marginLeft: "20px",
-		marginBottom: "40px",
-	},
-
-	card: {
+	cardSize: {
 		transition: "all 1s ease",
+		minWidth: "400px",
+		margin: "20px",
 	},
 
-	image: {
-		width: "100%",
-		height: "auto",
-		display: "block",
-		paddingTop: "20px",
-		opacity: 0.5,
-		transition: "all 0.5s ease",
+	media: {
+		height: "350px",
+		paddingTop: "56.25%", // 16:9
 	},
 
 	cardHover: {
@@ -46,30 +35,24 @@ const useStyles = makeStyles({
 });
 
 const CategoryCard = ({ data }) => {
-	console.log(data);
 	const classes = useStyles();
 	return (
-		<div className={classes.root}>
-			<Grid container direction='row'>
-				<Card className={(classes.root, classes.card, classes.cardHover)}>
-					<CardMedia>
-						<img
-							className={classes.image}
-							src={data.book_image}
-							alt = "bookimage"
-						></img>
-					</CardMedia>
-					<CardContent>
-						<Rating name='read-only' value={data.book_rating} readOnly />
-						<Typography gutterBottom variant='h6'>
-							{data.book_title}
-						</Typography>
-						<Typography variant='body1'>{data.book_category}</Typography>
-						<Typography variant='body1'> ${data.book_price}</Typography>
-					</CardContent>
-				</Card>
-			</Grid>
-		</div>
+		<Grid container justify='center'>
+			<Card className={classes.cardSize}>
+				<CardMedia
+					className={classes.media}
+					image={data.book_image}
+				></CardMedia>
+				<CardContent>
+					<Rating name='read-only' value={data.book_rating} readOnly />
+					<Typography gutterBottom variant='h6'>
+						{data.book_title}
+					</Typography>
+					<Typography variant='body1'>{data.book_category}</Typography>
+					<Typography variant='body1'> ${data.book_price}</Typography>
+				</CardContent>
+			</Card>
+		</Grid>
 	);
 };
 

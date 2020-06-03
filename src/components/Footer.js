@@ -4,6 +4,7 @@ import { SocialIcon } from "react-social-icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { useMediaQuery } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
 
@@ -59,6 +60,13 @@ const useStyles = makeStyles({
 		},
 	},
 
+	socialIcon: {
+		transition: "all 0.2s ease-in-out",
+		"&:hover": {
+			transform: "translateY(-5px)",
+		},
+	},
+
 	footerTitle: {
 		color: "#fff",
 		textTransform: "uppercase",
@@ -68,111 +76,135 @@ const useStyles = makeStyles({
 	},
 
 	footerContainer: {
-		position: "relative",
-		height: "300px",
+		height: "auto",
 		width: "100%",
 		marginTop: "100px",
 		backgroundColor: "#202020",
-		zIndex: 1302,
-	},
-
-	footer: {
-		position: "absolute",
+		padding: "20px 50px",
 	},
 
 	subContainer: {
-		marginLeft: "150px",
-		marginTop: "50px",
+		margin: "30px 10px",
 	},
 
 	links: {
+		letterSpacing: "1.4px",
+		transition: "all 0.3s ease-in-out",
+		"&:visited": { color: "#fff" },
 		color: "#fff",
-		fontSize: "1.1rem",
+		fontFamily: "Roboto",
+		fontSize: "0.9rem",
+		fontWeight: "600",
+		textTransform: "uppercase",
 		cursor: "pointer",
+
+		"&:hover": {
+			transition: "all 0.3s ease-in-out",
+			color: "#e62429",
+		},
 	},
 });
 
 const Footer = () => {
 	const classes = useStyles();
+	const breakPoint = useMediaQuery("(max-width: 650px)");
+	const socialBp = useMediaQuery("(max-width: 770px)");
 	return (
-		<footer className={classes.footerContainer}>
-			<Grid container className={classes.footer} xs={12}>
-				<Grid item xs={3} className={classes.subContainer}>
-					<Grid container direction='column'>
-						<Grid item>
-							<Typography className={classes.footerTitle}>
-								Categories
-							</Typography>
-						</Grid>
-						<Grid item>
-							<Typography className={classes.links}>T-Shirts</Typography>
-						</Grid>
-						<Grid item>
-							<Typography className={classes.links}>Comic Books</Typography>
-						</Grid>
-						<Grid item>
-							<Typography className={classes.links}>Mugs</Typography>
-						</Grid>
+		<Grid
+			container
+			className={classes.footerContainer}
+			xs={12}
+			justify='space-between'
+		>
+			<Grid xs={breakPoint ? 12 : "auto"} className={classes.subContainer}>
+				<Grid container direction='column' alignItems={breakPoint && "center"}>
+					<Grid item>
+						<Typography className={classes.footerTitle}>Categories</Typography>
+					</Grid>
+					<Grid item>
+						<Typography className={classes.links}>T-Shirts</Typography>
+					</Grid>
+					<Grid item>
+						<Typography className={classes.links}>Comic Books</Typography>
+					</Grid>
+					<Grid item>
+						<Typography className={classes.links}>Mugs</Typography>
 					</Grid>
 				</Grid>
+			</Grid>
 
-				<Grid item xs={3} className={classes.subContainer}>
-					<Grid container direction='column'>
-						<Grid item>
-							<Typography className={classes.footerTitle}>
-								Get Awesome
-							</Typography>
-						</Grid>
-						<Grid item>
-							<TextField
-								className={classes.subscribe}
-								id='outlined-secondary'
-								label='Awesome E-mail'
-								variant='outlined'
-								color='secondary'
-								inputProps={{ className: classes.input }}
-								InputLabelProps={{ className: classes.input }}
-							/>
-						</Grid>
-						<Grid item>
-							<div className={classes.btn} onClick={() => alert("subscribed")}>
-								Subscribe
-							</div>
-						</Grid>
+			<Grid xs={breakPoint ? 12 : "auto"} className={classes.subContainer}>
+				<Grid container direction='column' alignItems={breakPoint && "center"}>
+					<Grid item>
+						<Typography className={classes.footerTitle}>Get Awesome</Typography>
+					</Grid>
+					<Grid item>
+						<TextField
+							className={classes.subscribe}
+							id='outlined-secondary'
+							label='Awesome E-mail'
+							variant='outlined'
+							color='secondary'
+							inputProps={{ className: classes.input }}
+							InputLabelProps={{ className: classes.input }}
+						/>
+					</Grid>
+					<Grid item>
+						<div className={classes.btn} onClick={() => alert("subscribed")}>
+							Subscribe
+						</div>
 					</Grid>
 				</Grid>
+			</Grid>
 
-				<Grid item xs={3} className={classes.subContainer}>
-					<Grid container direction='column' justify='center'>
-						<Grid item>
-							<Typography className={classes.footerTitle}>
-								Connect with us{" "}
-							</Typography>
-						</Grid>
-						<Grid item>
-							<Grid container spacing={2}>
-								<Grid item>
-									<SocialIcon url='http://twitter.com' fgColor='#fff' />
-								</Grid>
-								<Grid item>
-									<SocialIcon url='http://facebook.com' fgColor='#fff' />
-								</Grid>
-								<Grid item>
-									<SocialIcon
-										url='http://instagram.com'
-										fgColor='#fff'
-										bgColor='#FF69B4'
-									/>
-								</Grid>
-								<Grid item>
-									<SocialIcon url='http://youtube.com' fgColor='#fff' />
-								</Grid>
+			<Grid item xs={socialBp ? 12 : "auto"} className={classes.subContainer}>
+				<Grid
+					container
+					direction='column'
+					justify='center'
+					alignItems={socialBp && "center"}
+				>
+					<Grid item>
+						<Typography className={classes.footerTitle}>
+							Connect with us{" "}
+						</Typography>
+					</Grid>
+					<Grid item>
+						<Grid container spacing={2}>
+							<Grid item>
+								<SocialIcon
+									className={classes.socialIcon}
+									url='http://twitter.com'
+									fgColor='#fff'
+								/>
+							</Grid>
+							<Grid item>
+								<SocialIcon
+									className={classes.socialIcon}
+									url='http://facebook.com'
+									fgColor='#fff'
+								/>
+							</Grid>
+							<Grid item>
+								<SocialIcon
+									url='http://instagram.com'
+									fgColor='#fff'
+									bgColor='#FF69B4'
+									className={classes.socialIcon}
+								/>
+							</Grid>
+							<Grid item>
+								<SocialIcon
+									className={classes.socialIcon}
+									url='http://youtube.com'
+									fgColor='#fff'
+								/>
 							</Grid>
 						</Grid>
 					</Grid>
 				</Grid>
 			</Grid>
-		</footer>
+		</Grid>
 	);
 };
 

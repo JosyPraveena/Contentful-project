@@ -135,7 +135,7 @@ export default function Categories() {
 								image={cat_shirts}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>T-SHIRTS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Dress like a superhero
@@ -164,7 +164,7 @@ export default function Categories() {
 								image={cat_mugs}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>MUGS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Enjoy a coffee with your favourite character
@@ -193,7 +193,7 @@ export default function Categories() {
 								image={cat_comics}
 								title='Contemplative Reptile'
 							/>
-							<CardContent>
+							<CardContent style={{ marginTop: "20px", height: "100px" }}>
 								<Typography className={classes.cardTitle}>COMICS</Typography>
 								<Typography color='textSecondary' className={classes.cardSub}>
 									Explore a world full of action and adventures

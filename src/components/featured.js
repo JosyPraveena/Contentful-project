@@ -1,7 +1,5 @@
 import React from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+
 import Typography from "@material-ui/core/Typography";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -10,20 +8,29 @@ import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "./productCard";
 import { Route, Switch, Link, useParams } from "react-router-dom";
+import { useMediaQuery } from "@material-ui/core";
+import "react-alice-carousel/lib/alice-carousel.css";
+import AliceCarousel from "react-alice-carousel";
 
 const useStyles = makeStyles((theme) => ({
 	tabContainer: {
 		marginLeft: "auto",
+		marginBottom: "30px",
 	},
 
 	tab: {
-		fontSize: "2rem",
+		fontSize: "2.3rem",
 		minWidth: 10,
 		fontFamily: "Bangers",
-
 		marginLeft: "75px",
+
 		color: "#294A55",
 		textDecoration: "none",
+		[theme.breakpoints.down(700)]: {
+			fontSize: "1.7rem",
+			marginLeft: "0px",
+			marginRight: "20px",
+		},
 	},
 
 	containerHeader: {
@@ -31,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: "Bangers",
 		marginBottom: "40px",
 		textAlign: "center",
+		[theme.breakpoints.down(700)]: {
+			fontSize: "3.5rem",
+		},
 		// "&:hover": {
 		// 	background: "#f00",
 		// },
@@ -44,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: "center",
 		margin: "auto",
 		width: "50%",
+		[theme.breakpoints.down(700)]: {
+			fontSize: "1.3rem",
+		},
 	},
 
 	padding: {
@@ -69,14 +82,27 @@ const Featured = ({ comics, mugs, shirts }) => {
 		setValue(value);
 	};
 
-	const settings = {
-		dots: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 2,
+	const responsive = {
+		0: { items: 1 },
+		720: { items: 2 },
+		1075: { items: 3 },
+		1445: { items: 4 },
+		1775: { items: 5 },
 	};
 
+	const onSlideChange = (e) => {
+		console.debug("Item`s position during a change: ", e.item);
+		console.debug("Slide`s position during a change: ", e.slide);
+	};
+
+	const onSlideChanged = (e) => {
+		console.debug("Item`s position after changes: ", e.item);
+		console.debug("Slide`s position after changes: ", e.slide);
+	};
+
+	const large = useMediaQuery("(max-width: 1770px)");
+	const medium = useMediaQuery("(max-width: 1425px)");
+	const small = useMediaQuery("(max-width: 1075px)");
 	console.log(sliderPictures[value]);
 	return (
 		<React.Fragment>
@@ -97,21 +123,43 @@ const Featured = ({ comics, mugs, shirts }) => {
 
 				<Grid item container justify='center'>
 					<Tabs value={value} onChange={handleChange}>
-						<Tab className={classes.tab} label='Shirts' component={Link}></Tab>
+						<Tab
+							className={classes.tab}
+							style={{ marginLeft: "none" }}
+							label='Shirts'
+							component={Link}
+						></Tab>
 						<Tab className={classes.tab} label='Comics' component={Link}></Tab>
 
 						<Tab className={classes.tab} label='Mugs' component={Link}></Tab>
 					</Tabs>
 				</Grid>
 			</Grid>
-			<Slider {...settings}>
+			{sliderPictures[value].length > 1 && (
+				<AliceCarousel
+					items={sliderPictures[value].map((item) => (
+						<ProductCard data={item} />
+					))}
+					dotsDisabled
+					fadeOutAnimation={true}
+					mouseTrackingEnabled={true}
+					onSlideChange={onSlideChange}
+					onSlideChanged={onSlideChanged}
+					responsive={responsive}
+					buttonsDisabled
+				/>
+			)}
+			{/* {sliderPictures[value].length > 1 &&
+				sliderPictures[value].map((item) => <ProductCard data={item} />)} */}
+
+			{/* <Slider {...settings} slidesToShow={large ? 1 : 4}>
 				{sliderPictures[value].length > 1 &&
 					sliderPictures[value].map((item) => (
 						<div>
 							<ProductCard data={item} />
 						</div>
 					))}
-			</Slider>
+			</Slider> */}
 		</React.Fragment>
 	);
 };

@@ -15,29 +15,11 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 	const { id } = useParams();
 	let itemList = [];
 
-	if (id === "tshirt") {
-		if (tshirt) {
-			itemList = tshirt.map((item) => {
-				return (
-					<Grid item container xs={12} sm={4}>
-						<Link
-							style={{ textDecoration: "none" }}
-							to={`/category/id/${item.shirt_slugs}`}
-							key={item.shirt_id}
-						>
-							<ShirtCategoryCard data={item} />
-						</Link>
-					</Grid>
-				);
-			});
-		}
-	}
-
 	if (id === "mugs") {
 		if (mug) {
 			itemList = mug.map((item) => {
 				return (
-					<Grid item container xs={12} sm={4}>
+					<Grid item xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
 							to={`/category/id/${item.mug_slugs}`}
@@ -54,7 +36,7 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 		if (comic) {
 			itemList = comic.map((item) => {
 				return (
-					<Grid item container xs={12} sm={4}>
+					<Grid item xs={12} sm={4}>
 						<Link
 							style={{ textDecoration: "none" }}
 							to={`/category/id/${item.book_slugs}`}
@@ -68,13 +50,33 @@ const CategoryPage = ({ data, mugData, shirtData }) => {
 		}
 	}
 
+	if (id === "tshirt") {
+		if (tshirt) {
+			itemList = tshirt.map((item) => {
+				return (
+					<Grid item xs={12} sm={4}>
+						<Link
+							style={{ textDecoration: "none" }}
+							to={`/category/id/${item.shirt_slugs}`}
+							key={item.shirt_id}
+						>
+							<ShirtCategoryCard data={item} />
+						</Link>
+					</Grid>
+				);
+			});
+		}
+	}
+
 	return (
 		<React.Fragment>
-			<Container>
-				<Grid container justify='center' style={{ marginTop: "100px" }}>
-					{itemList}
-				</Grid>
-			</Container>
+			<Grid
+				container
+				justify='center'
+				style={{ margin: "0 auto", width: "80%", marginTop: "100px" }}
+			>
+				{itemList}
+			</Grid>
 			<Footer />
 		</React.Fragment>
 	);
