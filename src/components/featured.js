@@ -94,14 +94,14 @@ const Featured = ({ comics, shirts, mugs }) => {
 
 				<Grid item container justify='center'>
 					<Tabs value={value} onChange={handleChange}>
-						<Tab className={classes.tab} label='Shirts' component={Link}></Tab>
+						<Tab className={classes.tab} label='Shirts' component={Link} ></Tab>
 						<Tab className={classes.tab} label='Comics' component={Link}></Tab>
 
 						<Tab className={classes.tab} label='Mugs' component={Link}></Tab>
 					</Tabs>
 				</Grid>
 			</Grid>
-			{sliderPictures[value] != undefined && (
+			{sliderPictures[value] !== undefined && (
 				<Slider {...settings}>
 					{sliderPictures[value].map((item) => (
 						<div>

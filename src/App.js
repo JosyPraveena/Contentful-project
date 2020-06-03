@@ -21,6 +21,7 @@ function App() {
 	const [count, setCount] = useState(0)
 	const [cartItems, setCartItems] = useState([])
 	const [qty,setQty] = useState(1)
+	const [isStateEmpty,setIsStateEmpty] = useState(true)
  
 	//const [addItems,setAddItems] = useState(null)
 
@@ -69,9 +70,13 @@ function App() {
 	const addShoppingcart = (currentItem) =>{
 		let item_present = false
 		if(cartItems.length > 0){
-			console.log(cartItems)
 			setCartItems(cartItems.map(each => { if(each.title === currentItem.title){
-					each.quantity = each.quantity + 1
+				if(each.quantity < 5)	{each.quantity = each.quantity + 1 
+					setCount(count+1)	
+					setIsStateEmpty(true)}
+					else{
+						setIsStateEmpty(false)
+					  }
 					item_present =  true
 				}
 				return each
@@ -79,31 +84,37 @@ function App() {
 		}
 		if(cartItems.length <= 0 || !item_present){
 		setCartItems([...cartItems,currentItem])
-	}
 		setCount(count+1)
+	}
+		
 		}
 
   const addItems = (id,title) =>{
-
+	
   let item = cartItems.filter(each => id === each.productid && title ===each.title)[0]
-  if(item){
+  if(item.quantity < 5){
 	item.quantity = item.quantity+1
-	setQty(item.quantity)
 	setCount(count+1)
+	setIsStateEmpty(true)
+	
+  }
+  else{
+	setIsStateEmpty(false)
   }
   }
   
 
 const reduceItems = (id,title) =>{
-  if (qty > 1){
-  let item = cartItems.filter(each => id === each.productid && title ===each.title)[0]
-  if(item){
-	
-	item.quantity = item.quantity-1
-	
-	setQty(item.quantity)
-	setCount(count-1) 
-}}
+	let items = cartItems.filter(each => id === each.productid && title ===each.title)
+	if(items.length > 0 )
+	{
+		let item = items[0]
+		if (item.quantity > 1){
+			item.quantity = item.quantity-1
+			setIsStateEmpty(true)
+			setCount(count-1)
+		}
+	}
 }
 
 const deleteItems = (item,quantity)=>{
@@ -126,6 +137,7 @@ const deleteItems = (item,quantity)=>{
 				deleteItems={deleteItems}
 				addItems={addItems}
 				reduceItems={reduceItems} 
+				isStateEmpty={isStateEmpty}
 				/>)}/>
                 <Route
                     path={"/category/:id/:product"}
