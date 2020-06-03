@@ -6,30 +6,64 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
+import FadeIn from "react-fade-in";
 
 const useStyles = makeStyles({
 	cardSize: {
-		transition: "all 1s ease",
+		transition: "all 0.7s ease",
 		width: "80%",
-		height: "750px",
+		height: "700px",
 		margin: "20px",
+		textAlign: "center",
+		"&:hover": {
+			height: "750px",
+			"& $buyBtn": {
+				marginTop: "20px",
+				opacity: "1",
+				transform: "translateY(0px)",
+			},
+			"& $media": {
+				boxShadow: "inset 0px 1px 35px rgba(230, 36, 41, 0.3)",
+			},
+		},
+		display: "relative",
+	},
+
+	buyBtn: {
+		marginTop: "0px",
+		margin: "auto",
+		width: "150px",
+		padding: "15px",
+		background: "#e62429",
+		color: "#fff",
+		fontFamily: "Bangers",
+		fontSize: "1.5rem",
+		borderRadius: "5px",
+		opacity: "0",
+		transform: "translateY(100px)",
+		transition: "all 0.5s ease",
+		boxShadow: "1px 1px 5px rgba(0,0,0,0.4)",
+	},
+
+	title: {
+		fontWeight: "600",
+		fontSize: "1.4rem",
+		fontFamily: "Roboto",
+		// textTransform: "uppercase",
+		lineHeight: "1.1",
+	},
+
+	price: {
+		fontSize: "1.1rem",
+		marginTop: "10px",
 	},
 
 	media: {
 		height: "250px",
 		paddingTop: "56.25%", // 16:9
-	},
-
-	cardHover: {
+		boxShadow: "inset 0px 1px 8px rgba(0,0,0,0.1)",
 		transition: "all 0.5s ease",
-		"&:hover": {
-			transform: "translateY(-20px)",
-			border: "solid 2px #e62429",
-			"& $image": {
-				opacity: 1,
-				transform: "scale(1.02)",
-			},
-		},
+		marginBottom: "15px",
 	},
 });
 
@@ -37,23 +71,27 @@ const CategoryCard = ({ data }) => {
 	const classes = useStyles();
 
 	return (
-		<Grid item>
-			<Card className={classes.cardSize}>
-				<CardMedia
-					className={classes.media}
-					image={data.shirt_image}
-				></CardMedia>
-				<CardContent>
-					<Rating name='read-only' value={data.shirt_rating} readOnly />
-					<Typography variant='body1'>{data.shirt_category}</Typography>
-					<Typography gutterBottom variant='h6'>
-						{data.shirt_title}
-					</Typography>
-					<Typography variant='body1'>{data.shirt_price}</Typography>
-					<div>BUTTON</div>
-				</CardContent>
-			</Card>
-		</Grid>
+		<FadeIn>
+			<Grid item>
+				<Card className={classes.cardSize}>
+					<CardMedia
+						className={classes.media}
+						image={data.shirt_image}
+					></CardMedia>
+					<CardContent>
+						<Rating name='read-only' defaultValue={data.shirt_rating} />
+						<Typography variant='body1'>{data.shirt_category}</Typography>
+						<Typography gutterBottom variant='h6' className={classes.title}>
+							{data.shirt_title}
+						</Typography>
+						<Typography variant='body1' className={classes.price}>
+							${data.shirt_price}
+						</Typography>
+					</CardContent>
+					<div className={classes.buyBtn}>Shop Now</div>
+				</Card>
+			</Grid>
+		</FadeIn>
 	);
 };
 

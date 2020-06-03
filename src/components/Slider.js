@@ -150,7 +150,7 @@ const HeroSlider = () => {
 							</Typography>
 							<Link
 								className={classes.btn}
-								to='/category/comicbooks/deadpool-classic'
+								to='/category/book/deadpool-classic'
 							>
 								Learn More
 							</Link>
@@ -179,10 +179,7 @@ const HeroSlider = () => {
 									<strong>#14</strong>
 								</em>
 							</Typography>
-							<Link
-								className={classes.btn}
-								to='/category/comicbooks/infinity-war'
-							>
+							<Link className={classes.btn} to='/category/book/infinity-war'>
 								Learn More
 							</Link>
 						</Grid>
@@ -212,116 +209,15 @@ const HeroSlider = () => {
 							</Typography>
 							<Link
 								className={classes.btn}
-								to='/category/comicbooks/marvel_encyclopedia'
+								to='/category/book/marvel_encyclopedia'
 							>
 								Learn More
 							</Link>
 						</Grid>
 					</Grid>
 				</div>
-
-				{/* <div>
-					<Grid container className={classes.heroContainer}>
-						<Grid container direction='column'>
-							<Grid item>
-								<img
-									className={classes.heroImage}
-									src='https://img3.goodfon.com/wallpaper/nbig/1/ab/iron-man-marvel-comics-294.jpg'
-									alt = "sliderimage"
-								/>
-							</Grid>
-							<Grid item xs={5} className={classes.textContainer}>
-								<Typography className={classes.title}>
-									Will Iron Man Survive?
-								</Typography>
-								<Typography className={classes.titleSub}>
-									Check out what he's been up to in issue{" "}
-									<em>
-										<strong>#14</strong>
-									</em>
-								</Typography>
-								<Link
-									className={classes.btn}
-									to='/category/comicbooks/infinity-war'
-								>
-									Learn More
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				</div>
-				<div>
-					<Grid container className={classes.heroContainer}>
-						<Grid container direction='column'>
-							<Grid item>
-								<img
-									className={classes.heroImage}
-									src='https://www.ubackground.com/_ph/22/697416964.jpg'
-									alt = "sliderimage"
-								/>
-							</Grid>
-							<Grid item xs={5} className={classes.textContainer}>
-								<Typography className={classes.title}>
-									ULTIMATE SHOWDOWN: BLACK PANTHER VS CAPTAIN AMERICA
-								</Typography>
-								<Typography className={classes.titleSub}>
-									Check out what he's been up to in issue{" "}
-									<em>
-										<strong>#14</strong>
-									</em>
-								</Typography>
-								<Link
-									className={classes.btn}
-									to='/category/comicbooks/marvel_encyclopedia'
-								>
-									Learn More
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				</div> */}
 			</AwesomeSlider>
 		</React.Fragment>
 	);
 };
 export default HeroSlider;
-
-// {
-// 	/* <div className={classes.heroBlock}>
-// 				<div className={classes.textBlock}>
-// 					<div>
-// 						<h1 className={classes.title}>Deadpool strikes again</h1>
-// 					</div>
-// 				</div>
-
-// 				<img
-// 					className={classes.img}
-// 					src='https://images7.alphacoders.com/512/thumb-1920-512977.jpg'
-// 					alt='image1'
-// 				/>
-// 			</div> */
-// }
-
-// {
-// 	/* <div>
-// 				<img
-// 					className={classes.img}
-// 					src='https://img3.goodfon.com/wallpaper/nbig/1/ab/iron-man-marvel-comics-294.jpg'
-// 					alt='image2'
-// 				/>
-// 			</div>
-// 			<div>
-// 				<img
-// 					className={classes.img}
-// 					src='https://wallpapertag.com/wallpaper/full/0/1/e/865188-download-free-dc-comics-backgrounds-1920x1080-mac.jpg'
-// 					alt='image3'
-// 				/>
-// 			</div>
-// 			<div>
-// 				<img
-// 					className={classes.img}
-// 					src='https://www.ubackground.com/_ph/22/697416964.jpg'
-// 					alt='image4'
-// 				/>
-// 			</div> */
-// }
