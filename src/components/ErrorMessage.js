@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '30%',
-      marginLeft: "5"
+      marginLeft: "400px"
     },
   }),
 );

@@ -11,7 +11,7 @@ import BlogMain from "./components/BlogMain";
 import BlogArticle from "./components/BlogArticle";
 import BlogDetails from "./components/BlogDetails";
 import Product from "./components/Product";
-import Shoppingcart from "./components/Shoppingcart"
+import Shoppingcart from "./components/Shoppingcart";
 
 function App() {
 	const [data, setData] = useState("");
@@ -26,44 +26,39 @@ function App() {
 	//const [addItems,setAddItems] = useState(null)
 
 	const fetchData = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/shirt/");
-            const shirtData = await response.json();
+		try {
+			const response = await fetch("http://localhost:3000/shirt/");
+			const shirtData = await response.json();
 			setShirtData(shirtData);
-			//console.log(shirtData)
-        } catch (err) {
-            console.error(err.message);
+		} catch (err) {
+			console.error(err.message);
 		}
 		try {
-            const response = await fetch("http://localhost:3000/mug/");
-            const mugData = await response.json();
+			const response = await fetch("http://localhost:3000/mug/");
+			const mugData = await response.json();
 			setMugData(mugData);
-			//console.log(mugData)
-        } catch (err) {
-            console.error(err.message);
+		} catch (err) {
+			console.error(err.message);
 		}
 		try {
-            const response = await fetch("http://localhost:3000/book/");
-            const data = await response.json();
+			const response = await fetch("http://localhost:3000/book/");
+			const data = await response.json();
 			setData(data);
-			//console.log(data)
-        } catch (err) {
-            console.error(err.message);
+		} catch (err) {
+			console.error(err.message);
 		}
 		try {
-            const response = await fetch("http://localhost:3000/blog/");
-            const blogData = await response.json();
+			const response = await fetch("http://localhost:3000/blog/");
+			const blogData = await response.json();
 			setBlogData(blogData);
-			//console.log(blogData)
-        } catch (err) {
-            console.error(err.message);
-        }
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
-	
+
 	useEffect(() => {
 		fetchData();
 	}, []);
-
 
 	const { items } = blogData;
 	
@@ -117,18 +112,17 @@ const reduceItems = (id,title) =>{
 	}
 }
 
-const deleteItems = (item,quantity)=>{
-	setCount(count- quantity)
-	setCartItems(cartItems.filter(each => each.title !== item))
-	
-  }
-	
+	const deleteItems = (item, quantity) => {
+		setCount(count - quantity);
+		setIsStateEmpty(true)
+		setCartItems(cartItems.filter((each) => each.title !== item));
+	};
 
 	return (
 		<ThemeProvider theme={theme}>
 			{items !== undefined &&
 				items.map((item) =>
-					console.log(item.fields.blogContent.content[0].content[0].value)
+					item.fields.blogContent.content[0].content[0].value
 				)}
 			<Navbar count={count} />
 			<Switch>
@@ -138,6 +132,7 @@ const deleteItems = (item,quantity)=>{
 				addItems={addItems}
 				reduceItems={reduceItems} 
 				isStateEmpty={isStateEmpty}
+			
 				/>)}/>
                 <Route
                     path={"/category/:id/:product"}
@@ -149,40 +144,43 @@ const deleteItems = (item,quantity)=>{
 							category={{"book":data, "shirt": shirtData, "mug":mugData}}
 							{...props}
 							addShoppingcart={addShoppingcart}
-                        />
-                    )}
-                />
-                <Route
-                    path={"/category/:id"}
-                    render={(props) => (
-                        <CategoryPage
-                            data={data}
-                            mugData={mugData}
+						/>
+					)}
+				/>
+				<Route
+					path={"/category/:id"}
+					render={(props) => (
+						<CategoryPage
+							data={data}
+							mugData={mugData}
 							shirtData={shirtData}
-                            {...props}
-                        />
-                    )}
-                />
-        		<Route
+							{...props}
+						/>
+					)}
+				/>
+				<Route
 					path={"/blog/:id"}
 					render={(props) => <BlogDetails blogData={blogData} {...props} />}
 				/>
-				<Route path='/blog/' render={(props) => <BlogMain blogData={blogData} {...props} />}/>
-                <Route exact
-                    path='/'
-                    render={(props) => (
-                        
-						<HomePage  
-                            data={data}
-                            mugData={mugData}
-                            shirtData={shirtData}
-                            {...props}
-                        />
-                    )}
-                />
-				
-                <Route component={PageNotFound} />
-            </Switch>
+				<Route
+					path='/blog/'
+					render={(props) => <BlogMain blogData={blogData} {...props} />}
+				/>
+				<Route
+					exact
+					path='/'
+					render={(props) => (
+						<HomePage
+							data={data}
+							mugData={mugData}
+							shirtData={shirtData}
+							{...props}
+						/>
+					)}
+				/>
+
+				<Route component={PageNotFound} />
+			</Switch>
 		</ThemeProvider>
 	);
 }
