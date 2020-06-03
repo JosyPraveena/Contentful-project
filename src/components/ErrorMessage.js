@@ -6,7 +6,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '30%',
-      marginLeft: "400px"
+      marginLeft: "100px",
+      fontFamily: "Bangers",
+      fontSize: "1.5rem",
     },
   }),
 );

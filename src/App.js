@@ -36,6 +36,7 @@ function App() {
 		try {
 			const response = await fetch("http://localhost:3000/mug/");
 			const mugData = await response.json();
+
 			setMugData(mugData);
 		} catch (err) {
 			console.error(err.message);
@@ -43,6 +44,8 @@ function App() {
 		try {
 			const response = await fetch("http://localhost:3000/book/");
 			const data = await response.json();
+
+
 			setData(data);
 		} catch (err) {
 			console.error(err.message);
@@ -50,6 +53,8 @@ function App() {
 		try {
 			const response = await fetch("http://localhost:3000/blog/");
 			const blogData = await response.json();
+
+
 			setBlogData(blogData);
 		} catch (err) {
 			console.error(err.message);

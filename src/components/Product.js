@@ -12,24 +12,14 @@ import Modal from "@material-ui/core/Modal";
 import Footer from "./Footer";
 import { useMediaQuery } from "@material-ui/core";
 import parse from "html-react-parser";
-//import { useHistory } from "react-router-dom";
+import FadeIn from "react-fade-in";
+import Box from "@material-ui/core/Box";
 
 // MODAL IMAGE
 
 const rand = () => {
 	return Math.round(Math.random() * 20) - 10;
 };
-
-// const getModalStyle = () => {
-// 	const top = 50;
-// 	const left = 50;
-
-// 	return {
-// 		top: `${top}%`,
-// 		left: `${left}%`,
-// 		transform: `translate(-${top}%, -${left}%)`,
-// 	};
-// };
 
 // STYLE COMPONENT
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,34 +29,73 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		paper: {
 			padding: theme.spacing(5),
-			margin: "100px 50px 50px 50px",
+			margin: "50px 50px 50px 50px",
 			maxWidth: "100%",
 			maxHeight: "100%",
+			[theme.breakpoints.down(810)]: {
+				padding: "50px",
+			},
 		},
+
+		// gridContainer: {
+		// 	margin: "100px 50px 50px 50px",
+		// 	maxWidth: "100%",
+		// 	maxHeight: "100%",
+		// },
 		image: {
 			width: "100%",
-			overflow: "hidden",
-			margin: "0 auto",
-			marginRight: "50px",
+			height: "auto",
+			// overflow: "hidden",
+			margin: "auto",
+			marginTop: "50px",
 		},
 		img: {
-			// margin: "0 auto",
-			maxWidth: "450px",
-			maxHeight: "450px",
-
-			borderRadius: "8px",
-			transition: "all 0.3s ease-in-out",
-			"&:hover": {},
+			maxWidth: "100%",
+			maxHeight: "500px",
+			borderRadius: "10px",
 		},
+		productInfo: {
+			marginTop: "80px",
+			marginLeft: "100px",
+			[theme.breakpoints.down(811)]: {
+				marginLeft: "0",
+				marginTop: "40px",
+			},
+		},
+
 		title: {
 			fontFamily: "Bangers",
 			fontSize: "3rem",
 			textDecoration: "none",
+			width: "80%",
+			transition: "all 0.3s ease",
+
+			[theme.breakpoints.down(810)]: {
+				textAlign: "center",
+				margin: "0, auto",
+				width: "100%",
+				fontSize: "2.5rem",
+			},
+
+			[theme.breakpoints.down(600)]: {
+				textAlign: "center",
+				margin: "0, auto",
+				width: "100%",
+				fontSize: "2rem",
+			},
 		},
 		button: {
+			width: "250px",
 			fontFamily: "Bangers",
 			fontSize: "1.5rem",
 			textDecoration: "none",
+			boxShadow: "2px 2px 20px rgba(0,0,0,0.2)",
+			[theme.breakpoints.down(810)]: {
+				textAlign: "center",
+				margin: "0, auto",
+				fontSize: "1.2rem",
+				width: "200px",
+			},
 		},
 
 		picture: {
@@ -78,6 +107,29 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: "auto",
 			marginLeft: "30%",
 			marginTop: "5vh",
+		},
+
+		rating: {
+			[theme.breakpoints.down(810)]: {
+				fontSize: "2rem",
+			},
+		},
+
+		brand: {
+			fontSize: "1rem",
+			[theme.breakpoints.down(810)]: {
+				textAlign: "center",
+				margin: "0, auto",
+				fontSize: "0.8rem",
+			},
+		},
+
+		subtext: {
+			[theme.breakpoints.down(810)]: {
+				textAlign: "center",
+				margin: "0, auto",
+				fontSize: "1rem",
+			},
 		},
 	})
 );
@@ -123,131 +175,126 @@ const Product = ({ data, mugData, shirtData, addShoppingcart, category }) => {
 		const { title, image, price, rating, subtext, description } = currentItem;
 
 		return (
-			<div className={classes.root}>
+			<React.Fragment>
 				<Paper className={classes.paper}>
-					<Grid container justify='center'>
-						<Grid item xs={mobile ? 12 : 4}>
-							<div className={classes.image}>
-								<ButtonBase onClick={handleOpen}>
-									<div className={classes.image}>
-										<img className={classes.img} alt='complex' src={image} />
-									</div>
-								</ButtonBase>
-							</div>
-						</Grid>
-						<Grid item xs={mobile ? 12 : 8} sm container>
-							<Grid item xl container direction='column' spacing={2}>
-								<Grid item xl>
-									<br />
-									<br />
-									<Typography
-										gutterBottom
-										variant='h3'
-										className={classes.title}
-									>
-										{title}
-									</Typography>
-									<Typography
-										variant='h4'
-										color='primary'
-										className={classes.title}
-									>
-										${price}
-									</Typography>{" "}
-									<br />
-									<Rating name='read-only' value={`${rating}`} readOnly />
-									<br />
-									<br />
-									<Typography variant='h6' gutterBottom>
-										{subtext}
-									</Typography>
+					<FadeIn>
+						<Grid container justify='center'>
+							<Grid item xs={mobile ? 12 : 4}>
+								<Grid container justify='center'>
+									<ButtonBase onClick={handleOpen}>
+										<Box className={classes.image}>
+											<img className={classes.img} alt='complex' src={image} />
+										</Box>
+									</ButtonBase>
 								</Grid>
-								<Grid item>
-									<Button
-										variant='contained'
-										size='large'
-										color='secondary'
-										className={classes.button}
-										onClick={() => addShoppingcart(currentItem)}
-										//onClick = {addItemsToCart}
-									>
-										Add to Cart
-									</Button>
+							</Grid>
+							<Grid item xs={mobile ? 12 : 8} sm>
+								<Grid
+									container
+									className={classes.productInfo}
+									direction='column'
+									spacing={2}
+								>
+									<Grid item xs={12}>
+										<Grid container justify={mobile ? "center" : ""}>
+											<Typography
+												className={classes.brand}
+												variant='h6'
+												gutterBottom
+											>
+												{subtext}
+											</Typography>
+										</Grid>
+									</Grid>
+									<Grid item xs={12}>
+										<Grid container justify={mobile ? "center" : ""}>
+											<Typography
+												gutterBottom
+												variant='h3'
+												className={classes.title}
+											>
+												{title}
+											</Typography>
+										</Grid>
+									</Grid>
+									<Grid item xs={12}>
+										<Grid container justify={mobile ? "center" : ""}>
+											<Typography
+												variant='h4'
+												color='primary'
+												className={classes.title}
+											>
+												${price}
+											</Typography>{" "}
+										</Grid>
+									</Grid>
+									<Grid item xs={12}>
+										<Grid container justify={mobile ? "center" : ""}>
+											<Rating
+												name='read-only'
+												className={classes.rating}
+												defaultValue={`${rating}`}
+											/>
+										</Grid>
+									</Grid>
+
+									<Grid item xs={12}>
+										<Grid container justify={mobile ? "center" : ""}>
+											<Button
+												variant='contained'
+												size='large'
+												color='secondary'
+												className={classes.button}
+												onClick={() => addShoppingcart(currentItem)}
+												//onClick = {addItemsToCart}
+											>
+												Add to Cart
+											</Button>
+										</Grid>
+									</Grid>
 								</Grid>
 							</Grid>
 						</Grid>
-					</Grid>
 
-					<Grid
-						item
-						xl={12}
-						sm
-						container
-						style={{ marginTop: "100px", marginBottom: "50px" }}
-					>
-						<Grid item>
-							<Typography
-								gutterBottom
-								variant='h4'
-								align='center'
-								className={classes.title}
-							>
-								Description
-							</Typography>
-							<Typography variant='h6' gutterBottom>
-								{parse(`${description}`)}
-							</Typography>
+						<Grid
+							item
+							xs={12}
+							sm
+							container
+							style={{ marginTop: "100px", marginBottom: "50px" }}
+						>
+							<Grid item xs={12}>
+								<Grid container justify='center'>
+									<Typography
+										gutterBottom
+										variant='h4'
+										align='center'
+										className={classes.title}
+									>
+										Description
+									</Typography>
+									<Typography
+										className={classes.subtext}
+										variant='h6'
+										gutterBottom
+									>
+										{parse(`${description}`)}
+									</Typography>
+								</Grid>
+							</Grid>
+							<Modal open={open} onClose={handleClose}>
+								<div className={classes.pictureContainer}>
+									<img className={classes.picture} alt='complex' src={image} />
+								</div>
+							</Modal>
 						</Grid>
-						<Modal open={open} onClose={handleClose}>
-							<div className={classes.pictureContainer}>
-								<img className={classes.picture} alt='complex' src={image} />
-							</div>
-						</Modal>
-					</Grid>
+					</FadeIn>
 				</Paper>
+
 				<Footer />
-			</div>
+			</React.Fragment>
 		);
 	} else return null;
 };
-// 		if (filteredItem[0]) {
-//       setCurrentItem([
-//         filteredItem[0].fields.bookTitle,
-//         filteredItem[0].fields.bookPrice,
-//         filteredItem[0].fields.bookRating,
-//         filteredItem[0].fields.bookSubtext,
-//         filteredItem[0].fields.bookImage.fields.file.url,
-//         filteredItem[0].fields.bookDescription,
-//       ]);
-//     }
-//   }
-// }, [product, tshirt, mug, comic]);
-
-// 	//console.log({currentItem})
-// 	if (currentItem) {
-// 		return (
-// 			<>
-// 				<div id='product'>
-// 					<div id='product-top-left'>
-// 						<img src={currentItem[4]} alt='productimage' />
-// 					</div>
-// 					<div id='product-top-right'>
-// 						<h1>{currentItem[0]}</h1>
-// 						<h1>${currentItem[1]}</h1>
-// 						<h2>Rating: {currentItem[2]}/5</h2>
-// 						<p>{currentItem[3]}</p>
-// 						<button>BUY NOW</button>
-// 					</div>
-// 				</div>
-
-// 				<div id='product-details'>
-// 					<hr></hr>
-// 					<h2>Description</h2>
-// 					<p>{currentItem[5]}</p>
-// 				</div>
-// 			</>
-// 		);
-// 	} else return null;
-// };
-
+//
 export default Product;
