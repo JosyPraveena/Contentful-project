@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,6 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
+
 import MiniSpidey from "../img/mini_spidey.png"
 import MiniHulk from "../img/mini_hulk.png"
 import MiniBatman from "../img/mini_batman.png"
@@ -34,15 +37,17 @@ const StyledTableCell = withStyles(theme => ({
   cartTotal: {
     fontWeight: 'bold'
   }
+
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		"&:nth-of-type(odd)": {
+			backgroundColor: theme.palette.action.hover,
+		},
+	},
 }))(TableRow);
+
 
 const useStyles = makeStyles((theme) => ({
   popover: {
@@ -51,23 +56,22 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(1),
   },
-  table: {
-    minWidth: 1200
-  },
-  title: {
-    fontFamily: "Bangers",
-    fontSize: "3rem",
-    textDecoration: "none",
-  }
-  ,
-  cartDel: {
-    fontFamily: "Montserrat",
-    fontSize: "0.5 rem",
-    textDecoration: "none",
-    backgroundColor: '#f00',
-    color: '#fff',
-    fontWeight: 'bold'
-  }
+  t	tableContainer: {
+		minWidth: "350px",
+	},
+	title: {
+		fontFamily: "Bangers",
+		fontSize: "3rem",
+		textDecoration: "none",
+	},
+	cartDel: {
+		fontFamily: "Montserrat",
+		fontSize: "0.5 rem",
+		textDecoration: "none",
+		backgroundColor: "#f00",
+		color: "#fff",
+		fontWeight: "bold",
+	},
 }));
 
 const Shoppingcart = (props) => {
@@ -223,7 +227,7 @@ const Shoppingcart = (props) => {
   else {
     return (<>
 
-      <div id="cartEmptyWrapper">
+      <div id="cartWrapper">
         <div id="cartEmptyCharsTop">
           <div id="cartEmptyCharTop1">
             <img src={MiniBatman} ALT="Mini Batman" />
@@ -244,3 +248,5 @@ const Shoppingcart = (props) => {
 }
 
 export default Shoppingcart
+
+

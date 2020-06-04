@@ -43,17 +43,13 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down(550)]: {
 			fontSize: "0.7rem",
 		},
-		// [theme.breakpoints.down(600)]: {
-		// 	textAlign: "center",
-		// },
 	},
 
 	heroImage: {
-		// position: "absolute",
 		left: 0,
 		top: 0,
 		width: "100%",
-		// height: "auto",
+
 		objectFit: "cover",
 	},
 	wrapper: {
@@ -68,8 +64,6 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down(400)]: {
 			marginLeft: "10px",
 		},
-		// top: 0,
-		// bottom: "30%",
 	},
 
 	slider: {
@@ -91,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 		textDecoration: "none",
 		border: "3px solid white",
 		padding: "15px 30px",
-		// borderRadius: "50px 5px 50px 5px",
 		color: "white",
 		fontWeight: "bold",
 		textTransform: "uppercase",
@@ -115,14 +108,6 @@ const useStyles = makeStyles((theme) => ({
 const HeroSlider = () => {
 	const classes = useStyles();
 	const mobile = useMediaQuery("(max-width: 400px) ");
-	// 	const settings = {
-	// 		infinite: true,
-	// 		autoplay: true,
-	// 		autoplaySpeed: 5000,
-	// 		speed: 500,
-	// 		slidesToShow: 1,
-	// 		slidesToScroll: 1,
-	// 	};
 
 	return (
 		<React.Fragment>
