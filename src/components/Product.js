@@ -99,14 +99,16 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 
 		picture: {
-			width: "100%",
+			maxWidth: "100%",
+			maxHeight: "100%",
 		},
 
 		pictureContainer: {
-			width: "800px",
-			height: "auto",
-			marginLeft: "30%",
-			marginTop: "5vh",
+			width: "400px",
+			margin: "150px auto",
+			[theme.breakpoints.down(550)]: {
+				width: "300px",
+			},
 		},
 
 		rating: {
