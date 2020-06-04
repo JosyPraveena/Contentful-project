@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
@@ -17,7 +17,11 @@ import MiniHulk from "../img/mini_hulk.png"
 import MiniBatman from "../img/mini_batman.png"
 import MiniYoda from "../img/mini_yoda.png"
 import MiniDarth from "../img/mini_darth.png"
-import Avatar from "@material-ui/core/Avatar";
+import ErrorMessage from "./ErrorMessage"
+import parse from "html-react-parser"
+import Popover from '@material-ui/core/Popover'
+
+
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -26,6 +30,9 @@ const StyledTableCell = withStyles(theme => ({
   },
   body: {
     fontSize: 14
+  },
+  cartTotal: {
+    fontWeight: 'bold'
   }
 }))(TableCell);
 
@@ -37,7 +44,13 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing(1),
+  },
   table: {
     minWidth: 1200
   },
@@ -55,98 +68,179 @@ const useStyles = makeStyles({
     color: '#fff',
     fontWeight: 'bold'
   }
-});
+}));
 
 const Shoppingcart = (props) => {
+
+  const [popOverDesc, setPopOverDesc] = useState(null);
+  const [targetPopover, setTargetPopover] = useState(0);
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   let { cartItems } = props
 
-  console.log(cartItems)
+  const [totalCost, setTotalCost] = useState(0)
 
-  if ( cartItems.length > 0 ) {
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      setTotalCost(cartItems.map(each => (each.price * each.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue))
 
-  return (
-    <>
-      <div id="cartWrapper">
-        <div className={classes.title} id="cartTitle">FEED THE CART - IT'S STILL HUNGRY</div>
+    }
 
-        <div id="theCart">
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>PRODUCT</StyledTableCell>
-                  <StyledTableCell align="right">PRICE</StyledTableCell>
-                  <StyledTableCell align="right">QTY</StyledTableCell>
-                  <StyledTableCell align="right">TOTAL</StyledTableCell>
-                  <StyledTableCell align="right" />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {cartItems.map(each => {
+  }, [props.count, cartItems])
 
-                  return (
-                    <StyledTableRow key={each.title}>
-                      <StyledTableCell component="th" scope="row" >
-                        <div id="cartImageProduct">
-                          <img src={each.image} style={{ height: '45px' }} ALT={each.title} />                          
-                          {each.title}
-                        </div>
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        <div className="cartPrice">{each.price} $</div>
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      const descriptions=cartItems.map((item,index)=> { 
 
-                        <div id="cartQuantityWrapper">
-                          <div className="cartChangeQuantity" onClick={() => props.addItems(each.productid, each.title)}>+</div>
-                          <div className="cartQuantity" >{each.quantity}</div>
-                          <div className="cartChangeQuantity" onClick={() => props.reduceItems(each.productid, each.title)}>–</div>
-                        </div>
+        return  {id: index, desc: item.description }
 
-                      </StyledTableCell>
-                      <StyledTableCell align="right"><div className="cartPrice">{Number.parseFloat(each.price * each.quantity).toFixed(2)} $</div></StyledTableCell>
-                      <StyledTableCell align="right"><Chip onClick={() => props.deleteItems(each.title, each.quantity)} size="small" label="X" className={classes.cartDel} /></StyledTableCell>
-                    </StyledTableRow>)
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+       })
+
+      // console.log(descriptions)
+      setPopOverDesc(descriptions)
+
+    }
+
+  }, [props.count, cartItems])
+
+  if (cartItems.length > 0) {
+
+    return (
+      <>
+
+        <div id="cartWrapper">
+          {props.isStateEmpty === false ? <ErrorMessage /> : null} <br /><br /> <br />
+          <div className={classes.title} id="cartTitle">FEED THE CART - IT'S STILL HUNGRY</div>
+
+          <div id="theCart">
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>PRODUCT</StyledTableCell>
+                    <StyledTableCell align="right">PRICE</StyledTableCell>
+                    <StyledTableCell align="right">QTY</StyledTableCell>
+                    <StyledTableCell align="right">TOTAL</StyledTableCell>
+                    <StyledTableCell align="right" />
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {cartItems.map((each, index) => {
+
+                    
+
+                    return (
+                      <StyledTableRow key={each.title}>
+                        <StyledTableCell component="th" scope="row" >
+                          <div id="cartImageProduct">
+                            <img src={each.image} style={{ height: '45px' }} ALT={each.title} />
+                            <div aria-owns={open ? 'mouse-over-popover' : undefined}
+                              aria-haspopup="true"
+                              onMouseEnter={e => {
+                                setTargetPopover(index);
+                                handlePopoverOpen(e);
+                              }}
+                              onMouseLeave={handlePopoverClose}>{each.title}</div>                            
+                          </div>
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          <div className="cartPrice">{each.price} $</div>
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+
+                          <div id="cartQuantityWrapper">
+                            <div className="cartChangeQuantity" onClick={() => props.addItems(each.productid, each.title)}>+</div>
+                            <div className="cartQuantity" >{each.quantity}</div>
+                            <div className="cartChangeQuantity" onClick={() => props.reduceItems(each.productid, each.title)}>–</div>
+                          </div>
+
+                        </StyledTableCell>
+                        <StyledTableCell align="right"><div className="cartPrice">{Number.parseFloat(each.price * each.quantity).toFixed(2)} $</div></StyledTableCell>
+                        <StyledTableCell align="right"><Chip onClick={() => props.deleteItems(each.title, each.quantity)} size="small" label="X" className={classes.cartDel} /></StyledTableCell>
+                      </StyledTableRow>)
+                  })}
+                  {popOverDesc && <Popover style={{ width: '800px' }}
+                              id="mouse-over-popover"
+                              className={classes.popover}
+                              classes={{
+                                paper: classes.paper,
+                              }}
+                              open={open}
+                              anchorEl={anchorEl}
+                              anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                              }}
+                              transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                              }}
+                              onClose={handlePopoverClose}
+                              disableRestoreFocus
+                            >
+                              <div>{parse(popOverDesc[targetPopover].desc)}</div>
+                            </Popover>}
+                  <TableRow >
+                    <StyledTableCell className="cartTotal"></StyledTableCell>
+                    <StyledTableCell className="cartTotal" align="right"></StyledTableCell>
+                    <StyledTableCell className="cartTotal" align="right"></StyledTableCell>
+                    <StyledTableCell className="cartTotal" align="right"><b>{totalCost.toFixed(2) + ' $'}</b></StyledTableCell>
+                    <StyledTableCell className="cartTotal" align="right" />
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+
+          <div id="cartButtons">
+            <div className="cartButton1">
+
+              <div><img src={MiniDarth} ALT="Mini Darth" /></div><div><Button variant="contained">BUY MORE</Button></div>
+            </div>
+            <div className="cartButton2">
+              <div><img src={MiniYoda} ALT="Mini Yoda" /></div><div><Button variant="contained">CHECKOUT</Button></div>
+            </div>
+          </div>
         </div>
-        <div id="cartButtons">
-        <div className="cartButton1">
-          
-          <div><img src={MiniDarth} ALT="Mini Darth"/></div><div><Button variant="contained">BUY MORE</Button></div>
-        </div>
-        <div className="cartButton2">
-          <div><img src={MiniYoda} ALT="Mini Yoda"/></div><div><Button variant="contained">CHECKOUT</Button></div>
-        </div>
-      </div>
-      </div>
 
 
-    </>
-  ) }
+      </>
+    )
+  }
 
-  else { return ( <> 
-  
-  <div id="cartEmptyWrapper">
-      <div id="cartEmptyCharsTop">
+  else {
+    return (<>
+
+      <div id="cartEmptyWrapper">
+        <div id="cartEmptyCharsTop">
           <div id="cartEmptyCharTop1">
-              <img src={MiniBatman} ALT="Mini Batman"/>
+            <img src={MiniBatman} ALT="Mini Batman" />
           </div>
           <div id="cartEmptyCharTop2">
-              <img src={MiniHulk} ALT="Mini Hulk"/>
+            <img src={MiniHulk} ALT="Mini Hulk" />
           </div>
+        </div>
+        <div id="cartEmpty" className={classes.title}>
+          YOUR CART IS EMPTY<br /> <br />IT'S HUNGRY ... FEED IT !
       </div>
-      <div id="cartEmpty" className={classes.title}>
-      YOUR CART IS EMPTY<br/> <br/>IT'S HUNGRY ... FEED IT !
+        <div id="cartEmptyCharBottom">
+          <img src={MiniSpidey} ALT="Mini Spidey" />
+        </div>
       </div>
-      <div id="cartEmptyCharBottom">
-        <img src={MiniSpidey} ALT="Mini Spidey"/>
-      </div>
-  </div>
-  </>) }
+    </>)
+  }
 }
 
 export default Shoppingcart

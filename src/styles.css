@@ -233,5 +233,6 @@ a:link {
   .cartButton1 img { border: none; background-color: #fff; height: 75px; width: auto; padding:0; margin-bottom: -5px; margin-left: 30px; }
   .cartButton2 img { border: none; background-color: #fff; height: 50px; width: auto; padding:0; margin-bottom: -5px; margin-left: 20px; }
   #cartButtons { display: flex; flex-direction: row; width: 1200px; margin: 25px 0px}
+  #cartTotal { width:1200px; background-color: #f0f; display: flex; justify-content: flex-end;}
   
   
