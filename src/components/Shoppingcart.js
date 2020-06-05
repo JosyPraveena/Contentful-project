@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import { Route, Link, useParams } from "react-router-dom";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -15,10 +16,13 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 
+import Checkout from "../components/Checkout";
+
 import MiniSpidey from "../img/mini_spidey.png"
 import MiniHulk from "../img/mini_hulk.png"
 import MiniBatman from "../img/mini_batman.png"
 import MiniYoda from "../img/mini_yoda.png"
+import MiniIronman from "../img/mini_ironman.png"
 import MiniDarth from "../img/mini_darth.png"
 import ErrorMessage from "./ErrorMessage"
 import parse from "html-react-parser"
@@ -56,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(1),
   },
-  t	tableContainer: {
+   tableContainer: {
 		minWidth: "350px",
 	},
 	title: {
@@ -93,6 +97,8 @@ const Shoppingcart = (props) => {
   const open = Boolean(anchorEl);
 
   let { cartItems } = props
+
+  console.log("Cart Items : ", cartItems)
 
   const [totalCost, setTotalCost] = useState(0)
 
@@ -156,7 +162,12 @@ const Shoppingcart = (props) => {
                                 setTargetPopover(index);
                                 handlePopoverOpen(e);
                               }}
-                              onMouseLeave={handlePopoverClose}>{each.title}</div>                            
+                              onMouseLeave={handlePopoverClose}
+                              // component={Link}
+                              // to={`/blog/${blogData.blog_id}`}
+                              // key={blogData.blog_id}
+                              >
+                                {each.title}</div>                            
                           </div>
                         </StyledTableCell>
                         <StyledTableCell align="right">
@@ -211,15 +222,21 @@ const Shoppingcart = (props) => {
           <div id="cartButtons">
             <div className="cartButton1">
 
-              <div><img src={MiniDarth} ALT="Mini Darth" /></div><div><Button variant="contained">BUY MORE</Button></div>
+              <div><img src={MiniDarth} ALT="Mini Darth" /></div><div><Button style={{ textDecoration: "none" }} 
+              component={Link}
+							to={`/`} variant="contained">BUY MORE</Button></div>
             </div>
             <div className="cartButton2">
-              <div><img src={MiniYoda} ALT="Mini Yoda" /></div><div><Button variant="contained">CHECKOUT</Button></div>
+              <div><img src={MiniYoda} ALT="Mini Yoda" /></div><div>
+                <Button style={{ textDecoration: "none" }} 
+              component={Link}
+							to={`/checkout`}
+							variant="contained">CHECKOUT</Button></div>
             </div>
           </div>
         </div>
 
-
+        <Route path='/checkout/' render={(props) => <Checkout totalCost={`${totalCost.toFixed(2)}`} {...props} />}/>
       </>
     )
   }
@@ -244,6 +261,7 @@ const Shoppingcart = (props) => {
         </div>
       </div>
     </>)
+
   }
 }
 

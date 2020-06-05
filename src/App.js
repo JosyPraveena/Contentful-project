@@ -11,6 +11,7 @@ import BlogMain from "./components/BlogMain";
 import BlogArticle from "./components/BlogArticle";
 import BlogDetails from "./components/BlogDetails";
 import Product from "./components/Product";
+import Checkout from "./components/Checkout";
 import Shoppingcart from "./components/Shoppingcart"
 
 function App() {
@@ -22,14 +23,16 @@ function App() {
 	const [cartItems, setCartItems] = useState([])
 	const [qty,setQty] = useState(1)
 	const [isStateEmpty,setIsStateEmpty] = useState(true)
+	const [totalCost, setTotalCost] = useState(0)
  
+	
 	//const [addItems,setAddItems] = useState(null)
 
 	const fetchData = async () => {
 
 		try {
 			const response = await fetch(
-				"https://comicsawesome.herokuapp.com/shirt/"
+				"http://localhost:3001/shirt/"
 			);
 			const shirtData = await response.json();
 
@@ -41,7 +44,7 @@ function App() {
 		}
 		try {
 
-			const response = await fetch("https://comicsawesome.herokuapp.com/mug/");
+			const response = await fetch("http://localhost:3001/mug/");
 			const mugData = await response.json();
 
 
@@ -52,7 +55,7 @@ function App() {
 		}
 		try {
 
-			const response = await fetch("https://comicsawesome.herokuapp.com/book/");
+			const response = await fetch("http://localhost:3001/book/");
 			const data = await response.json();
 
 
@@ -63,7 +66,7 @@ function App() {
 		}
 		try {
 
-			const response = await fetch("https://comicsawesome.herokuapp.com/blog/");
+			const response = await fetch("http://localhost:3001/blog/");
 			const blogData = await response.json();
 
 
@@ -152,6 +155,7 @@ const deleteItems = (item,quantity)=>{
 				addItems={addItems}
 				reduceItems={reduceItems} 
 				isStateEmpty={isStateEmpty}
+				totalCost={totalCost}
 				/>)}/>
                 <Route
                     path={"/category/:id/:product"}
@@ -182,6 +186,7 @@ const deleteItems = (item,quantity)=>{
 					render={(props) => <BlogDetails blogData={blogData} {...props} />}
 				/>
 				<Route path='/blog/' render={(props) => <BlogMain blogData={blogData} {...props} />}/>
+				<Route path='/checkout/' render={(props) => <Checkout totalCost={totalCost} {...props} />}/>
                 <Route exact
                     path='/'
                     render={(props) => (
