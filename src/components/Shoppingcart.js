@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from "react";
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+
+
 import { Route, Link, useParams } from "react-router-dom";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -52,15 +50,16 @@ const StyledTableRow = withStyles((theme) => ({
 	},
 }))(TableRow);
 
-
 const useStyles = makeStyles((theme) => ({
-  popover: {
-    pointerEvents: 'none',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
-   tableContainer: {
+
+	popover: {
+		pointerEvents: "none",
+	},
+	paper: {
+		padding: theme.spacing(1),
+	},
+	tableContainer: {
+
 		minWidth: "350px",
 	},
 	title: {
