@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import { useMediaQuery } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
 	btn: {
@@ -122,13 +123,31 @@ const Footer = () => {
 						<Typography className={classes.footerTitle}>Categories</Typography>
 					</Grid>
 					<Grid item>
-						<Typography className={classes.links}>T-Shirts</Typography>
+						<Typography
+							component={Link}
+							to='/category/shirt'
+							className={classes.links}
+						>
+							T-Shirts
+						</Typography>
 					</Grid>
 					<Grid item>
-						<Typography className={classes.links}>Comic Books</Typography>
+						<Typography
+							component={Link}
+							to='/category/book'
+							className={classes.links}
+						>
+							Comic Books
+						</Typography>
 					</Grid>
 					<Grid item>
-						<Typography className={classes.links}>Mugs</Typography>
+						<Typography
+							component={Link}
+							to='/category/mug'
+							className={classes.links}
+						>
+							Mugs
+						</Typography>
 					</Grid>
 				</Grid>
 			</Grid>
